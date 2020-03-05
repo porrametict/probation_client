@@ -1,18 +1,20 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+<!--    <AfterProbationForm/>-->
+    <DuringProbationForm/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import AfterProbationForm from "@/components/AfterProbationForm";
+import DuringProbationForm from "../components/DuringProbationForm";
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    DuringProbationForm,
+    AfterProbationForm,
   }
 }
 </script>

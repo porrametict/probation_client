@@ -1,0 +1,962 @@
+{
+  "title": "บันทึกผลการสอดส่องติดตามภายหลังปล่อย/พ้นฟื้นฟูฯ",
+  "pages": [
+    {
+      "name": "page1",
+      "elements": [
+        {
+          "type": "text",
+          "name": "question1",
+          "title": "ครั้งที่"
+        },
+        {
+          "type": "text",
+          "name": "question2",
+          "title": "วันที่",
+          "inputType": "date"
+        },
+        {
+          "type": "text",
+          "name": "question3",
+          "title": "ชื่อ"
+        },
+        {
+          "type": "text",
+          "name": "question4",
+          "title": "เลขทะเบียน"
+        },
+        {
+          "type": "dropdown",
+          "name": "question5",
+          "title": "วันนี้ข้าพเจ้าได้ออกไปสอดส่องตามสถานที่อยู่ที่แจ้งไว้  ปรากฏว่า ",
+          "choices": [
+            {
+              "value": "item1",
+              "text": "พบ  ผู้ถูกคุมความประพฤติ/ผู้เข้ารับการฟื้นฟูฯ"
+            },
+            {
+              "value": "item2",
+              "text": "ไม่พบ ผู้ถูกคุมความประพฤติ/ผู้เข้ารับการฟื้นฟูฯ"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "question6",
+          "visibleIf": "{question5} = 'item2'",
+          "title": "ชื่อ-สกุล"
+        },
+        {
+          "type": "text",
+          "name": "question7",
+          "visibleIf": "{question5} = 'item2'",
+          "title": "เกี่ยวข้องเป็น"
+        },
+        {
+          "type": "text",
+          "name": "question8",
+          "visibleIf": "{question5} = 'item2'",
+          "title": "อยู่บ้านเลขที่"
+        },
+        {
+          "type": "text",
+          "name": "question9",
+          "visibleIf": "{question5} = 'item2'",
+          "title": "หมู่ที่"
+        },
+        {
+          "type": "text",
+          "name": "question10",
+          "visibleIf": "{question5} = 'item2'",
+          "title": "ตรอก/ซอย"
+        },
+        {
+          "type": "text",
+          "name": "question11",
+          "visibleIf": "{question5} = 'item2'",
+          "title": "ถนน"
+        },
+        {
+          "type": "text",
+          "name": "question12",
+          "visibleIf": "{question5} = 'item2'",
+          "title": "ตำบล/เเขวง"
+        },
+        {
+          "type": "text",
+          "name": "question13",
+          "visibleIf": "{question5} = 'item2'",
+          "title": "อำเภอ/เขต"
+        },
+        {
+          "type": "text",
+          "name": "question14",
+          "visibleIf": "{question5} = 'item2'",
+          "title": "จังหวัด"
+        },
+        {
+          "type": "text",
+          "name": "question15",
+          "visibleIf": "{question5} = 'item2'",
+          "title": "โทรศัพท์"
+        }
+      ],
+      "title": "ข้อมูลเบื้องต้น"
+    },
+    {
+      "name": "page2",
+      "elements": [
+        {
+          "type": "dropdown",
+          "name": "question16",
+          "title": "ที่พักอาศัย",
+          "choices": [
+            {
+              "value": "item1",
+              "text": "ตรงตามที่เเจ้ง"
+            },
+            {
+              "value": "item2",
+              "text": "เปลี่ยนแปลงที่พักอาศัย"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "question17",
+          "title": "ปัจจุบันผู้ถูกคุมประพฤติ/ผู้เข้ารับการฟื้นฟูฯ พักอาศัยอยู่กับ"
+        },
+        {
+          "type": "text",
+          "name": "question18",
+          "title": "เกี่ยวข้องเป็น"
+        },
+        {
+          "type": "text",
+          "name": "question19",
+          "title": "โทรศัพท์"
+        },
+        {
+          "type": "text",
+          "name": "question20",
+          "title": "อยู่บ้านเลขที่"
+        },
+        {
+          "type": "text",
+          "name": "question21",
+          "title": "หมู่ที่"
+        },
+        {
+          "type": "text",
+          "name": "question22",
+          "title": "ตรอก/ซอย"
+        },
+        {
+          "type": "text",
+          "name": "question23",
+          "title": "ถนน"
+        },
+        {
+          "type": "text",
+          "name": "question24",
+          "title": "ตำบล/แขวง"
+        },
+        {
+          "type": "text",
+          "name": "question25",
+          "title": "อำเภอ/เขต"
+        },
+        {
+          "type": "text",
+          "name": "question26",
+          "title": "จังหวัด"
+        },
+        {
+          "type": "text",
+          "name": "question27",
+          "title": "โทรศัพท์"
+        },
+        {
+          "type": "html",
+          "name": "question28",
+          "html": "<p>(กรณีแผนที่บ้านไม่ถูกต้องหรือเปลี่ยนแปลงที่พักอาศัย โปรดวาดแผนที่ประกอบท้ายรายงานด้วย)</p>"
+        },
+        {
+          "type": "dropdown",
+          "name": "question29",
+          "title": "สภาพแวดล้อมที่พักอาศัย",
+          "choices": [
+            {
+              "value": "item1",
+              "text": "ในย่านชุมชนชนบททั่วไป "
+            },
+            {
+              "value": "item2",
+              "text": "อยู่ในชนบทห่างไกลจากชุมชน"
+            },
+            {
+              "value": "item3",
+              "text": "ตั้งอยู่ในสวน,ไร่/นา อยู่ห่างจากชุมชน   "
+            },
+            {
+              "value": "item4",
+              "text": "อยู่ในชุมชนเมืองย่านการค้า,การตลาด"
+            }
+          ]
+        },
+        {
+          "type": "dropdown",
+          "name": "question30",
+          "title": "สภาพปัญหาของชุมชนที่พักอาศัย",
+          "choices": [
+            {
+              "value": "item1",
+              "text": "ไม่มีปัญหายาเสพติดและเป็นแหล่งอาชญากรรมใด"
+            },
+            {
+              "value": "item2",
+              "text": "มีปัญหา "
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "name": "question31",
+          "visibleIf": "{question30} = 'item2'",
+          "title": "ปัญหา",
+          "hasOther": true,
+          "choices": [
+            {
+              "value": "item1",
+              "text": "การพนัน"
+            },
+            {
+              "value": "item2",
+              "text": "สถานเริงรมย์ "
+            },
+            {
+              "value": "item3",
+              "text": "กลอบตัดไม้/บุกรุกป่า"
+            },
+            {
+              "value": "item4",
+              "text": "มั่วสุม/นักเลงอันธพาล"
+            },
+            {
+              "value": "item5",
+              "text": "ลักขโมย"
+            },
+            {
+              "value": "item6",
+              "text": "เสพ/จำหน่ายยาเสพติด\t"
+            }
+          ],
+          "otherText": "อื่นๆ (ระบุ)"
+        },
+        {
+          "type": "dropdown",
+          "name": "question32",
+          "title": "การประกอบอาชีพ ",
+          "choices": [
+            {
+              "value": "item1",
+              "text": "เกษตรกร "
+            },
+            {
+              "value": "item2",
+              "text": "รับจ้างทั่วไป   "
+            },
+            {
+              "value": "item3",
+              "text": "ทำงานในหน่วยงานของรัฐ/เอกชน มีรายได้ประจำ"
+            },
+            {
+              "value": "item4",
+              "text": "ไม่ได้ประกอบอาชีพ  "
+            }
+          ]
+        },
+        {
+          "type": "dropdown",
+          "name": "question33",
+          "visibleIf": "{question32} = 'item4'",
+          "title": "ไม่ได้ประกอบอาชีพ เนื่องจาก",
+          "hasOther": true,
+          "choices": [
+            {
+              "value": "item1",
+              "text": "เจ็บป่วย/สุขภาพไม่แข็งแรง  "
+            },
+            {
+              "value": "item2",
+              "text": "เกียจคร้าน  "
+            },
+            {
+              "value": "item3",
+              "text": "กำลังศึกษา"
+            }
+          ],
+          "otherText": "อื่นๆ"
+        },
+        {
+          "type": "text",
+          "name": "question34",
+          "visibleIf": "{question33} = 'item3'",
+          "title": "กำลังศึกษาชั้น"
+        },
+        {
+          "type": "text",
+          "name": "question35",
+          "visibleIf": "{question33} = 'item3'\n",
+          "title": "สถานศึกษา"
+        },
+        {
+          "type": "text",
+          "name": "question36",
+          "visibleIf": "{question33} = 'item3'",
+          "title": "ความตั้งใจ/สนใจในการเล่าเรียน"
+        },
+        {
+          "type": "text",
+          "name": "question37",
+          "visibleIf": "{question33} = 'item3'",
+          "title": "ผลการเรียน"
+        },
+        {
+          "type": "dropdown",
+          "name": "question38",
+          "title": "นิสัยและความประพฤติ ",
+          "choices": [
+            {
+              "value": "item1",
+              "text": "ปกติทั่วไป"
+            },
+            {
+              "value": "item2",
+              "text": "มีความรับผิดชอบต่อครอบครัว "
+            },
+            {
+              "value": "item3",
+              "text": "ขยันทำงาน"
+            },
+            {
+              "value": "item4",
+              "text": "โมโหร้าย  "
+            },
+            {
+              "value": "item5",
+              "text": "มีพฤติกรรมติดสุรา"
+            },
+            {
+              "value": "item6",
+              "text": "มีพฤติกรรมก้าวร้าวชอบใช้ความรุนแรงในครอบครัว "
+            },
+            {
+              "value": "item7",
+              "text": "ชอบมั่วสุมสร้างความเดือดร้อนลำคาญในชุมชน "
+            },
+            {
+              "value": "item8",
+              "text": "ยังมีพฤติการณ์การเกี่ยวข้องกับยาเสพติด"
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "name": "question39",
+          "title": "ความสัมพันธ์กับบุคคลในครอบครัว",
+          "choices": [
+            {
+              "value": "item1",
+              "text": "ปกติ"
+            },
+            {
+              "value": "item2",
+              "text": "ห่างเหิน"
+            },
+            {
+              "value": "item3",
+              "text": "ขัดเเย้ง/ทะเลาะ"
+            }
+          ]
+        },
+        {
+          "type": "dropdown",
+          "name": "question40",
+          "title": "ความสัมพันธ์กับชุมชน ",
+          "choices": [
+            {
+              "value": "item1",
+              "text": "ยอมรับ"
+            },
+            {
+              "value": "item2",
+              "text": "มีส่วนร่วม"
+            },
+            {
+              "value": "item3",
+              "text": "ไม่มีส่วนร่วม\t"
+            },
+            {
+              "value": "item4",
+              "text": "ขัดแย้ง/ทะเลาะ"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "question41",
+          "title": "เพิ่มเติม"
+        },
+        {
+          "type": "dropdown",
+          "name": "question42",
+          "title": "พฤติการณ์พิเศษอื่น ๆ   ",
+          "choices": [
+            {
+              "value": "item1",
+              "text": "ไม่มี"
+            },
+            {
+              "value": "item2",
+              "text": " มี "
+            }
+          ]
+        },
+        {
+          "type": "dropdown",
+          "name": "question43",
+          "visibleIf": "{question42} = 'item2'",
+          "title": "มีพฤติการณ์พิเศษ ดังนี้",
+          "hasOther": true,
+          "choices": [
+            {
+              "value": "item1",
+              "text": "เจ็บป่วย/บาดเจ็บ  "
+            },
+            {
+              "value": "item2",
+              "text": "เจ็บป่วยอย่างร้ายแรงด้วยโรค  "
+            },
+            {
+              "value": "item3",
+              "text": "ถึงแก่กรรม"
+            },
+            {
+              "value": "item4",
+              "text": "กระทำความผิด "
+            }
+          ],
+          "otherText": "อื่นๆ ระบุ"
+        },
+        {
+          "type": "dropdown",
+          "name": "question44",
+          "visibleIf": "{question43} = 'item1'",
+          "title": "เจ็บป่วย/บาดเจ็บ  เนื่องจาก ",
+          "choices": [
+            {
+              "value": "item1",
+              "text": "มีอาการทางจิต/ประสาท   "
+            },
+            {
+              "value": "item2",
+              "text": "อุบัติเหตุ"
+            }
+          ]
+        },
+        {
+          "type": "dropdown",
+          "name": "question45",
+          "visibleIf": "{question43} = 'item2'",
+          "title": "เจ็บป่วยอย่างร้ายแรงด้วยโรค  ",
+          "choices": [
+            {
+              "value": "item1",
+              "text": "เอดส์/มะเร็ง  "
+            },
+            {
+              "value": "item2",
+              "text": "โรคตับ/ไต"
+            }
+          ]
+        },
+        {
+          "type": "dropdown",
+          "name": "question46",
+          "visibleIf": "{question43} = 'item2' or {question43} = 'item2'",
+          "title": "ขณะนี้พักรักษาตัวอยู่ที่ ",
+          "choices": [
+            {
+              "value": "item1",
+              "text": "รพ.ประจำอำเภอ "
+            },
+            {
+              "value": "item2",
+              "text": "รพ.ประจำจังหวัด "
+            },
+            {
+              "value": "item3",
+              "text": "อยู่ต่างจังหวัด                         "
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "question47",
+          "visibleIf": "{question43} = 'item3'",
+          "title": "ถึงแก่กรรมเมื่อวันที่",
+          "inputType": "date"
+        },
+        {
+          "type": "dropdown",
+          "name": "question48",
+          "visibleIf": "{question43} = 'item3'",
+          "title": "ถึงแก่กรรมด้วยสาเหตุ ",
+          "choices": [
+            {
+              "value": "item1",
+              "text": "ป่วย"
+            },
+            {
+              "value": "item2",
+              "text": "อุบัติเหตุ "
+            },
+            {
+              "value": "item3",
+              "text": "ทำร้ายตนเอง "
+            },
+            {
+              "value": "item4",
+              "text": "ถูกทำร้าย"
+            }
+          ]
+        },
+        {
+          "type": "dropdown",
+          "name": "question49",
+          "visibleIf": "{question43} = 'item4'",
+          "title": "กระทำความผิด ข้อหา",
+          "choices": [
+            {
+              "value": "item1",
+              "text": "ยาเสพติด "
+            },
+            {
+              "value": "item2",
+              "text": "ทำร้ายร่างกาย "
+            },
+            {
+              "value": "item3",
+              "text": "เกี่ยวกับทรัพย์"
+            }
+          ]
+        },
+        {
+          "type": "dropdown",
+          "name": "question50",
+          "visibleIf": "{question43} = 'item4'",
+          "title": "ถูกจับกุมด้วยเจ้าพนักงานตำรวจ สถานีตำรวจ ",
+          "choices": [
+            {
+              "value": "item1",
+              "text": "ในพื้นที่ "
+            },
+            {
+              "value": "item2",
+              "text": "สถานีตำรวจต่างอำเภอ            "
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "question51",
+          "visibleIf": "{question43} = 'item4'",
+          "title": "จับกุมเมื่อวันที่",
+          "inputType": "date"
+        },
+        {
+          "type": "dropdown",
+          "name": "question52",
+          "visibleIf": "{question43} = 'item4'",
+          "title": "สถานะการควบคุมตัว ",
+          "hasOther": true,
+          "choices": [
+            {
+              "value": "item1",
+              "text": "ปล่อยชั่วคราว "
+            },
+            {
+              "value": "item2",
+              "text": "ต้องขัง"
+            }
+          ],
+          "otherText": "อื่นๆ ระบุ"
+        },
+        {
+          "type": "dropdown",
+          "name": "question53",
+          "visibleIf": "{question52} = 'item2'",
+          "title": "ต้องขังที่ ",
+          "choices": [
+            {
+              "value": "item1",
+              "text": "เรือนจำ"
+            },
+            {
+              "value": "item2",
+              "text": "สถานีตำรวจในพื้นที่"
+            }
+          ]
+        },
+        {
+          "type": "dropdown",
+          "name": "question54",
+          "title": "ความต้องการช่วยเหลือสงเคราะห์ ",
+          "choices": [
+            {
+              "value": "item1",
+              "text": "ไม่ต้องการ "
+            },
+            {
+              "value": "item2",
+              "text": "ส่งเสริมด้านการพัฒนาอาชีพ "
+            },
+            {
+              "value": "item3",
+              "text": "ส่งเสริมการมีงานทำ "
+            },
+            {
+              "value": "item4",
+              "text": "ด้านการศึกษา "
+            },
+            {
+              "value": "item5",
+              "text": "การให้คำปรึกษาด้านคดีความ "
+            },
+            {
+              "value": "item6",
+              "text": "การส่งเข้าบำบัดอาการติดยา "
+            },
+            {
+              "value": "item7",
+              "text": "ส่งบำบัดอาการติดยาเสพติด "
+            },
+            {
+              "value": "item8",
+              "text": "การให้คำปรึกษาครอบครัว"
+            }
+          ]
+        }
+      ],
+      "title": "ส่วนที่ 1 ข้อมูลที่ได้จากการปฏิบัติงาน"
+    },
+    {
+      "name": "page3",
+      "elements": [
+        {
+          "type": "html",
+          "name": "html1",
+          "html": "<p>แนวโน้มในการแก้ไขปัญหาของผู้กระทำผิด</p>"
+        },
+        {
+          "type": "dropdown",
+          "name": "question55",
+          "title": "การผิดเงื่อนไข",
+          "choices": [
+            {
+              "value": "item1",
+              "text": "แย่ลง"
+            },
+            {
+              "value": "item2",
+              "text": "ไม่เปลี่ยนแปลง"
+            },
+            {
+              "value": "item3",
+              "text": "ดีขึ้น"
+            }
+          ]
+        },
+        {
+          "type": "dropdown",
+          "name": "question56",
+          "title": "เกี่ยวข้องกับยาเสพติด        ",
+          "choices": [
+            {
+              "value": "item1",
+              "text": "แย่ลง"
+            },
+            {
+              "value": "item2",
+              "text": "ไม่เปลี่ยนแปลง"
+            },
+            {
+              "value": "item3",
+              "text": "ดีขึ้น"
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "name": "question58",
+          "title": "เหตุผล (ปัญหา)",
+          "hasOther": true,
+          "choices": [
+            {
+              "value": "item1",
+              "text": "การประกอบอาชีพ/รายได้ "
+            },
+            {
+              "value": "item2",
+              "text": "มีรายได้ไม่มั่นคง "
+            },
+            {
+              "value": "item3",
+              "text": "มีหนี้สินมาก "
+            },
+            {
+              "value": "item4",
+              "text": "มีภาระต้องหาเลี้ยงครอบครัว   "
+            },
+            {
+              "value": "item5",
+              "text": "มีรายได้มั่นคงขึ้น "
+            },
+            {
+              "value": "item6",
+              "text": "มีครอบครัวส่งเสริม"
+            },
+            {
+              "value": "item7",
+              "text": "เกี่ยวข้องกับยาเสพติด "
+            },
+            {
+              "value": "item8",
+              "text": "ยาบ้า"
+            },
+            {
+              "value": "item9",
+              "text": "สารระเหย "
+            },
+            {
+              "value": "item10",
+              "text": "เลิกยาเสพติดได้"
+            },
+            {
+              "value": "item11",
+              "text": "การคบหาสมาคมกับเพื่อน "
+            },
+            {
+              "value": "item12",
+              "text": "ที่เป็นนักเลงอันธพาล "
+            },
+            {
+              "value": "item13",
+              "text": "ใช้สารเสพติด"
+            },
+            {
+              "value": "item14",
+              "text": "จำหน่ายยาเสพติด "
+            },
+            {
+              "value": "item15",
+              "text": "ชอบเที่ยวเตร่ขาดวามรับผิดชอบ"
+            },
+            {
+              "value": "item16",
+              "text": "กระทำผิดในคดีอื่นๆ  "
+            },
+            {
+              "value": "item17",
+              "text": "ตามข้อมูลตามข้อ ๕"
+            },
+            {
+              "value": "item18",
+              "text": "สุขภาพกาย/จิต   "
+            },
+            {
+              "value": "item19",
+              "text": "สมบูรณ์แข็งแรง  "
+            },
+            {
+              "value": "item20",
+              "text": "มีอาการทางจิตประสาท/ร่างกายไม่แข็งแรงตามข้อมูลข้างต้น"
+            },
+            {
+              "value": "item21",
+              "text": "สภาพครอบครัว "
+            },
+            {
+              "value": "item22",
+              "text": "คนในครอบครัวมีพฤติกรรมติดยาเสพติด "
+            },
+            {
+              "value": "item23",
+              "text": "คนในครอบครัวมีพฤติกรรมติดสุรา  "
+            },
+            {
+              "value": "item24",
+              "text": "ต้องอุปการะคนในครอบครัวหลายคน  "
+            },
+            {
+              "value": "item25",
+              "text": "ที่พักอาศัยทรุดโทรม คับแคบ ขาดสุขลักษณะ "
+            },
+            {
+              "value": "item26",
+              "text": "มีความขัดแย้งกันในครอบครัว"
+            }
+          ],
+          "otherText": "อื่นๆ"
+        },
+        {
+          "type": "dropdown",
+          "name": "question61",
+          "title": "ผลการดำเนินการตามที่ได้รับมอบหมาย",
+          "choices": [
+            {
+              "value": "item1",
+              "text": "ให้คำแนะนำ และสงเคราะห์ "
+            },
+            {
+              "value": "item2",
+              "text": "ประสาน(หน่วยงาน) "
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "name": "question57",
+          "visibleIf": "{question61} = 'item1'",
+          "title": "ให้คำแนะนำ และสงเคราะห์ ในเรื่อง ดังต่อไปนี้",
+          "hasOther": true,
+          "choices": [
+            {
+              "value": "item1",
+              "text": "การร่วมกิจกรรมกับชุมชน"
+            },
+            {
+              "value": "item2",
+              "text": "การศึกษา"
+            },
+            {
+              "value": "item3",
+              "text": "การประกอบอาชีพ "
+            },
+            {
+              "value": "item4",
+              "text": "นิสัยและความประพฤติ "
+            }
+          ],
+          "otherText": "อื่นๆ "
+        },
+        {
+          "type": "checkbox",
+          "name": "question59",
+          "visibleIf": "{question61} = 'item2'",
+          "title": "ประสาน(หน่วยงาน) ",
+          "choices": [
+            {
+              "value": "item1",
+              "text": "ท้องถิ่น/ท้องที่ "
+            },
+            {
+              "value": "item2",
+              "text": "พมจ."
+            },
+            {
+              "value": "item3",
+              "text": "แรงงาน "
+            },
+            {
+              "value": "item4",
+              "text": "ตำรวจ  "
+            },
+            {
+              "value": "item5",
+              "text": "อำเภอ  "
+            },
+            {
+              "value": "item6",
+              "text": "กาชาดในพื้นที่ "
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "name": "question60",
+          "visibleIf": "{question61} = 'item2'",
+          "title": "เพื่อการสงเคราะห์/ช่วยเหลือ/เฝ้าระวังในเรื่อง ",
+          "choices": [
+            {
+              "value": "item1",
+              "text": "ช่วยเหลือด้านอาชีพ "
+            },
+            {
+              "value": "item2",
+              "text": "ช่วยเหลือด้านสุขภาพ"
+            },
+            {
+              "value": "item3",
+              "text": "ช่วยเหลือด้านอุปโภค/บริโภค"
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "name": "question63",
+          "title": "ปัญหาและอุปสรรคในการดำเนินการของอาสาสมัครคุมประพฤติ",
+          "choices": [
+            {
+              "value": "item1",
+              "text": "คนในชุมชนไม่ให้ความร่วมมือ  "
+            },
+            {
+              "value": "item2",
+              "text": "ผู้นำชุมชนไม่ให้ความร่วมมือ "
+            },
+            {
+              "value": "item3",
+              "text": "คนในครอบครัว/ผู้กระทำผิดไม่ให้ความร่วมมือ "
+            },
+            {
+              "value": "item4",
+              "text": "สภาพพื้นที่ห่างไกลเดินทางยากลำบาก "
+            },
+            {
+              "value": "item5",
+              "text": "ข้อมูลที่สำนักงานส่งไปไม่ครบถ้วนชัดเจนเพียงพอ"
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "name": "question62",
+          "title": "ข้อเสนอแนะในการดำเนินการ ",
+          "choices": [
+            {
+              "value": "item1",
+              "text": "การประชาสัมพันธ์และการสร้างการรับรู้ให้สังคมทราบถึงบทบาทของอาสาสมัครคุมประพฤติ ให้มากขึ้น  "
+            },
+            {
+              "value": "item2",
+              "text": "สร้างความรู้ ความเข้าใจกับครอบครัวผู้กระทำผิดให้มากขึ้น"
+            },
+            {
+              "value": "item3",
+              "text": "ของดการรับคดีในพื้นที่นี้"
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "name": "question64",
+          "title": "แผนที่/ภาพถ่ายบ้านผู้ถูกคุมความประพฤติ/ผู้เข้ารับการฟื้นฟูฯ",
+          "maxSize": 0
+        }
+      ],
+      "title": "ส่วนที่ 2  การปฏิบัติงานของอาสาสมัครคุมประพฤติ "
+    }
+  ]
+}
