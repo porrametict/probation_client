@@ -6,23 +6,23 @@
    "elements": [
     {
      "type": "text",
-     "name": "question1",
+     "name": "time",
      "title": "ครั้งที่"
     },
     {
      "type": "text",
-     "name": "question2",
+     "name": "data_collection_date",
      "title": "วันที่",
      "inputType": "date"
     },
     {
      "type": "text",
-     "name": "question3",
+     "name": "name",
      "title": "ชื่อ"
     },
     {
      "type": "text",
-     "name": "question4",
+     "name": "registration_number",
      "title": "เลขทะเบียน"
     },
     {

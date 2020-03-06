@@ -24,9 +24,7 @@
           width="100"
         />
       </div>
-
       <v-spacer></v-spacer>
-
       <v-btn
         href="https://github.com/vuetifyjs/vuetify/releases/latest"
         target="_blank"
@@ -38,18 +36,21 @@
     </v-app-bar>
 
     <v-content>
-      <during-probation-form/>
+<!--      <during-probation-form/>-->
+      <AfterProbationForm/>
     </v-content>
   </v-app>
 </template>
 
 <script>
 import DuringProbationForm from "./components/DuringProbationForm";
+import AfterProbationForm from "./components/AfterProbationForm";
 
 export default {
   name: 'App',
 
   components: {
+    AfterProbationForm,
     DuringProbationForm,
   },
 
