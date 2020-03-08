@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "install": "npm instal"
   },
   "dependencies": {
     "@mdi/font": "^4.9.95",

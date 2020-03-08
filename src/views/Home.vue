@@ -1,7 +1,9 @@
 <template>
   <div class="home">
 <!--    <AfterProbationForm/>-->
-    <DuringProbationForm/>
+      <v-container>
+          <DuringProbationForm/>
+      </v-container>
   </div>
 </template>
 
