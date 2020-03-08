@@ -13,6 +13,8 @@ window.axios = new Axios.create({
     baseURL : 'http://127.0.0.1:8000/',
     timeout : 10000
 })
+window.axios.defaults.headers.common['Authorization'] = `Token 8dd06af430873e3158b9b2a834371f4c855d7076`;
+
 
 window.moment = moment()
 moment.locale('th')
