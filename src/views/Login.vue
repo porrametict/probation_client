@@ -21,7 +21,7 @@
                                     flat
                             >
                                 <v-toolbar-title>Login form</v-toolbar-title>
-                                <v-spacer />
+                                <v-spacer/>
 
                             </v-toolbar>
                             <v-card-text>
@@ -31,6 +31,7 @@
                                             name="login"
                                             prepend-icon="mdi-account-box"
                                             type="text"
+                                            v-model="form.username"
                                     />
 
                                     <v-text-field
@@ -39,12 +40,14 @@
                                             name="password"
                                             prepend-icon="mdi-lock-question"
                                             type="password"
+                                            v-model="form.password"
+                                            @keypress.13="login"
                                     />
                                 </v-form>
                             </v-card-text>
                             <v-card-actions>
-                                <v-spacer />
-                                <v-btn color="primary" @click="login()" >Login</v-btn>
+                                <v-spacer/>
+                                <v-btn color="primary" @click="login()">Login</v-btn>
                             </v-card-actions>
                         </v-card>
                     </v-col>
@@ -57,9 +60,25 @@
 <script>
     export default {
         name: "Login",
+        data() {
+            return {
+                form: {
+                    username: 'admin',
+                    password: 'password'
+                }
+            }
+        },
         methods: {
-            login :function f() {
-                this.$router.push({name: 'Home'})
+            login: async function () {
+                let data = await this.$store.dispatch('account/login', this.form);
+                if (data) {
+                    let user = await this.$store.dispatch('account/getUser')
+                    if (user.user.groups[0].name === "Volunteer") {
+                        await this.$router.push({name: 'Volunteer'})
+                    } else {
+                        await this.$router.push({name: 'Home'})
+                    }
+                }
             }
         }
     }
