@@ -19,7 +19,7 @@
                     <v-btn large color="success" @click="updateStatus(3)">
                         <v-icon>mdi-check</v-icon>
                     </v-btn>
-                    <v-btn large color="info" @click="viewDetail(3)">
+                    <v-btn large color="info" @click="viewDetail( a.id)">
                         <v-icon>mdi-eye</v-icon>
                     </v-btn>
                 </v-card-actions>
@@ -59,8 +59,8 @@
             async updateStatus(id) {
 
             },
-            viewDetail (id) {
-
+            viewDetail(id) {
+                this.$router.push({name: "ViewAssignmentDetail", params: {id: id}})
             }
         }
     }

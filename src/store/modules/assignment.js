@@ -13,6 +13,14 @@ export default {
                     return null
                 });
         },
+        async getAssignmentById(context, id) {
+            return await axios.get(`api/v1/assignment/${id}/`, )
+                .then((response) => {
+                    return response.data
+                }).catch((error) => {
+                    return null
+                });
+        },
     },
     getters : {
         getFormType : (state)=>(id)=> {

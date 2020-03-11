@@ -20,6 +20,7 @@
             Survey
         },
         mounted() {
+            this.loadData()
         },
         data() {
             let self = this
@@ -34,7 +35,20 @@
             };
         },
         methods : {
-            createSurvey() {
+            async loadData() {
+                let id = this.$route.params.id
+                this.argument = await this.$store.dispatch('assignment/getAssignmentById', id)
+                console.log(this.argument)
+                this.create_model_data()
+            },
+            create_model_data() {
+                let date = moment.format('L')
+                let cur_date = date.split('/')
+                this.survey.data = {
+                    time: 1,
+                    data_collection_date: `${cur_date[2]}-${cur_date[1]}-${cur_date[0]}`,
+                    registration_number: this.argument.case.case_registration_number
+                }
             },
             async survey_complete(e) {
                 let form = {
