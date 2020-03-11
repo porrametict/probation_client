@@ -4,7 +4,6 @@
         <v-app-bar
                 color="p_primary"
                 dark
-
         >
             <v-toolbar-title>Phayao Probation</v-toolbar-title>
 
@@ -28,36 +27,25 @@
                         v-model="menu_group"
                         active-class="deep-purple--text text--accent-4"
                 >
-                    <v-list-item>
-                        <v-list-item-title>Foo</v-list-item-title>
+                    <v-list-item  @click="$router.push({name:'Volunteer'})">
+                        <v-list-item-title>หน้าหลัก</v-list-item-title>
                     </v-list-item>
-
-                    <v-list-item>
-                        <v-list-item-title>Bar</v-list-item-title>
-                    </v-list-item>
-
-                    <v-list-item>
-                        <v-list-item-title>Fizz</v-list-item-title>
-                    </v-list-item>
-
-                    <v-list-item>
-                        <v-list-item-title>Buzz</v-list-item-title>
+                    <v-list-item @click="$router.push({name : 'editUserProfile'})">
+                        <v-list-item-title>เเก้ไขข้อมูลส่วนตัว</v-list-item-title>
                     </v-list-item>
                 </v-list-item-group>
             </v-list>
             <template v-slot:append>
                 <div>
-                    <v-btn block @click="$store.dispatch('account/logout') & $router.push({name : 'Login'})">Logout
+                    <v-btn block color='p_primary' tile class="white--text" @click="$store.dispatch('account/logout') & $router.push({name : 'Login'})">Logout
                     </v-btn>
                 </div>
             </template>
         </v-navigation-drawer>
-
         <v-container>
             <router-view/>
         </v-container>
     </div>
-
 </template>
 
 <script>

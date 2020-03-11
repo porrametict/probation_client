@@ -34,7 +34,7 @@
                 survey: model
             };
         },
-        methods : {
+        methods: {
             async loadData() {
                 let id = this.$route.params.id
                 this.argument = await this.$store.dispatch('assignment/getAssignmentById', id)
@@ -57,7 +57,7 @@
                 }
                 let data = await this.$store.dispatch('after_probation_form/postForm', form)
                 if (data) {
-                    alert('success')
+                    this.$router.push({name: 'Volunteer'})
                 }
 
             }

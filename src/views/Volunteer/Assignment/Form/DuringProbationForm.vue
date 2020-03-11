@@ -55,7 +55,7 @@
                 };
                 let data = await this.$store.dispatch('during_probation_form/postForm', form)
                 if (data) {
-                    alert('success')
+                    this.$router.push({name :'Volunteer'})
                 }
             }
         }

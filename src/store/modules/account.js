@@ -22,13 +22,22 @@ export default {
         async getUser(context) {
             return await axios.get('rest-auth/user-profile/')
                 .then((response) => {
-                    console.log(response.data)
                     context.commit('setUser', response.data)
                     return response.data
                 }).catch((error) => {
                     return null
                 });
         },
+        async updateUser(context,params) {
+            // return await axios.put('rest-auth/user-profile/',params)
+            //     .then((response) => {
+            //         context.commit('setUser', response.data)
+            //         return response.data
+            //     }).catch((error) => {
+            //         return null
+            //     });
+        },
+
         logout(context) {
             localStorage.clear()
         }

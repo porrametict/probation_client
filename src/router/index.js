@@ -24,6 +24,7 @@ const routes = [
             },
         ]
     },
+
     {
         path: '/volunteer',
         component: () => import('../views/Volunteer/VolunteerTemplate.vue'),
@@ -47,6 +48,11 @@ const routes = [
                 path: 'ap-form/:id',
                 name: 'AfterProbationForm',
                 component: () => import('../views/Volunteer/Assignment/Form/AfterProbationForm')
+            },
+            {
+                path: 'user-profile',
+                name: 'editUserProfile',
+                component:  () => import('../views/Account/editUserProfile.vue'),
             },
 
         ]
