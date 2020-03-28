@@ -2,48 +2,43 @@
     <div v-if="provinces" >
         <v-select :items="provinces"
                   hide-details
-                  item-text="province_name" label="จังหวัด"
+                  item-text="name_th" label="จังหวัด"
                   v-model="selProvince"
                   return-object
-                  :error-messages="error.house_province"
                   @change="provinceChange">
+<!--             :error-messages="error.house_province"-->
         </v-select>
         <v-select :items="amphurs"
                   hide-details
                   return-object
-                  item-text="amphur_name" label="อำเภอ"
-                  :error-messages="error.house_amphur"
+                  item-text="name_th" label="อำเภอ"
                   v-model="selAmphur"
                   @change="amphurChange">
         </v-select>
         <v-select :items="districts"
-
                   hide-details
                   return-object
                   v-model="selDistrict"
-                  :error-messages="error.house_district"
-                  item-text="district_name" label="ตำบล"
+                  item-text="name_th" label="ตำบล"
                   @change="districtChange">
         </v-select>
     </div>
 
 </template>
 <script>
-    import Base from "@/components/Base";
     let defaultProvince = {
         province_id: 0,
-        province_name: "กรุณาเลือก",
+        name_th: "กรุณาเลือก",
     };
     let defaultAmphur = {
         amphur_id: 0,
-        amphur_name: "กรุณาเลือก"
+        name_th: "กรุณาเลือก"
     };
     let defaultDistrict = {
         district_id: 0,
-        district_name: "กรุณาเลือก"
+        name_th: "กรุณาเลือก"
     };
     export default {
-        extends : Base,
         props: {
             valProvince: {
                 type: Number,
@@ -93,16 +88,16 @@
                 });
             },
             provinceChange: function (ev) {
-                if (ev.amphurs) {
-                    this.amphurs = [defaultAmphur].concat(ev.amphurs)
+                if (ev.amphures_set) {
+                    this.amphurs = [defaultAmphur].concat(ev.amphures_set)
                 } else {
                     this.amphurs = [defaultAmphur];
                 }
                 this.$emit('change', [ev, null, null])
             },
             amphurChange: function (ev) {
-                if (ev.districts) {
-                    this.districts = [defaultDistrict].concat(ev.districts)
+                if (ev.districts_set) {
+                    this.districts = [defaultDistrict].concat(ev.districts_set)
                 } else {
                     this.districts = [defaultDistrict];
                 }

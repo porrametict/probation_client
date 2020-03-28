@@ -1,5 +1,5 @@
-import error from "./error";
-import axios from '@/axios';
+//import error from "./error";
+
 let loadingState = ['None','OnGoing','Done'];
 
 export default {
@@ -23,9 +23,8 @@ export default {
                     return response.data;
                 })
                 .catch( (error) =>{
-                    context.dispatch("admin/error/setError",error.response.data, {root: true});
+                    console.log("error-province-vuex")
                 })
-
             context.state.isLoad = loadingState[2];
             context.commit("setProvinces", result);
         },
