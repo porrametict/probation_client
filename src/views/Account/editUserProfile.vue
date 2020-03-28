@@ -1,7 +1,9 @@
 <template>
     <div>
         <div>
-            <h3>ข้อมูลผู้ใช้</h3>
+            <h3 class="title font-weight-bold text-center text-md-left deep-purple--text">
+                ข้อมูลผู้ใช้
+            </h3>
         </div>
         <v-divider/>
         <div v-if="user">

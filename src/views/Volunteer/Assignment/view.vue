@@ -1,47 +1,55 @@
 <template>
     <div v-if="assignment">
         <div>
-            <h3>รายละเอียด</h3>
+            <h3 class="title font-weight-bold deep-purple--text text-center">
+                รายละเอียด
+            </h3>
         </div>
         <v-divider/>
         <p class="title">สถานะ : {{assignment.status === 4 ? 'ดำเนินการเสร็จสิ้น' : 'ยังไม่ได้ดำเนินการ'}}</p>
         <div>
-            <v-text-field outlined label="เลขทะเบียน"
+            <v-text-field disabled outlined label="เลขทะเบียน"
                           :value="assignment.case.case_registration_number"/>
-            <v-text-field outlined label="ประเภท"
+            <v-text-field disabled outlined label="ประเภท"
                           :value="getFormType(assignment.form_type)"/>
             <v-divider/>
             <h1 class="title">ข้อมูล</h1>
-            <v-text-field outlined label="ชื่อสกุล"
+            <v-text-field disabled outlined label="ชื่อสกุล"
                           :value="assignment.offender.o_first_name +' ' +assignment.offender.o_last_name"/>
 
-            <v-text-field outlined label="บ้านเลขที่"
+            <div v-if="assignment.offender.o_address.o_address_house">
+
+            <v-text-field disabled outlined label="บ้านเลขที่"
                           :value="assignment.offender.o_address.o_address_house"
             />
-            <v-text-field outlined label="หมู่"
+            <v-text-field disabled outlined label="หมู่"
                           :value="assignment.offender.o_address.o_address_vaillage"
             />
-            <v-text-field outlined label="หมู่ที่"
+            <v-text-field disabled outlined label="หมู่ที่"
                           :value="assignment.offender.o_address.o_address_mu"
             />
-            <v-text-field outlined label="ซอย"
+            <v-text-field disabled outlined label="ซอย"
                           :value="assignment.offender.o_address.o_address_alley"
             />
-            <v-text-field outlined label="ถนน"
+            <v-text-field disabled outlined label="ถนน"
                           :value="assignment.offender.o_address.o_address_street"
             />
-            <v-text-field outlined label="ตำบล"
+            <v-text-field disabled outlined label="ตำบล"
                           :value="assignment.offender.o_address.o_address_district"
             />
-            <v-text-field outlined label="อำเภอ"
+            <v-text-field disabled outlined label="อำเภอ"
                           :value="assignment.offender.o_address.o_address_amphure"
             />
-            <v-text-field outlined label="จังหวัด"
+            <v-text-field disabled outlined label="จังหวัด"
                           :value="assignment.offender.o_address.o_address_province"
             />
-            <v-text-field outlined label="รหัสไปรษณีย์"
+            <v-text-field disabled outlined label="รหัสไปรษณีย์"
                           :value="assignment.offender.o_address.o_address_zip_code"
             />
+            </div>
+            <div v-else>
+                <p class="grey--text text-center">ไม่มีข้อมูลที่อยู่</p>
+            </div>
         </div>
         <div>
             <v-btn block color="p_primary" class="white--text" large @click="gotoForm(assignment.form_type)">

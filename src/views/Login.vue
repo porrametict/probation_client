@@ -8,10 +8,10 @@
                 <v-row class="d-flex justify-center flex-column flex-md-row align-md-center ma-3 ma-md-0">
                     <div class="mx-md-12">
                     <v-row class="d-flex justify-center flex-column align-center">
-                        <v-icon class="display-4" color="primary">
+                        <v-icon class="display-4" color="p_primary">
                             mdi-owl
                         </v-icon>
-                        <p class="blue--text title ma-0">PROBATION</p>
+                        <p class="deep-purple--text title ma-0">PROBATION</p>
                     </v-row>
                     </div>
                     <div class="mx-md-12">
@@ -31,7 +31,7 @@
                                 v-model="form.password"
                                 @keypress.13="login"
                         />
-                        <v-btn color="primary" @click="login()" block large>Login</v-btn>
+                        <v-btn color="p_primary" class="white--text" @click="login()" block large>Login</v-btn>
                     </div>
                 </v-row>
             </v-container>
@@ -44,8 +44,8 @@
         data() {
             return {
                 form: {
-                    username: 'admin',
-                    password: 'password'
+                    username: 'volunteer',
+                    password: 'v_password'
                 }
             }
         },

@@ -1,7 +1,9 @@
 <template>
     <div>
         <div>
-            <h3>งานที่ได้รับหมอบหมาย</h3>
+            <h3 class="title font-weight-bold deep-purple--text text-center">
+                งานที่ได้รับหมอบหมาย
+            </h3>
         </div>
         <v-divider/>
 
@@ -12,23 +14,35 @@
                         v-for="(a,i) in assignments" :key="i"
                         color="white"
                 >
-                    <v-card-title class="headline">{{a.case.case_registration_number}}</v-card-title>
-                    <v-card-text class="title">
-                        <P class="py-0 my-0">{{a.offender.o_first_name}} {{a.offender.o_last_name}}</P>
-                        <P class="py-0 my-0">ประเภท : {{ getFormType(a.form_type) }}</P>
+                    <v-card-text>
+                        <div>
+                            <p class="py-0 my-0 font-weight-bold body-1	">
+                                เลขทะเบียน
+                            </p>
+                            <p class="py-0 my-0 font-weight-regular body-1">
+                                {{a.case.case_registration_number}}
+                            </p>
+                        </div>
+                        <v-divider></v-divider>
+                        <div>
+                            <P class="py-0 my-0 font-weight-bold">ชื่อ-สกุล</P>
+                            <P class="py-0 my-0">{{a.offender.o_first_name}} {{a.offender.o_last_name}}</P>
+                        </div>
+                        <div>
+                            <P class="py-0 my-0 font-weight-bold">ประเภท</P>
+                            <P class="py-0 my-0">{{ getFormType(a.form_type) }}</P>
+                        </div>
+
                     </v-card-text>
-                    <v-card-actions class="d-flex justify-content-around">
-                        <v-btn large color="success" @click="updateStatus(a)" v-if="a.status === 1">
-                            <v-icon>mdi-check</v-icon>
-                        </v-btn>
-                        <v-btn large color="info" @click="viewDetail(a.id)" :block="a.status === 3">
+                    <v-card-actions>
+                        <v-btn block color="info" @click="viewDetail(a.id)">
                             <v-icon>mdi-eye</v-icon>
                         </v-btn>
                     </v-card-actions>
                 </v-card>
             </div>
             <div v-else>
-                <h1 class="display-1 text-center">ไม่มี</h1>
+                <h1 class="title text-center font-weight-bold grey--text" >ไม่มี</h1>
             </div>
         </div>
     </div>
