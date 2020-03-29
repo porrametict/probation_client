@@ -16,18 +16,23 @@
         <v-navigation-drawer app  permanent>
             <v-list>
                 <v-list-item link>
+            <v-list>
+                <v-list-item
+                        link
+                >
                     <v-list-item-icon>
                         <v-icon>mdi-steam</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content>
                         <v-list-item-title>Hello</v-list-item-title>
                     </v-list-item-content>
-                </v-list-item>
+                </v-list-item
+>
             </v-list>
 
             <template v-slot:append>
                 <div class="pa-2">
-                    <v-btn block>Logout</v-btn>
+                    <v-btn block @click="$store.dispatch('account/logout') & $router.push({name : 'Login'})">Logout</v-btn>
                 </div>
             </template>
         </v-navigation-drawer>

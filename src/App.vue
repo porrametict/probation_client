@@ -1,12 +1,14 @@
 <template>
     <div id="app">
-        <router-view/>
+        <v-app>
+            <router-view/>
+        </v-app>
     </div>
 </template>
 
 <script>
-import DuringProbationForm from "./components/DuringProbationForm";
-import AfterProbationForm from "./components/AfterProbationForm";
+import DuringProbationForm from "./views/Volunteer/Assignment/Form/DuringProbationForm";
+import AfterProbationForm from "./views/Volunteer/Assignment/Form/AfterProbationForm";
 
 export default {
   name: 'App',

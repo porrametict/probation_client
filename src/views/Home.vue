@@ -1,22 +1,19 @@
 <template>
   <div class="home">
-<!--    <AfterProbationForm/>-->
       <v-container>
-          <DuringProbationForm/>
+          <h1>Hello Home</h1>
+          <district-select></district-select>
       </v-container>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import AfterProbationForm from "@/components/AfterProbationForm";
-import DuringProbationForm from "../components/DuringProbationForm";
-
+import districtSelect from "../components/share/districtSelect";
 export default {
   name: 'Home',
   components: {
-    DuringProbationForm,
-    AfterProbationForm,
+      districtSelect
   }
 }
 </script>

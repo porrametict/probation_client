@@ -7,35 +7,60 @@ import Template from '../views/template.vue'
 Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: '/',
-    name: 'Login',
-    component: Login
-  },
-  {
-    path: '/admin',
-    name: 'Admin',
-    component: Template,
-    children: [
-      {
-        path: '/home',
-        name: 'Home',
-        component: Home
-      },
-    ]
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+    {
+        path: '/',
+        name: 'Login',
+        component: Login
+    },
+    {
+        path: '/admin',
+        name: 'Admin',
+        component: Template,
+        children: [
+            {
+                path: '/home',
+                name: 'Home',
+                component: Home
+            },
+        ]
+    },
+
+    {
+        path: '/volunteer',
+        component: () => import('../views/Volunteer/VolunteerTemplate.vue'),
+        children: [
+            {
+                path: '',
+                name: 'Volunteer',
+                component: () => import('../views/Volunteer/Assignment/index')
+            },
+            {
+                path: 'view/:id',
+                name: 'ViewAssignmentDetail',
+                component: () => import('../views/Volunteer/Assignment/view')
+            },
+            {
+                path: 'dp-form/:id',
+                name: 'DuringProbationForm',
+                component: () => import('../views/Volunteer/Assignment/Form/DuringProbationForm')
+            },
+            {
+                path: 'ap-form/:id',
+                name: 'AfterProbationForm',
+                component: () => import('../views/Volunteer/Assignment/Form/AfterProbationForm')
+            },
+            {
+                path: 'user-profile',
+                name: 'editUserProfile',
+                component:  () => import('../views/Account/editUserProfile.vue'),
+            },
+
+        ]
+    },
 ];
 
 const router = new VueRouter({
-  routes
+    routes
 });
 
 export default router
