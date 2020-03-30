@@ -1,7 +1,7 @@
 <template>
     <div v-if="assignment">
         <div>
-            <h3 class="title font-weight-bold deep-purple--text text-center">
+            <h3 class="title font-weight-bold blue--text text-center">
                 รายละเอียด
             </h3>
         </div>
@@ -52,7 +52,7 @@
             </div>
         </div>
         <div>
-            <v-btn block color="p_primary" class="white--text" large @click="gotoForm(assignment.form_type)">
+            <v-btn block color="primary" class="white--text" large @click="gotoForm(assignment.form_type)">
                 เก็บข้อมูล
             </v-btn>
         </div>

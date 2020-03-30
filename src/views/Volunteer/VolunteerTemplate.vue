@@ -1,11 +1,11 @@
 <template>
     <v-app>
-        <v-app-bar fixed dense scroll-target="#scroll" color="p_primary" dark>
-            <v-toolbar-title class="d-flex align-center">
-                <v-icon>
+        <v-app-bar fixed dense scroll-target="#scroll" color="white" class="elevation-1" >
+            <v-toolbar-title class="d-flex align-center blue--text">
+                <v-icon color="primary">
                     mdi-owl
                 </v-icon>
-                <span class="caption mx-2 ">
+                <span class="caption font-weight-bold mx-2 ">
                     PROBATION
                 </span>
 
@@ -34,7 +34,7 @@
             >
                 <v-list-item-group
                         v-model="menu_group"
-                        active-class="deep-purple--text text--accent-4"
+                        active-class="blue--text "
                 >
                     <v-list-item @click="goto_('Volunteer')">
                         <v-list-item-title>หน้าหลัก</v-list-item-title>
@@ -46,13 +46,12 @@
             </v-list>
             <template v-slot:append>
                 <div>
-                    <v-btn block color='p_primary' tile class="white--text"
+                    <v-btn block color='primary' tile class="white--text"
                            @click="$store.dispatch('account/logout') & goto_('Login')">Logout
                     </v-btn>
                 </div>
             </template>
         </v-navigation-drawer>
-
     </v-app>
 </template>
 

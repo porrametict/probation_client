@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <h3 class="title font-weight-bold deep-purple--text text-center">
+            <h3 class="title font-weight-bold blue--text text-center">
                 งานที่ได้รับหมอบหมาย
             </h3>
         </div>
@@ -42,7 +42,7 @@
                 </v-card>
             </div>
             <div v-else>
-                <h1 class="title text-center font-weight-bold grey--text" >ไม่มี</h1>
+                <h1 class="title text-center font-weight-bold grey--text">ไม่มี</h1>
             </div>
         </div>
     </div>
