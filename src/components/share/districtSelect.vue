@@ -1,12 +1,12 @@
 <template>
-    <div v-if="provinces" >
+    <div v-if="provinces">
         <v-select :items="provinces"
                   hide-details
                   item-text="name_th" label="จังหวัด"
                   v-model="selProvince"
                   return-object
                   @change="provinceChange">
-<!--             :error-messages="error.house_province"-->
+            <!--             :error-messages="error.house_province"-->
         </v-select>
         <v-select :items="amphurs"
                   hide-details
@@ -53,20 +53,20 @@
                 default: 0
             }
         },
-        data : () => ({
-            provinces : [defaultProvince],
-            amphurs:[defaultAmphur],
-            districts:[defaultDistrict],
+        data: () => ({
+            provinces: [defaultProvince],
+            amphurs: [defaultAmphur],
+            districts: [defaultDistrict],
             selProvince: defaultProvince,
             selAmphur: defaultAmphur,
             selDistrict: defaultDistrict,
         }),
-        async created () {
+        async created() {
             let provinces = await this.$store.dispatch('districtSelect/getProvinces');
             this.provinces = [defaultProvince].concat(provinces);
             this.sync()
         },
-        methods : {
+        methods: {
             sync: function () {
                 this.provinces.forEach((p) => {
                     if (p.province_id == this.valProvince) {
@@ -93,6 +93,8 @@
                 } else {
                     this.amphurs = [defaultAmphur];
                 }
+                this.selAmphur = defaultAmphur
+                this.selDistrict = defaultDistrict
                 this.$emit('change', [ev, null, null])
             },
             amphurChange: function (ev) {
@@ -101,6 +103,7 @@
                 } else {
                     this.districts = [defaultDistrict];
                 }
+                this.selDistrict = defaultDistrict
                 this.$emit('change', [this.selProvince, ev, null])
             },
             districtChange: function (ev) {
