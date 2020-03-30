@@ -44,8 +44,8 @@
         data() {
             return {
                 form: {
-                    username: 'volunteer',
-                    password: 'v_password'
+                    username: 'admin',
+                    password: 'password'
                 }
             }
         },

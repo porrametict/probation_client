@@ -6,6 +6,8 @@ import account from "./modules/account";
 import drawer from "./modules/drawer";
 import assignment from "./modules/assignment";
 import districtSelect from "./modules/districtSelect";
+import probation_case from "./modules/probation_case";
+import rehabilitation_case from "./modules/rehabilitation_case";
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -19,5 +21,7 @@ export default new Vuex.Store({
         after_probation_form: after_probation_form,
         districtSelect: districtSelect,
         drawer: drawer,
+        probation_case: probation_case,
+        rehabilitation_case: rehabilitation_case,
     }
 })
