@@ -78,6 +78,11 @@ const routes = [
                         name: "AssignmentView",
                         component: () => import("../views/Officer/Assignment/view"),
                     },
+                    {
+                        path: 'create',
+                        name: "AssignmentCreate",
+                        component: () => import("../views/Officer/Assignment/create"),
+                    },
                 ]
 
             }

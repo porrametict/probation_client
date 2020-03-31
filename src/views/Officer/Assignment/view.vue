@@ -38,32 +38,37 @@
                 this.data_render_preparing()
             },
             data_render_preparing() {
-                this.data_render = [{
-                    label : "ข้อมูล",
-                    data: [
-
-                        {
-                            key: "อศค.",
-                            value: `${this.assignment.volunteer.first_name} ${this.assignment.volunteer.last_name}`
-                        },
-                        {
-                            key: "เจ้าหน้าที่",
-                            value: `${this.assignment.officer.first_name} ${this.assignment.officer.last_name}`
-                        },
-                        {
-                            key: "ผู้ถูกคุมประพฤติ",
-                            value: `${this.assignment.case.offender.o_first_name} ${this.assignment.case.offender.o_last_name}`
-                        },
-                        {
-                            key: "ประเภทของเเบบฟอร์ม",
-                            value: this.getFormType(this.assignment.form_type)
-                        },
-                        {
-                            key: "สถานะ",
-                            value: this.getAssignmentStatus(this.assignment.status)
-                        },
-                    ]
-                }]
+                this.data_render = [
+                    {
+                        label: "ข้อมูล",
+                        data: [
+                            {
+                                key: "อศค.",
+                                value: `${this.assignment.volunteer.first_name} ${this.assignment.volunteer.last_name}`
+                            },
+                            {
+                                key: "เจ้าหน้าที่",
+                                value: `${this.assignment.officer.first_name} ${this.assignment.officer.last_name}`
+                            },
+                            {
+                                key: "ผู้ถูกคุมประพฤติ",
+                                value: `${this.assignment.offender.o_first_name} ${this.assignment.offender.o_last_name}`
+                            },
+                            {
+                                key: "ประเภทของเเบบฟอร์ม",
+                                value: this.getFormType(this.assignment.form_type)
+                            },
+                            {
+                                key: "สถานะ",
+                                value: this.getAssignmentStatus(this.assignment.status)
+                            },
+                            {
+                                key: "สร้างเมื่อ",
+                                value: this.getTHDate(this.assignment.created_at)
+                            },
+                        ]
+                    }
+                ]
             }
         }
     }

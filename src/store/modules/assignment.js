@@ -29,20 +29,29 @@ export default {
                 }).catch((error) => {
                     return null
                 });
+        },
+        async createAssignment(context, params) {
+            let id = params.id
+            return await axios.post(`api/v1/assignment/`, params)
+                .then((response) => {
+                    return response.data
+                }).catch((error) => {
+                    return null
+                });
         }
     },
     getters: {
         getFormType: (state) => (id) => {
             return id == 1 ? 'ระหว่างการควบคุม' : 'หลังปล่อยควบคุม'
         },
-        getAssignmentStatus : (state) => (id) => {
+        getAssignmentStatus: (state) => (id) => {
             if (id == 1) {
                 return "รอ อสค. ยืนยัน"
-            }else if (id == 2 ){
+            } else if (id == 2) {
                 return "อสค. ปฏิเสธ"
-            }else if (id == 3 ){
+            } else if (id == 3) {
                 return "กำลังดำเนินการ"
-            }else if (id == 4 ){
+            } else if (id == 4) {
                 return "เสร็จสิ้น"
             }
         },
