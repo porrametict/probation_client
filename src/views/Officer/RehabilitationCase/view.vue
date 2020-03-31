@@ -7,7 +7,7 @@
             <!--            main-->
             <div>
                 <!--                offender-->
-                <v-card class="ma-1" color="primary">
+                <v-card class="ma-3" color="primary">
                     <v-card-text>
                         <div class="white--text">ผู้กระทำผิด</div>
                         <div class="title text--primary mb-2">
@@ -120,7 +120,7 @@
 
                 <!--                case-->
 
-                <v-card class="ma-1" color="pink">
+                <v-card class="ma-3" color="pink">
                     <v-card-text>
                         <div class="white--text">คดี</div>
                         <div class="title white--text mb-2">
@@ -302,7 +302,7 @@
                 </v-card>
 
                 <!--การฟื้นฟู-->
-                <v-card class="ma-1" color="green">
+                <v-card class="ma-3" color="green">
                     <v-card-text>
                         <p class="white--text">การฟื้นฟู</p>
                         <div v-for="(c,index) in rehabilitation_case.rehabilitation_set" :key="index" class="my-3">
@@ -396,7 +396,7 @@
                 </v-card>
 
                 <!--social service hour-->
-                <v-card class="ma-1" color="orange">
+                <v-card class="ma-3" color="orange">
                     <v-card-text >
                         <p class="white--text">ชั่วโมงการบริการสังคม</p>
                         <div v-for="(c,index) in rehabilitation_case.socialservicehour_set" :key="index" class="my-3">

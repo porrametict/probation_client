@@ -7,7 +7,7 @@
             <!--  main-->
             <div>
                 <!--                offender-->
-                <v-card class="ma-1" color="primary">
+                <v-card class="ma-3" color="primary">
                     <v-card-text>
                         <div class="white--text">ผู้กระทำผิด</div>
                         <div class="title white--text mb-2">
@@ -113,7 +113,7 @@
 
                 <!--case-->
 
-                <v-card class="ma-1" color="pink">
+                <v-card class="ma-3" color="pink">
                     <v-card-text>
                         <div class="white--text">คดี</div>
                         <div class="title white--text mb-2">
@@ -289,7 +289,7 @@
                     </v-card-text>
                 </v-card>
                 <!--classification-->
-                <v-card class="ma-1" color="green">
+                <v-card class="ma-3" color="green">
                     <v-card-text>
                         <p class="white--text">การจำเเนก</p>
                         <div v-for="(c,index) in probation_case.classification_set" :key="index" class="my-3">
@@ -346,7 +346,7 @@
                     </v-card-text>
                 </v-card>
                 <!--reporting-->
-                <v-card class="ma-1" color="orange">
+                <v-card class="ma-3" color="orange">
                     <v-card-text>
                         <p class="white--text">การรายงาน</p>
                         <div v-for="(c,index) in probation_case.reporting_set" :key="index" class="my-3">

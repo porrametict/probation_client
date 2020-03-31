@@ -1,6 +1,10 @@
 <template>
     <div>
-        Ass bisdf
+        <v-container>
+            <div>
+                <p class="title">รายละเอียด</p>
+            </div>
+        </v-container>
     </div>
 </template>
 
