@@ -34,7 +34,18 @@ export default {
     getters: {
         getFormType: (state) => (id) => {
             return id == 1 ? 'ระหว่างการควบคุม' : 'หลังปล่อยควบคุม'
-        }
+        },
+        getAssignmentStatus : (state) => (id) => {
+            if (id == 1) {
+                return "รอ อสค. ยืนยัน"
+            }else if (id == 2 ){
+                return "อสค. ปฏิเสธ"
+            }else if (id == 3 ){
+                return "กำลังดำเนินการ"
+            }else if (id == 4 ){
+                return "เสร็จสิ้น"
+            }
+        },
     }
 
 }

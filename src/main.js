@@ -14,6 +14,15 @@ window.axios = new Axios.create({
     timeout: 10000
 })
 
+Vue.prototype.getTHDate= function (date=null) {
+    moment.locale('th');
+    if (date==null) {
+        return moment().format('l')
+    }else {
+        return moment(date).format('l')
+    }
+}
+
 if (localStorage.getItem('access_token')) {
     window.axios.defaults.headers.common['Authorization'] = `Token ${localStorage.getItem('access_token')}`;
 }

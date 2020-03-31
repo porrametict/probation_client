@@ -6,6 +6,8 @@
             <v-btn color="primary" large @click="goto_('ProbationCase')">Go to Probation Case</v-btn>
             <v-divider></v-divider>
             <v-btn color="primary" large @click="goto_('RehabilitationCase')">Go to Rehabilitation Case</v-btn>
+            <v-divider></v-divider>
+            <v-btn color="primary" large @click="goto_('Assignment')">Go to Assignment</v-btn>
         </v-container>
     </div>
 </template>
