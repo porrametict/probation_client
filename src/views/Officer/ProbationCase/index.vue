@@ -99,6 +99,7 @@
             },
             view(id) {
                 console.log(id)
+                this.$router.push({name: "ProbationCaseView", params : {id :id}})
             }
         }
     }

@@ -27,6 +27,16 @@ export default {
                     console.error(error)
                     return null
                 })
-        }
+        },
+        async getProbationCaseById(context,id) {
+            return await axios.get('api/v1/probation-case/'+id+'/')
+                .then((response) => {
+                    return response.data
+                })
+                .catch((error) => {
+                    console.error(error)
+                    return null
+                })
+        },
     }
 }

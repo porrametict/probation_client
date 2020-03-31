@@ -32,9 +32,14 @@ const routes = [
                         component: () => import("../views/Officer/ProbationCase/index"),
                     },
                     {
-                        path: '/upload-excel',
+                        path: 'upload-excel',
                         name: "ProbationCaseExcelUpload",
                         component: () => import("../views/Officer/ProbationCase/ExcelProbationCase"),
+                    },
+                    {
+                        path: ':id/view',
+                        name: "ProbationCaseView",
+                        component: () => import("../views/Officer/ProbationCase/view"),
                     },
                 ]
             }
