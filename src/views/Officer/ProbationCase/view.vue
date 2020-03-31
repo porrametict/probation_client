@@ -439,8 +439,5 @@
 </script>
 
 <style scoped>
-    .v-list-item__content {
-        border: #cfcfcf 1px solid;
-    }
 
 </style>
