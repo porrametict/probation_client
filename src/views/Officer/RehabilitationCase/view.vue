@@ -1,120 +1,128 @@
 <template>
     <div>
-        <v-container v-if="probation_case">
+        <v-container v-if="rehabilitation_case">
             <div>
                 <p class="title">รายละเอียด</p>
             </div>
-            <!--  main-->
+            <!--            main-->
             <div>
                 <!--                offender-->
                 <v-card class="ma-1" color="primary">
                     <v-card-text>
                         <div class="white--text">ผู้กระทำผิด</div>
-                        <div class="title white--text mb-2">
-                            <p class="ma-0">
-                                {{probation_case.case.offender.o_personal_id}}
+                        <div class="title text--primary mb-2">
+                            <p class="ma-0 white--text">
+                                {{rehabilitation_case.case.offender.o_personal_id}}
                             </p>
-                            <p class="ma-0">
-                                {{probation_case.case.offender.o_first_name + " "
-                                +probation_case.case.offender.o_last_name}}
+                            <p class="ma-0 white--text">
+                                {{rehabilitation_case.case.offender.o_first_name + " "
+                                +rehabilitation_case.case.offender.o_last_name}}
                             </p>
                         </div>
                         <div>
                             <p class="white--text">ข้อมูลพื้นฐาน</p>
                             <div class="ma-1">
                                 <div class="d-flex flex-row">
-                                    <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
+                                    <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200"
+                                            min-width="200">
                                         <v-card-text class="pa-2">
                                             อายุ
                                         </v-card-text>
                                     </v-card>
                                     <v-card outlined tile class="flex-grow-1 flex-shrink-1">
                                         <v-card-text class="pa-2 text--primary"
-                                                     v-text="probation_case.case.offender.o_age">
+                                                     v-text="rehabilitation_case.case.offender.o_age">
                                         </v-card-text>
                                     </v-card>
                                 </div>
                                 <div class="d-flex flex-row">
-                                    <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
+                                    <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200"
+                                            min-width="200">
                                         <v-card-text class="pa-2">
                                             เชื้อชาติ
                                         </v-card-text>
                                     </v-card>
                                     <v-card outlined tile class="flex-grow-1 flex-shrink-1">
                                         <v-card-text class="pa-2 text--primary"
-                                                     v-text="probation_case.case.offender.o_race">
+                                                     v-text="rehabilitation_case.case.offender.o_race">
                                         </v-card-text>
                                     </v-card>
                                 </div>
                                 <div class="d-flex flex-row">
-                                    <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
+                                    <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200"
+                                            min-width="200">
                                         <v-card-text class="pa-2">
                                             สัญชาติ
                                         </v-card-text>
                                     </v-card>
                                     <v-card outlined tile class="flex-grow-1 flex-shrink-1">
                                         <v-card-text class="pa-2 text--primary"
-                                                     v-text="probation_case.case.offender.o_nationality">
+                                                     v-text="rehabilitation_case.case.offender.o_nationality">
                                         </v-card-text>
                                     </v-card>
                                 </div>
                                 <div class="d-flex flex-row">
-                                    <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
+                                    <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200"
+                                            min-width="200">
                                         <v-card-text class="pa-2">
                                             การศึกษา
                                         </v-card-text>
                                     </v-card>
                                     <v-card outlined tile class="flex-grow-1 flex-shrink-1">
                                         <v-card-text class="pa-2 text--primary"
-                                                     v-text="probation_case.case.offender.o_education">
+                                                     v-text="rehabilitation_case.case.offender.o_education">
                                         </v-card-text>
                                     </v-card>
                                 </div>
                                 <div class="d-flex flex-row">
-                                    <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
+                                    <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200"
+                                            min-width="200">
                                         <v-card-text class="pa-2">
                                             อาชีพ
                                         </v-card-text>
                                     </v-card>
                                     <v-card outlined tile class="flex-grow-1 flex-shrink-1">
                                         <v-card-text class="pa-2 text--primary"
-                                                     v-text="probation_case.case.offender.o_career">
+                                                     v-text="rehabilitation_case.case.offender.o_career">
                                         </v-card-text>
                                     </v-card>
                                 </div>
                                 <div class="d-flex flex-row">
-                                    <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
+                                    <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200"
+                                            min-width="200">
                                         <v-card-text class="pa-2">
                                             ศาสนา
                                         </v-card-text>
                                     </v-card>
                                     <v-card outlined tile class="flex-grow-1 flex-shrink-1">
                                         <v-card-text class="pa-2 text--primary"
-                                                     v-text="probation_case.case.offender.o_religion">
+                                                     v-text="rehabilitation_case.case.offender.o_religion">
                                         </v-card-text>
                                     </v-card>
                                 </div>
                                 <div class="d-flex flex-row">
-                                    <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
+                                    <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200"
+                                            min-width="200">
                                         <v-card-text class="pa-2">
                                             ศาสนา
                                         </v-card-text>
                                     </v-card>
                                     <v-card outlined tile class="flex-grow-1 flex-shrink-1">
                                         <v-card-text class="pa-2 text--primary"
-                                                     v-text="probation_case.case.offender.o_religion">
+                                                     v-text="rehabilitation_case.case.offender.o_religion">
                                         </v-card-text>
                                     </v-card>
                                 </div>
                                 <div class="d-flex flex-row">
-                                    <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
+                                    <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200"
+                                            min-width="200">
                                         <v-card-text class="pa-2">
                                             สถานภาพ
                                         </v-card-text>
                                     </v-card>
                                     <v-card outlined tile class="flex-grow-1 flex-shrink-1">
                                         <v-card-text class="pa-2 text--primary"
-                                                     v-text="probation_case.case.offender.o_marital_status">
+                                                     v-text="rehabilitation_case.case.offender.o_marital_status">
                                         </v-card-text>
                                     </v-card>
                                 </div>
@@ -123,84 +131,101 @@
                     </v-card-text>
                 </v-card>
 
-                <!--case-->
+                <!--                case-->
 
                 <v-card class="ma-1" color="pink">
                     <v-card-text>
                         <div class="white--text">คดี</div>
                         <div class="title white--text mb-2">
                             <p class="ma-0">
-                                {{probation_case.case.case_registration_number}}
+                                {{rehabilitation_case.case.case_registration_number}}
                             </p>
                         </div>
                         <div class="ma-1">
                             <p class="white--text">ข้อมูลพื้นฐาน</p>
                             <div>
                                 <div class="d-flex flex-row">
-                                    <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
+                                    <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200"
+                                            min-width="200">
                                         <v-card-text class="pa-2">
                                             ศาล
                                         </v-card-text>
                                     </v-card>
                                     <v-card outlined tile class="flex-grow-1 flex-shrink-1">
                                         <v-card-text class="pa-2 text--primary"
-                                                     v-text="probation_case.case.court">
+                                                     v-text="rehabilitation_case.case.court">
                                         </v-card-text>
                                     </v-card>
                                 </div>
                                 <div class="d-flex flex-row">
-                                    <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
+                                    <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200"
+                                            min-width="200">
                                         <v-card-text class="pa-2">
                                             วันที่ศาลสั่ง
                                         </v-card-text>
                                     </v-card>
                                     <v-card outlined tile class="flex-grow-1 flex-shrink-1">
                                         <v-card-text class="pa-2 text--primary"
-                                                     v-text="probation_case.case.date_court_ordered">
+                                                     v-text="rehabilitation_case.case.date_court_ordered">
                                         </v-card-text>
                                     </v-card>
                                 </div>
                                 <div class="d-flex flex-row">
-                                    <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
+                                    <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200"
+                                            min-width="200">
                                         <v-card-text class="pa-2">
                                             วันที่รับคดี
                                         </v-card-text>
                                     </v-card>
                                     <v-card outlined tile class="flex-grow-1 flex-shrink-1">
                                         <v-card-text class="pa-2 text--primary"
-                                                     v-text="probation_case.case.date_case_acceptance">
+                                                     v-text="rehabilitation_case.case.date_case_acceptance">
                                         </v-card-text>
                                     </v-card>
                                 </div>
                                 <div class="d-flex flex-row">
-                                    <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
+                                    <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200"
+                                            min-width="200">
                                         <v-card-text class="pa-2">
                                             พปค. เจ้าของคดี
                                         </v-card-text>
                                     </v-card>
                                     <v-card outlined tile class="flex-grow-1 flex-shrink-1">
                                         <v-card-text class="pa-2 text--primary"
-                                                     v-text="probation_case.case.governing_officer_case_owner">
+                                                     v-text="rehabilitation_case.case.governing_officer_case_owner">
                                         </v-card-text>
                                     </v-card>
                                 </div>
                                 <div class="d-flex flex-row">
-                                    <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
+                                    <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200"
+                                            min-width="200">
                                         <v-card-text class="pa-2">
                                             สถานะทะเบียนคดี
                                         </v-card-text>
                                     </v-card>
                                     <v-card outlined tile class="flex-grow-1 flex-shrink-1">
                                         <v-card-text class="pa-2 text--primary"
-                                                     v-text="probation_case.case.registration_status">
+                                                     v-text="rehabilitation_case.case.registration_status">
                                         </v-card-text>
                                     </v-card>
                                 </div>
                             </div>
                         </div>
-                        <!-- probation_case-->
+                        <!-- rehabilitation_case-->
                         <div class="ma-1">
                             <p class="white--text">ข้อมูลเพิ่มเติม</p>
+                            <div class="d-flex flex-row">
+                                <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
+                                    <v-card-text class="pa-2">
+                                        เลขทะเบียนตรวจพิสูจน์
+                                    </v-card-text>
+                                </v-card>
+                                <v-card outlined tile class="flex-grow-1 flex-shrink-1">
+                                    <v-card-text class="pa-2 text--primary"
+                                                 v-text="rehabilitation_case.proof_registration_number">
+                                    </v-card-text>
+                                </v-card>
+                            </div>
                             <div class="d-flex flex-row">
                                 <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
                                     <v-card-text class="pa-2">
@@ -209,147 +234,172 @@
                                 </v-card>
                                 <v-card outlined tile class="flex-grow-1 flex-shrink-1">
                                     <v-card-text class="pa-2 text--primary"
-                                                 v-text="probation_case.offense">
+                                                 v-text="rehabilitation_case.offense">
                                     </v-card-text>
                                 </v-card>
                             </div>
                             <div class="d-flex flex-row">
                                 <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
                                     <v-card-text class="pa-2">
-                                        ภารกิจ
+                                        ชื่อตามคำฟ้อง
                                     </v-card-text>
                                 </v-card>
                                 <v-card outlined tile class="flex-grow-1 flex-shrink-1">
                                     <v-card-text class="pa-2 text--primary"
-                                                 v-text="probation_case.mission">
+                                                 v-text="rehabilitation_case.name_in_indictment">
                                     </v-card-text>
                                 </v-card>
                             </div>
                             <div class="d-flex flex-row">
                                 <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
                                     <v-card-text class="pa-2">
-                                        เลขคดีดำ
+                                        ประเภทยา
                                     </v-card-text>
                                 </v-card>
                                 <v-card outlined tile class="flex-grow-1 flex-shrink-1">
                                     <v-card-text class="pa-2 text--primary"
-                                                 v-text="probation_case.black_case_number">
+                                                 v-text="rehabilitation_case.drug_type">
                                     </v-card-text>
                                 </v-card>
                             </div>
                             <div class="d-flex flex-row">
                                 <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
                                     <v-card-text class="pa-2">
-                                        เลขคดีเเดง
+                                        สถานีตำรวจ
                                     </v-card-text>
                                 </v-card>
                                 <v-card outlined tile class="flex-grow-1 flex-shrink-1">
                                     <v-card-text class="pa-2 text--primary"
-                                                 v-text="probation_case.rad_case_number">
+                                                 v-text="rehabilitation_case.police_station_name">
                                     </v-card-text>
                                 </v-card>
                             </div>
                             <div class="d-flex flex-row">
                                 <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
                                     <v-card-text class="pa-2">
-                                        วันครบกำหนดการคุมประพฤติ
+                                        วันที่คณะอนุมีคำวินิฉัย
                                     </v-card-text>
                                 </v-card>
                                 <v-card outlined tile class="flex-grow-1 flex-shrink-1">
                                     <v-card-text class="pa-2 text--primary"
-                                                 v-text="probation_case.probation_deadline">
+                                                 v-text="rehabilitation_case.date_decision">
                                     </v-card-text>
                                 </v-card>
                             </div>
                             <div class="d-flex flex-row">
                                 <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
                                     <v-card-text class="pa-2">
-                                        วันสิ้นสุดคดี
+                                        สาเหตุการจำหน่าย
                                     </v-card-text>
                                 </v-card>
                                 <v-card outlined tile class="flex-grow-1 flex-shrink-1">
                                     <v-card-text class="pa-2 text--primary"
-                                                 v-text="probation_case.case_ending_date">
+                                                 v-text="rehabilitation_case.cause_distribution">
                                     </v-card-text>
                                 </v-card>
                             </div>
                             <div class="d-flex flex-row">
                                 <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
                                     <v-card-text class="pa-2">
-                                        ความเห็น ฟปค.
+                                        วันที่ปิดคดีฟื้นฟู
                                     </v-card-text>
                                 </v-card>
                                 <v-card outlined tile class="flex-grow-1 flex-shrink-1">
                                     <v-card-text class="pa-2 text--primary"
-                                                 v-text="probation_case.governing_officer_comment">
-                                    </v-card-text>
-                                </v-card>
-                            </div>
-                            <div class="d-flex flex-row">
-                                <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
-                                    <v-card-text class="pa-2">
-                                        ผลการคุมประพฤติ
-                                    </v-card-text>
-                                </v-card>
-                                <v-card outlined tile class="flex-grow-1 flex-shrink-1">
-                                    <v-card-text class="pa-2 text--primary"
-                                                 v-text="probation_case.probation_results">
+                                                 v-text="rehabilitation_case.rehabilitation_closing_date">
                                     </v-card-text>
                                 </v-card>
                             </div>
                         </div>
                     </v-card-text>
                 </v-card>
-                <!--classification-->
+
+                <!--การฟื้นฟู-->
                 <v-card class="ma-1" color="green">
                     <v-card-text>
-                        <p class="white--text">การจำเเนก</p>
-                        <div v-for="(c,index) in probation_case.classification_set" :key="index" class="my-3">
+                        <p class="white--text">การฟื้นฟู</p>
+                        <div v-for="(c,index) in rehabilitation_case.rehabilitation_set" :key="index" class="my-3">
                             <div class="d-flex flex-row">
                                 <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
                                     <v-card-text class="pa-2">
-                                        ครั้งที่จำเเนก
+                                        โปรแกรมการฟื้นฟู
                                     </v-card-text>
                                 </v-card>
                                 <v-card outlined tile class="flex-grow-1 flex-shrink-1">
                                     <v-card-text class="pa-2 text--primary"
-                                                 v-text="c.classification_time">
+                                                 v-text="c.rehabilitation_plan">
                                     </v-card-text>
                                 </v-card>
                             </div>
                             <div class="d-flex flex-row">
                                 <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
                                     <v-card-text class="pa-2">
-                                        วันที่จำเเนก
+                                        วันที่ครบกำหนดระยะเวลาการฟื้นฟู
                                     </v-card-text>
                                 </v-card>
                                 <v-card outlined tile class="flex-grow-1 flex-shrink-1">
                                     <v-card-text class="pa-2 text--primary"
-                                                 v-text="c.classification_date">
+                                                 v-text="c.due_date_rehabilitation_period">
                                     </v-card-text>
                                 </v-card>
                             </div>
                             <div class="d-flex flex-row">
                                 <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
                                     <v-card-text class="pa-2">
-                                        ระดับการควบคุม
+                                        วันที่เข้ารับการฟื้นฟู
                                     </v-card-text>
                                 </v-card>
                                 <v-card outlined tile class="flex-grow-1 flex-shrink-1">
                                     <v-card-text class="pa-2 text--primary"
-                                                 v-text="c.control_level">
+                                                 v-text="c.date_rehabilitation">
                                     </v-card-text>
                                 </v-card>
                             </div>
                             <div class="d-flex flex-row">
                                 <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
                                     <v-card-text class="pa-2">
-                                        ความเสี่ยง
+                                        ระยะเวลาการฟื้นฟู
                                     </v-card-text>
                                 </v-card>
                                 <v-card outlined tile class="flex-grow-1 flex-shrink-1">
                                     <v-card-text class="pa-2 text--primary"
-                                                 v-text="c.rick">
+                                                 v-text="c.rehabilitation_period">
+                                    </v-card-text>
+                                </v-card>
+                            </div>
+                            <div class="d-flex flex-row">
+                                <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
+                                    <v-card-text class="pa-2">
+                                        โปรแกรมการฟื้นฟู
+                                    </v-card-text>
+                                </v-card>
+                                <v-card outlined tile class="flex-grow-1 flex-shrink-1">
+                                    <v-card-text class="pa-2 text--primary"
+                                                 v-text="c.rehabilitation_program">
+                                    </v-card-text>
+                                </v-card>
+                            </div>
+                            <div class="d-flex flex-row">
+                                <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
+                                    <v-card-text class="pa-2">
+                                        วันที่สิ้นสุดการฟื้นฟู
+                                    </v-card-text>
+                                </v-card>
+                                <v-card outlined tile class="flex-grow-1 flex-shrink-1">
+                                    <v-card-text class="pa-2 text--primary"
+                                                 v-text="c.rehabilitation_end_date">
+                                    </v-card-text>
+                                </v-card>
+                            </div>
+                            <div class="d-flex flex-row">
+                                <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
+                                    <v-card-text class="pa-2">
+                                        ผลการฟื้นฟู
+                                    </v-card-text>
+                                </v-card>
+                                <v-card outlined tile class="flex-grow-1 flex-shrink-1">
+                                    <v-card-text class="pa-2 text--primary"
+                                                 v-text="c.rehabilitation_effect">
                                     </v-card-text>
                                 </v-card>
                             </div>
@@ -357,68 +407,45 @@
                         </div>
                     </v-card-text>
                 </v-card>
-                <!--reporting-->
+
+                <!--social service hour-->
                 <v-card class="ma-1" color="orange">
-                    <v-card-text>
-                        <p class="white--text">การรายงาน</p>
-                        <div v-for="(c,index) in probation_case.reporting_set" :key="index" class="my-3">
+                    <v-card-text >
+                        <p class="white--text">ชั่วโมงการบริการสังคม</p>
+                        <div v-for="(c,index) in rehabilitation_case.socialservicehour_set" :key="index" class="my-3">
                             <div class="d-flex flex-row">
                                 <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
                                     <v-card-text class="pa-2">
-                                        ครั้งที่รายงาน
+                                        ทั้งหมด
                                     </v-card-text>
                                 </v-card>
                                 <v-card outlined tile class="flex-grow-1 flex-shrink-1">
                                     <v-card-text class="pa-2 text--primary"
-                                                 v-text="c.reporting_time">
+                                                 v-text="c.total_working_hours">
                                     </v-card-text>
                                 </v-card>
                             </div>
                             <div class="d-flex flex-row">
                                 <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
                                     <v-card-text class="pa-2">
-                                        การรายงาน
+                                        ทำเเล้ว
                                     </v-card-text>
                                 </v-card>
                                 <v-card outlined tile class="flex-grow-1 flex-shrink-1">
                                     <v-card-text class="pa-2 text--primary"
-                                                 v-text="c.report_status">
+                                                 v-text="c.done_working_hours">
                                     </v-card-text>
                                 </v-card>
                             </div>
                             <div class="d-flex flex-row">
                                 <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
                                     <v-card-text class="pa-2">
-                                        การบริการสังคม
+                                        คงเหลือ
                                     </v-card-text>
                                 </v-card>
                                 <v-card outlined tile class="flex-grow-1 flex-shrink-1">
                                     <v-card-text class="pa-2 text--primary"
-                                                 v-text="c.social_service">
-                                    </v-card-text>
-                                </v-card>
-                            </div>
-                            <div class="d-flex flex-row">
-                                <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
-                                    <v-card-text class="pa-2">
-                                        กิจกรรมฟื้นฟู
-                                    </v-card-text>
-                                </v-card>
-                                <v-card outlined tile class="flex-grow-1 flex-shrink-1">
-                                    <v-card-text class="pa-2 text--primary"
-                                                 v-text="c.rehabilitation_activities">
-                                    </v-card-text>
-                                </v-card>
-                            </div>
-                            <div class="d-flex flex-row">
-                                <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
-                                    <v-card-text class="pa-2">
-                                        วันที่ส่งรายงาน
-                                    </v-card-text>
-                                </v-card>
-                                <v-card outlined tile class="flex-grow-1 flex-shrink-1">
-                                    <v-card-text class="pa-2 text--primary"
-                                                 v-text="c.report_submission_date">
+                                                 v-text="c.residual_working_hours">
                                     </v-card-text>
                                 </v-card>
                             </div>
@@ -433,10 +460,10 @@
 
 <script>
     export default {
-        name: "ProbationView",
+        name: "RehabilitationView",
         data() {
             return {
-                probation_case: null
+                rehabilitation_case: null
             }
         },
         async mounted() {
@@ -444,15 +471,12 @@
         }, methods: {
             async loadData() {
                 let id = this.$route.params.id
-                this.probation_case = await this.$store.dispatch("probation_case/getProbationCaseById", id)
+                this.rehabilitation_case = await this.$store.dispatch("rehabilitation_case/getRehabilitationCaseById", id)
             }
         }
     }
 </script>
 
 <style scoped>
-    .v-list-item__content {
-        border: #cfcfcf 1px solid;
-    }
 
 </style>

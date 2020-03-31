@@ -38,11 +38,9 @@
     </div>
 </template>
 <script>
-    import Template from "../../template";
 
     export default {
-        name: "index",
-        components: {Template},
+        name: "ProbationIndex",
         data() {
             return {
                 page: 1,
@@ -50,7 +48,7 @@
                 data_table: [],
                 form_params: {
                     limit: 10,
-                    offset: 10
+                    offset: 0
                 },
                 options: {},
                 headers: [
@@ -89,13 +87,13 @@
         },
         methods: {
             change_page(page) {
-                this.form_params.offset = page * 10;
+                this.form_params.offset = (page * 10) -10;
                 this.loadData()
             },
             async loadData() {
                 this.loading = true
                 this.data_table = await this.$store.dispatch("probation_case/getProbationCase", this.form_params)
-                this.total_page = this.data_table.count / 10
+                this.total_page =  Math.ceil (this.data_table.count / 10)
             },
             view(id) {
                 console.log(id)
