@@ -32,9 +32,35 @@ const routes = [
                         component: () => import("../views/Officer/ProbationCase/index"),
                     },
                     {
-                        path: '/upload-excel',
+                        path: 'upload-excel',
                         name: "ProbationCaseExcelUpload",
                         component: () => import("../views/Officer/ProbationCase/ExcelProbationCase"),
+                    },
+                    {
+                        path: ':id/view',
+                        name: "ProbationCaseView",
+                        component: () => import("../views/Officer/ProbationCase/view"),
+                    },
+                ]
+            },
+            {
+                path: 'rehabilitation-case',
+                component: () => import("../views/Officer/RehabilitationCase/RehabilitationTemplate"),
+                children: [
+                    {
+                        path: '',
+                        name: "RehabilitationCase",
+                        component: () => import("../views/Officer/RehabilitationCase/index"),
+                    },
+                    {
+                        path: 'upload-excel',
+                        name: "RehabilitationCaseExcelUpload",
+                        component: () => import("../views/Officer/RehabilitationCase/ExcelRehabilitationCase"),
+                    },
+                    {
+                        path: ':id/view',
+                        name: "RehabilitationCaseView",
+                        component: () => import("../views/Officer/RehabilitationCase/view"),
                     },
                 ]
             }
