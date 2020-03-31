@@ -1,5 +1,5 @@
 <template>
-    <v-app >
+    <v-app style="background-color: #f5f5f5 ">
         <core-app-bar/>
         <core-drawer/>
         <core-view/>
@@ -8,7 +8,7 @@
 
 <script>
     export default {
-        name: "template",
+        name: "main-template",
         components: {
             CoreAppBar: () => import('./Core/AppBar'),
             CoreDrawer: () => import('./Core/Drawer'),
