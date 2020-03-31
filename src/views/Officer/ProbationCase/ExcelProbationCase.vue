@@ -9,7 +9,11 @@
                    accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                    v-on:change="onChangeFileUpload()"/>
         </div>
-        <v-btn @click="save" color="primary" >Upload</v-btn>
+        <v-btn
+                @click="save"
+                color="primary"
+                x-large
+        >Upload</v-btn>
     </div>
 </template>
 <script>
@@ -47,8 +51,8 @@
     }
 
     .btn {
-        border: 2px solid gray;
-        color: gray;
+        border: 2px solid #5cb85c;
+        color: #5cb85c;
         background-color: white;
         padding: 8px 20px;
         border-radius: 8px;
@@ -58,9 +62,9 @@
 
     }
     .btn-fill {
-        border: 2px solid #2196F3;
+        border: 2px solid #5cb85c;
         color: white;
-        background-color: #2196F3;
+        background-color: #5cb85c;
         padding: 8px 20px;
         border-radius: 8px;
         font-size: 20px;

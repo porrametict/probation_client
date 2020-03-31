@@ -18,10 +18,26 @@ const routes = [
         component: Template,
         children: [
             {
-                path: '/home',
+                path: 'home',
                 name: 'Home',
                 component: Home
             },
+            {
+                path: 'probation-case',
+                component: () => import("../views/Officer/ProbationCase/ProbationCaseTemplate"),
+                children: [
+                    {
+                        path: '',
+                        name: "ProbationCase",
+                        component: () => import("../views/Officer/ProbationCase/index"),
+                    },
+                    {
+                        path: '/upload-excel',
+                        name: "ProbationCaseExcelUpload",
+                        component: () => import("../views/Officer/ProbationCase/ExcelProbationCase"),
+                    },
+                ]
+            }
         ]
     },
 
@@ -52,7 +68,7 @@ const routes = [
             {
                 path: 'user-profile',
                 name: 'editUserProfile',
-                component:  () => import('../views/Account/editUserProfile.vue'),
+                component: () => import('../views/Account/editUserProfile.vue'),
             },
 
         ]

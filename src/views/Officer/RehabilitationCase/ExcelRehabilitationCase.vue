@@ -45,19 +45,20 @@
     }
 
     .btn {
-        border: 2px solid gray;
-        color: gray;
+        border: 2px solid #5cb85c;
+        color: #5cb85c;
         background-color: white;
         padding: 8px 20px;
         border-radius: 8px;
         font-size: 20px;
         font-weight: bold;
         cursor: pointer;
+
     }
     .btn-fill {
-        border: 2px solid #2196F3;
+        border: 2px solid #5cb85c;
         color: white;
-        background-color: #2196F3;
+        background-color: #5cb85c;
         padding: 8px 20px;
         border-radius: 8px;
         font-size: 20px;

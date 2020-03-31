@@ -14,6 +14,17 @@ export default {
                     return response.data
                 })
                 .catch((error) => {
+                    console.error(error)
+                    return null
+                })
+        },
+        async getProbationCase(context, params = null) {
+            return await axios.get('api/v1/probation-case/', params = {params})
+                .then((response) => {
+                    return response.data
+                })
+                .catch((error) => {
+                    console.error(error)
                     return null
                 })
         }
