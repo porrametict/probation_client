@@ -19,6 +19,9 @@
                         hide-default-footer
                         class="elevation-1"
                 >
+                    <template v-slot:item.rehabilitation_closing_date="{item}">
+                        {{getTHDate(item.rehabilitation_closing_date)}}
+                    </template>
                     <template v-slot:item.action="{item}">
                         <v-btn icon>
                             <v-icon @click="view(item.id)">mdi-eye</v-icon>
@@ -32,8 +35,6 @@
                               @input="change_page"
                 ></v-pagination>
             </div>
-
-
         </v-container>
     </div>
 </template>

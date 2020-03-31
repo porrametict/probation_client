@@ -19,6 +19,9 @@
                         hide-default-footer
                         class="elevation-1"
                 >
+                    <template v-slot:item.case_ending_date="{item}">
+                        {{getTHDate(item.case_ending_date)}}
+                    </template>
                     <template v-slot:item.action="{item}">
                         <v-btn icon>
                             <v-icon @click="view(item.id)">mdi-eye</v-icon>

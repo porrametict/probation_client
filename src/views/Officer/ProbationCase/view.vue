@@ -97,18 +97,6 @@
                                 <div class="d-flex flex-row">
                                     <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
                                         <v-card-text class="pa-2">
-                                            ศาสนา
-                                        </v-card-text>
-                                    </v-card>
-                                    <v-card outlined tile class="flex-grow-1 flex-shrink-1">
-                                        <v-card-text class="pa-2 text--primary"
-                                                     v-text="probation_case.case.offender.o_religion">
-                                        </v-card-text>
-                                    </v-card>
-                                </div>
-                                <div class="d-flex flex-row">
-                                    <v-card outlined tile class="flex-grow-1 flex-shrink-1" max-width="200" min-width="200">
-                                        <v-card-text class="pa-2">
                                             สถานภาพ
                                         </v-card-text>
                                     </v-card>
@@ -156,7 +144,7 @@
                                     </v-card>
                                     <v-card outlined tile class="flex-grow-1 flex-shrink-1">
                                         <v-card-text class="pa-2 text--primary"
-                                                     v-text="probation_case.case.date_court_ordered">
+                                                     v-text="getTHDate(probation_case.case.date_court_ordered)">
                                         </v-card-text>
                                     </v-card>
                                 </div>
@@ -168,7 +156,7 @@
                                     </v-card>
                                     <v-card outlined tile class="flex-grow-1 flex-shrink-1">
                                         <v-card-text class="pa-2 text--primary"
-                                                     v-text="probation_case.case.date_case_acceptance">
+                                                     v-text="getTHDate(probation_case.case.date_case_acceptance)">
                                         </v-card-text>
                                     </v-card>
                                 </div>
@@ -257,7 +245,7 @@
                                 </v-card>
                                 <v-card outlined tile class="flex-grow-1 flex-shrink-1">
                                     <v-card-text class="pa-2 text--primary"
-                                                 v-text="probation_case.probation_deadline">
+                                                 v-text="getTHDate(probation_case.probation_deadline)">
                                     </v-card-text>
                                 </v-card>
                             </div>
@@ -269,7 +257,7 @@
                                 </v-card>
                                 <v-card outlined tile class="flex-grow-1 flex-shrink-1">
                                     <v-card-text class="pa-2 text--primary"
-                                                 v-text="probation_case.case_ending_date">
+                                                 v-text="getTHDate(probation_case.case_ending_date)">
                                     </v-card-text>
                                 </v-card>
                             </div>
@@ -325,7 +313,7 @@
                                 </v-card>
                                 <v-card outlined tile class="flex-grow-1 flex-shrink-1">
                                     <v-card-text class="pa-2 text--primary"
-                                                 v-text="c.classification_date">
+                                                 v-text="getTHDate(c.classification_date)">
                                     </v-card-text>
                                 </v-card>
                             </div>
@@ -418,7 +406,7 @@
                                 </v-card>
                                 <v-card outlined tile class="flex-grow-1 flex-shrink-1">
                                     <v-card-text class="pa-2 text--primary"
-                                                 v-text="c.report_submission_date">
+                                                 v-text="getTHDate(c.report_submission_date)">
                                     </v-card-text>
                                 </v-card>
                             </div>
