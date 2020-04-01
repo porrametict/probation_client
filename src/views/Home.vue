@@ -2,12 +2,6 @@
     <div class="home">
         <v-container class="d-flex flex-column align-center">
             <h1>Hello Home</h1>
-            <h1 class="red--text">ฝากเอาอันนี้เข้าเมนูด้วยเน้ออ ไม่อยากเเก้ไฟล์เดียวกัน ขี้เกียจ merge อ่ะ</h1>
-            <v-btn color="primary" large @click="goto_('ProbationCase')">Go to Probation Case</v-btn>
-            <v-divider></v-divider>
-            <v-btn color="primary" large @click="goto_('RehabilitationCase')">Go to Rehabilitation Case</v-btn>
-            <v-divider></v-divider>
-            <v-btn color="primary" large @click="goto_('Assignment')">Go to Assignment</v-btn>
         </v-container>
     </div>
 </template>
