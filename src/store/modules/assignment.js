@@ -10,6 +10,7 @@ export default {
                 .then((response) => {
                     return response.data
                 }).catch((error) => {
+                    context.dispatch("error/setError", error.response.data, {root: true});
                     return null
                 });
         },
@@ -18,6 +19,7 @@ export default {
                 .then((response) => {
                     return response.data
                 }).catch((error) => {
+                    context.dispatch("error/setError", error.response.data, {root: true});
                     return null
                 });
         },
@@ -25,17 +27,20 @@ export default {
             let id = params.id
             return await axios.put(`api/v1/assignment/${id}/`, params)
                 .then((response) => {
+                    context.dispatch("success/setSuccess", response.data, {root: true});
                     return response.data
                 }).catch((error) => {
+                    context.dispatch("error/setError", error.response.data, {root: true});
                     return null
                 });
         },
         async createAssignment(context, params) {
-            let id = params.id
             return await axios.post(`api/v1/assignment/`, params)
                 .then((response) => {
+                    context.dispatch("success/setSuccess", response.data, {root: true});
                     return response.data
                 }).catch((error) => {
+                    context.dispatch("error/setError", error.response.data, {root: true});
                     return null
                 });
         }

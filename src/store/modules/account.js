@@ -16,6 +16,7 @@ export default {
                     window.axios.defaults.headers.common['Authorization'] = `Token ${localStorage.getItem('access_token')}`;
                     return response.data
                 }).catch((error) => {
+                    context.dispatch("error/setError", error.response.data, {root: true});
                     return null
                 });
         },
@@ -25,6 +26,7 @@ export default {
                     context.commit('setUser', response.data)
                     return response.data
                 }).catch((error) => {
+                    context.dispatch("error/setError", error.response.data, {root: true});
                     return null
                 });
         },

@@ -11,6 +11,9 @@ import rehabilitation_case from "./modules/rehabilitation_case";
 import offender from "./modules/offender";
 import volunteer from "./modules/volunteer";
 import officer from "./modules/officer";
+import error from "./modules/error";
+import success from "./modules/success";
+import spinner from "./modules/spinner";
 
 Vue.use(Vuex)
 
@@ -30,5 +33,8 @@ export default new Vuex.Store({
         offender: offender,
         volunteer: volunteer,
         officer: officer,
+        error: error,
+        success: success,
+        spinner: spinner,
     }
 })

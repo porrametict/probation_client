@@ -15,7 +15,7 @@ export default {
                     context.commit('setOfficers', response.data)
                     return response.data
                 }).catch((error) => {
-                    console.error(error)
+                    context.dispatch("error/setError", error.response.data, {root: true});
                     return null
                 })
         }

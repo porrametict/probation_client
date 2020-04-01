@@ -21,6 +21,7 @@
                                 prepend-icon="mdi-account-box"
                                 type="text"
                                 v-model="form.username"
+                                :error-messages="error.username"
                         />
                         <v-text-field
                                 id="password"
@@ -30,6 +31,7 @@
                                 type="password"
                                 v-model="form.password"
                                 @keypress.13="login"
+                                :error-messages="error.password"
                         />
                         <v-btn color="primary" class="white--text" @click="login()" block large>Login</v-btn>
                     </div>
@@ -39,8 +41,11 @@
     </v-app>
 </template>
 <script>
+    import Base from "@/components/share/Base"
     export default {
+
         name: "Login",
+        extends: Base,
         data() {
             return {
                 form: {

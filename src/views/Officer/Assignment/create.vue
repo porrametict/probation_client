@@ -145,10 +145,8 @@
 
                     let data = await this.$store.dispatch('assignment/createAssignment', this.form)
                     if (data) {
-                        alert("Success")
                         await this.$router.push({name:'Assignment'})
                     }
-
                 } catch (e) {
                     alert("กรุณากรอกข้อมูลให้ครบ")
                 }
