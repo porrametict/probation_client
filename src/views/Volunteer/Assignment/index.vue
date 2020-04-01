@@ -9,37 +9,32 @@
 
         <div v-if="assignments ">
             <div v-if="assignments.length">
-
-                <v-card
+                <div
                         v-for="(a,i) in assignments" :key="i"
-                        color="white"
                 >
-                    <v-card-text>
-                        <div>
-                            <p class="py-0 my-0 font-weight-bold body-1	">
-                                เลขทะเบียน
-                            </p>
-                            <p class="py-0 my-0 font-weight-regular body-1">
-                                {{a.case.case_registration_number}}
-                            </p>
-                        </div>
-                        <v-divider></v-divider>
-                        <div>
-                            <P class="py-0 my-0 font-weight-bold">ชื่อ-สกุล</P>
-                            <P class="py-0 my-0">{{a.offender.o_first_name}} {{a.offender.o_last_name}}</P>
-                        </div>
-                        <div>
-                            <P class="py-0 my-0 font-weight-bold">ประเภท</P>
-                            <P class="py-0 my-0">{{ getFormType(a.form_type) }}</P>
-                        </div>
-
-                    </v-card-text>
-                    <v-card-actions>
-                        <v-btn block color="info" @click="viewDetail(a.id)">
-                            <v-icon>mdi-eye</v-icon>
-                        </v-btn>
-                    </v-card-actions>
-                </v-card>
+                    <v-card :color="a.form_type === 1 ? 'primary' : 'green'"
+                            outlined
+                            dark
+                            class="ma-2"
+                    >
+                        <v-card-text>
+                            <div>
+                                <P class="py-0 my-0 font-weight-bold">ผู้ถูกคุม</P>
+                                <P class="py-0 my-0 title white--text">{{a.offender_data.o_first_name}}
+                                    {{a.offender_data.o_last_name}}</P>
+                            </div>
+                            <div>
+                                <P class="py-0 my-0 font-weight-bold">ประเภทของฟอร์ม</P>
+                                <P class="py-0 my-0 title white--text">{{ getFormType(a.form_type) }}</P>
+                            </div>
+                        </v-card-text>
+                        <v-card-actions>
+                            <v-btn block color="white" @click="viewDetail(a.id)" large>
+                                <v-icon :color="a.form_type === 1 ? 'primary' : 'green'" large>mdi-eye</v-icon>
+                            </v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </div>
             </div>
             <div v-else>
                 <h1 class="title text-center font-weight-bold grey--text">ไม่มี</h1>
@@ -80,9 +75,7 @@
             },
             async updateStatus(assignment) {
                 assignment['status'] = 3;
-                console.log(assignment)
                 let data = await this.$store.dispatch('assignment/updateAssignment', assignment)
-
             },
             viewDetail(id) {
                 this.$router.push({name: "ViewAssignmentDetail", params: {id: id}})
