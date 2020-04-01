@@ -1,7 +1,7 @@
 <template>
     <div class="d-flex flex-column align-center">
         <p class="display-2 font-weight-light grey--text">อัพโหลดข้อมูลคดีงานฟื้นฟู</p>
-        <div class="upload-btn-wrapper ma-3" >
+        <div class="upload-btn-wrapper ma-3">
             <button :class=" file!=='' ?'btn-fill':'btn'">Choose a file</button>
             <input type="file"
                    id="file"
@@ -9,7 +9,7 @@
                    accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                    v-on:change="onChangeFileUpload()"/>
         </div>
-        <v-btn @click="save" color="primary" >Upload</v-btn>
+        <v-btn @click="save" color="primary">Upload</v-btn>
     </div>
 </template>
 <script>
@@ -24,13 +24,12 @@
             async save() {
                 let formData = new FormData();
                 formData.append('excel_file', this.file);
-                alert("it take a long time , please  wait ..")
                 let data = await this.$store.dispatch('rehabilitation_case/uploadExcel', formData)
                 if (data) {
-                    alert("success")
+                    this.$router.push({name: "RehabilitationCase"})
                 }
             },
-            onChangeFileUpload(){
+            onChangeFileUpload() {
                 this.file = this.$refs.file.files[0];
             }
         }
@@ -55,6 +54,7 @@
         cursor: pointer;
 
     }
+
     .btn-fill {
         border: 2px solid #5cb85c;
         color: white;

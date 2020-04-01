@@ -10,8 +10,8 @@ import '@mdi/font/css/materialdesignicons.css'
 
 window._ = lodash()
 window.axios = new Axios.create({
-    // baseURL: 'http://127.0.0.1:8000/',
-    baseURL: 'http://127.0.0.1:8001/',
+    baseURL: 'http://127.0.0.1:8000/',
+    // baseURL: 'http://127.0.0.1:8001/',
     timeout: 10000
 })
 

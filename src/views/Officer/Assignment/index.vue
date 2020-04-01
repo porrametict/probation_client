@@ -20,12 +20,12 @@
                         class="elevation-1"
                 >
                     <template v-slot:item.offender="{item}">
-                        {{item.offender.o_first_name}}
-                        {{item.offender.o_last_name}}
+                        {{item.offender_data.o_first_name}}
+                        {{item.offender_data.o_last_name}}
                     </template>
                     <template v-slot:item.volunteer="{item}">
-                        {{item.volunteer.first_name}}
-                        {{item.volunteer.last_name}}
+                        {{item.volunteer_data.first_name}}
+                        {{item.volunteer_data.last_name}}
                     </template>
                     <template v-slot:item.form_type="{item}">
                         {{getFormType(item.form_type)}}
@@ -63,7 +63,7 @@
                 total_page: 1,
                 data_table: [],
                 form_params: {
-                    page : 1
+                    page: 1
                 },
                 options: {},
                 headers: [

@@ -58,7 +58,7 @@
                         text: 'เลขทะเบียนคดี',
                         align: 'start',
                         sortable: false,
-                        value: 'case.case_registration_number',
+                        value: 'case_data.case_registration_number',
                     }, {
                         text: 'เลขคดีดำ',
                         align: 'center',

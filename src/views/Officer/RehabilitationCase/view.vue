@@ -12,11 +12,11 @@
                         <div class="white--text">ผู้กระทำผิด</div>
                         <div class="title white--text mb-2">
                             <p class="ma-0">
-                                {{rehabilitation_case.case.offender.o_personal_id}}
+                                {{rehabilitation_case.case_data.offender_data.o_personal_id}}
                             </p>
                             <p class="ma-0">
-                                {{rehabilitation_case.case.offender.o_first_name + " "
-                                +rehabilitation_case.case.offender.o_last_name}}
+                                {{rehabilitation_case.case_data.offender_data.o_first_name + " "
+                                +rehabilitation_case.case_data.offender_data.o_last_name}}
                             </p>
                         </div>
                     </template>
@@ -28,7 +28,7 @@
                         <div class="white--text">คดี</div>
                         <div class="title white--text mb-2">
                             <p class="ma-0">
-                                {{rehabilitation_case.case.case_registration_number}}
+                                {{rehabilitation_case.case_data.case_registration_number}}
                             </p>
                         </div>
                     </template>
@@ -77,25 +77,25 @@
                         data: [
                             {
                                 key: "อายุ",
-                                value: this.rehabilitation_case.case.offender.o_age
+                                value: this.rehabilitation_case.case_data.offender_data.o_age
                             }, {
                                 key: "เชื้อชาติ",
-                                value: this.rehabilitation_case.case.offender.o_race
+                                value: this.rehabilitation_case.case_data.offender_data.o_race
                             }, {
                                 key: "สัญชาติ",
-                                value: this.rehabilitation_case.case.offender.o_nationality
+                                value: this.rehabilitation_case.case_data.offender_data.o_nationality
                             }, {
                                 key: "การศึกษา",
-                                value: this.rehabilitation_case.case.offender.o_education
+                                value: this.rehabilitation_case.case_data.offender_data.o_education
                             }, {
                                 key: "อาชีพ",
-                                value: this.rehabilitation_case.case.offender.o_career
+                                value: this.rehabilitation_case.case_data.offender_data.o_career
                             }, {
                                 key: "ศาสนา",
-                                value: this.rehabilitation_case.case.offender.o_religion
+                                value: this.rehabilitation_case.case_data.offender_data.o_religion
                             }, {
                                 key: "สถานภาพ",
-                                value: this.rehabilitation_case.case.offender.o_marital_status
+                                value: this.rehabilitation_case.case_data.offender_data.o_marital_status
                             },
                         ]
                     }
@@ -106,23 +106,23 @@
                         data: [
                             {
                                 key: "ศาล",
-                                value: this.rehabilitation_case.case.court
+                                value: this.rehabilitation_case.case_data.court
                             },
                             {
                                 key: "วันที่ศาลสั่ง",
-                                value: this.rehabilitation_case.case.date_court_ordered
+                                value: this.rehabilitation_case.case_data.date_court_ordered
                             },
                             {
                                 key: "วันที่รับคดี",
-                                value: this.rehabilitation_case.case.date_case_acceptance
+                                value: this.rehabilitation_case.case_data.date_case_acceptance
                             },
                             {
                                 key: "พปค. เจ้าของคดี",
-                                value: this.rehabilitation_case.case.governing_officer_case_owner
+                                value: this.rehabilitation_case.case_data.governing_officer_case_owner
                             },
                             {
                                 key: "สถานะทะเบียนคดี",
-                                value: this.rehabilitation_case.case.registration_status
+                                value: this.rehabilitation_case.case_data.registration_status
                             },
                         ]
                     },

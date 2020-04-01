@@ -28,10 +28,9 @@
             async save() {
                 let formData = new FormData();
                 formData.append('excel_file', this.file);
-                alert("it take a long time , please  wait ..")
                 let data = await this.$store.dispatch('probation_case/uploadExcel', formData)
                 if (data) {
-                    alert("success")
+                    this.$router.push({name:"ProbationCase"})
                 }
             },
             onChangeFileUpload(){

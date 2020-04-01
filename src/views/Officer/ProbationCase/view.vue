@@ -12,11 +12,11 @@
                         <div class="white--text">ผู้กระทำผิด</div>
                         <div class="title white--text mb-2">
                             <p class="ma-0">
-                                {{probation_case.case.offender.o_personal_id}}
+                                {{probation_case.case_data.offender_data.o_personal_id}}
                             </p>
                             <p class="ma-0">
-                                {{probation_case.case.offender.o_first_name + " "
-                                +probation_case.case.offender.o_last_name}}
+                                {{probation_case.case_data.offender_data.o_first_name + " "
+                                +probation_case.case_data.offender_data.o_last_name}}
                             </p>
                         </div>
                     </template>
@@ -28,7 +28,7 @@
                         <div class="white--text">คดี</div>
                         <div class="title white--text mb-2">
                             <p class="ma-0">
-                                {{probation_case.case.case_registration_number}}
+                                {{probation_case.case_data.case_registration_number}}
                             </p>
                         </div>
                     </template>
@@ -75,25 +75,25 @@
                         data: [
                             {
                                 key: "อายุ",
-                                value: this.probation_case.case.offender.o_age
+                                value: this.probation_case.case_data.offender_data.o_age
                             }, {
                                 key: "เชื้อชาติ",
-                                value: this.probation_case.case.offender.o_race
+                                value: this.probation_case.case_data.offender_data.o_race
                             }, {
                                 key: "สัญชาติ",
-                                value: this.probation_case.case.offender.o_nationality
+                                value: this.probation_case.case_data.offender_data.o_nationality
                             }, {
                                 key: "การศึกษา",
-                                value: this.probation_case.case.offender.o_education
+                                value: this.probation_case.case_data.offender_data.o_education
                             }, {
                                 key: "อาชีพ",
-                                value: this.probation_case.case.offender.o_career
+                                value: this.probation_case.case_data.offender_data.o_career
                             }, {
                                 key: "ศาสนา",
-                                value: this.probation_case.case.offender.o_religion
+                                value: this.probation_case.case_data.offender_data.o_religion
                             }, {
                                 key: "สถานภาพ",
-                                value: this.probation_case.case.offender.o_marital_status
+                                value: this.probation_case.case_data.offender_data.o_marital_status
                             },
                         ]
                     }
@@ -104,23 +104,23 @@
                         data: [
                             {
                                 key: "ศาล",
-                                value: this.probation_case.case.court
+                                value: this.probation_case.case_data.court
                             },
                             {
                                 key: "วันที่ศาลสั่ง",
-                                value: this.probation_case.case.date_court_ordered
+                                value: this.probation_case.case_data.date_court_ordered
                             },
                             {
                                 key: "วันที่รับคดี",
-                                value: this.probation_case.case.date_case_acceptance
+                                value: this.probation_case.case_data.date_case_acceptance
                             },
                             {
                                 key: "พปค. เจ้าของคดี",
-                                value: this.probation_case.case.governing_officer_case_owner
+                                value: this.probation_case.case_data.governing_officer_case_owner
                             },
                             {
                                 key: "สถานะทะเบียนคดี",
-                                value: this.probation_case.case.registration_status
+                                value: this.probation_case.case_data.registration_status
                             },
                         ]
                     },

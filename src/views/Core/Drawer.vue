@@ -6,7 +6,7 @@
         v-if="!link.subLinks"
         :key="index"
         router
-        :to="{name: link.text}"
+        :to="{ path: link.routName }"
         class="v-list-item"
       >
         <v-list-item-action>
@@ -16,23 +16,23 @@
         <v-list-item-title v-text="link.text" />
       </v-list-item>
 
-<!--      <v-list-group v-else :key="link.text" no-action>-->
-<!--        <template v-slot:activator>-->
-<!--          <v-list-item>-->
-<!--            <v-list-item-content>-->
-<!--              <v-list-item-title>{{ link.text }}</v-list-item-title>-->
-<!--            </v-list-item-content>-->
-<!--          </v-list-item>-->
-<!--        </template>-->
+      <!--      <v-list-group v-else :key="link.text" no-action>-->
+      <!--        <template v-slot:activator>-->
+      <!--          <v-list-item>-->
+      <!--            <v-list-item-content>-->
+      <!--              <v-list-item-title>{{ link.text }}</v-list-item-title>-->
+      <!--            </v-list-item-content>-->
+      <!--          </v-list-item>-->
+      <!--        </template>-->
 
-<!--        <v-list-item-->
-<!--          v-for="sublink in link.subLinks"-->
-<!--          :key="sublink.text"-->
+      <!--        <v-list-item-->
+      <!--          v-for="sublink in link.subLinks"-->
+      <!--          :key="sublink.text"-->
 
-<!--        >-->
-<!--          <v-list-item-title v-text="sublink.text" />-->
-<!--        </v-list-item>-->
-<!--      </v-list-group>-->
+      <!--        >-->
+      <!--          <v-list-item-title v-text="sublink.text" />-->
+      <!--        </v-list-item>-->
+      <!--      </v-list-group>-->
     </v-list>
     <template v-slot:append>
       <div class="pa-2">
@@ -41,8 +41,8 @@
           @click="
             $store.dispatch('account/logout') & $router.push({ name: 'Login' })
           "
-          >Logout</v-btn
-        >
+          >Logout
+        </v-btn>
       </div>
     </template>
   </v-navigation-drawer>
@@ -55,12 +55,27 @@ export default {
     return {
       links: [
         {
-          path: "/home",
+          routName: "/home",
           icon: "mdi-home",
           text: "Home"
         },
         {
-          path: "/profile",
+          routName: "Assignment",
+          icon: "mdi-home",
+          text: "Assignment"
+        },
+        {
+          routName: "ProbationCase",
+          icon: "mdi-home",
+          text: "คดีควบคุม"
+        },
+        {
+          routName: "RehabilitationCase",
+          icon: "mdi-home",
+          text: "คดีฟื้นฟู"
+        },
+        {
+          routName: "/profile",
           icon: "mdi-profile",
           text: "Profile"
           // subLinks: [
@@ -74,21 +89,6 @@ export default {
           //   }
           // ]
         }
-        // {
-        //   icon: "mdi-profile",
-        //   text: "Test",
-        //   // to: "/profile"
-        //   subLinks: [
-        //     {
-        //       text: "Players list",
-        //       path: "/players"
-        //     },
-        //     {
-        //       text: "Import WTA Players",
-        //       path: "/players/import"
-        //     }
-        //   ]
-        // }
       ]
     };
   },
