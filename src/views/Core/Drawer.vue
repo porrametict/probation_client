@@ -33,13 +33,18 @@
 </template>
 
 <script>
-import { mapGetters} from "vuex";
 export default {
   name: "CoreDrawer",
   computed: {
-    ...mapGetters({ drawer: "getDrawerState" })
-  },
-
+    drawer: {
+      get: function() {
+        return this.$store.state.drawer.drawer;
+      },
+      set(val) {
+        this.$store.commit("SET_DRAWER", val);
+      }
+    }
+  }
 };
 </script>
 
