@@ -50,8 +50,7 @@
                 total_page: 1,
                 data_table: [],
                 form_params: {
-                    limit: 10,
-                    offset: 0
+                    page : 1
                 },
                 options: {},
                 headers: [
@@ -90,17 +89,17 @@
         },
         methods: {
             change_page(page) {
-                this.form_params.offset = (page * 10) -10;
+                this.form_params.page = page
+
                 this.loadData()
             },
             async loadData() {
                 this.loading = true
                 this.data_table = await this.$store.dispatch("probation_case/getProbationCase", this.form_params)
-                this.total_page =  Math.ceil (this.data_table.count / 10)
+                this.total_page = Math.ceil(this.data_table.count / 10)
             },
             view(id) {
-                console.log(id)
-                this.$router.push({name: "ProbationCaseView", params : {id :id}})
+                this.$router.push({name: "ProbationCaseView", params: {id: id}})
             }
         }
     }

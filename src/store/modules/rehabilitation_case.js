@@ -1,7 +1,7 @@
 export default {
     namespaced: true,
     actions: {
-        async uploadExcel(context, params) {
+        uploadExcel: async function (context, params) {
             return await axios.post('api/v1/upload-rehabilitation-offenders/',
                 params,
                 {
@@ -11,9 +11,11 @@ export default {
                 }
             )
                 .then((response) => {
+                    context.dispatch("success/setSuccess", response.data, {root: true});
                     return response.data
                 })
                 .catch((error) => {
+                    context.dispatch("error/setError", {"data": "Invalid"}, {root: true});
                     return null
                 })
         },
@@ -23,17 +25,17 @@ export default {
                     return response.data
                 })
                 .catch((error) => {
-                    console.error(error)
+                    context.dispatch("error/setError", error.response.data, {root: true});
                     return null
                 })
         },
-        async getRehabilitationCaseById(context,id) {
-            return await axios.get('api/v1/rehabilitation-case/'+id+'/')
+        async getRehabilitationCaseById(context, id) {
+            return await axios.get('api/v1/rehabilitation-case/' + id + '/')
                 .then((response) => {
                     return response.data
                 })
                 .catch((error) => {
-                    console.error(error)
+                    context.dispatch("error/setError", error.response.data, {root: true});
                     return null
                 })
         },

@@ -11,10 +11,11 @@ export default {
                 }
             )
                 .then((response) => {
+                    context.dispatch("success/setSuccess", response.data, {root: true});
                     return response.data
                 })
                 .catch((error) => {
-                    console.error(error)
+                    context.dispatch("error/setError", {"data": "Invalid"}, {root: true});
                     return null
                 })
         },
@@ -24,17 +25,17 @@ export default {
                     return response.data
                 })
                 .catch((error) => {
-                    console.error(error)
+                    context.dispatch("error/setError", error.response.data, {root: true});
                     return null
                 })
         },
-        async getProbationCaseById(context,id) {
-            return await axios.get('api/v1/probation-case/'+id+'/')
+        async getProbationCaseById(context, id) {
+            return await axios.get('api/v1/probation-case/' + id + '/')
                 .then((response) => {
                     return response.data
                 })
                 .catch((error) => {
-                    console.error(error)
+                    context.dispatch("error/setError", error.response.data, {root: true});
                     return null
                 })
         },

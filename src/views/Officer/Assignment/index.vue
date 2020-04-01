@@ -6,7 +6,7 @@
                 <v-spacer></v-spacer>
                 <v-btn
                         color="primary"
-                        @click="$router.push({name:''})">
+                        @click="$router.push({name:'AssignmentCreate'})">
                     <v-icon>mdi-plus</v-icon>
                     สร้าง
                 </v-btn>
@@ -19,7 +19,6 @@
                         hide-default-footer
                         class="elevation-1"
                 >
-
                     <template v-slot:item.offender="{item}">
                         {{item.offender.o_first_name}}
                         {{item.offender.o_last_name}}
@@ -28,10 +27,10 @@
                         {{item.volunteer.first_name}}
                         {{item.volunteer.last_name}}
                     </template>
-                    <template  v-slot:item.form_type="{item}">
+                    <template v-slot:item.form_type="{item}">
                         {{getFormType(item.form_type)}}
                     </template>
-                    <template  v-slot:item.status="{item}">
+                    <template v-slot:item.status="{item}">
                         {{getAssignmentStatus(item.status)}}
                     </template>
                     <template v-slot:item.created_at="{item}">
@@ -64,8 +63,7 @@
                 total_page: 1,
                 data_table: [],
                 form_params: {
-                    limit: 10,
-                    offset: 0
+                    page : 1
                 },
                 options: {},
                 headers: [
@@ -109,15 +107,16 @@
         async mounted() {
             await this.loadData()
         },
-        computed : {
+        computed: {
             ...mapGetters({
-                getFormType : 'assignment/getFormType',
-                getAssignmentStatus : 'assignment/getAssignmentStatus',
+                getFormType: 'assignment/getFormType',
+                getAssignmentStatus: 'assignment/getAssignmentStatus',
+                getVolunteer: 'volunteer/getVolunteer',
             })
         },
         methods: {
             change_page(page) {
-                this.form_params.offset = (page * 10) - 10;
+                this.form_params.page = page
                 this.loadData()
             },
             async loadData() {

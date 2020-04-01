@@ -10,6 +10,7 @@ export default {
                 .then((response) => {
                     return response.data
                 }).catch((error) => {
+                    context.dispatch("error/setError", error.response.data, {root: true});
                     return null
                 });
         },
@@ -18,6 +19,7 @@ export default {
                 .then((response) => {
                     return response.data
                 }).catch((error) => {
+                    context.dispatch("error/setError", error.response.data, {root: true});
                     return null
                 });
         },
@@ -25,8 +27,20 @@ export default {
             let id = params.id
             return await axios.put(`api/v1/assignment/${id}/`, params)
                 .then((response) => {
+                    context.dispatch("success/setSuccess", response.data, {root: true});
                     return response.data
                 }).catch((error) => {
+                    context.dispatch("error/setError", error.response.data, {root: true});
+                    return null
+                });
+        },
+        async createAssignment(context, params) {
+            return await axios.post(`api/v1/assignment/`, params)
+                .then((response) => {
+                    context.dispatch("success/setSuccess", response.data, {root: true});
+                    return response.data
+                }).catch((error) => {
+                    context.dispatch("error/setError", error.response.data, {root: true});
                     return null
                 });
         }
@@ -35,14 +49,14 @@ export default {
         getFormType: (state) => (id) => {
             return id == 1 ? 'ระหว่างการควบคุม' : 'หลังปล่อยควบคุม'
         },
-        getAssignmentStatus : (state) => (id) => {
+        getAssignmentStatus: (state) => (id) => {
             if (id == 1) {
                 return "รอ อสค. ยืนยัน"
-            }else if (id == 2 ){
+            } else if (id == 2) {
                 return "อสค. ปฏิเสธ"
-            }else if (id == 3 ){
+            } else if (id == 3) {
                 return "กำลังดำเนินการ"
-            }else if (id == 4 ){
+            } else if (id == 4) {
                 return "เสร็จสิ้น"
             }
         },
