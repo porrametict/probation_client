@@ -23,6 +23,11 @@ const routes = [
                 component: Home
             },
             {
+                path: 'profile',
+                name: 'Profile',
+                component: () => import("../views/UserAdmin/Profile"),
+            },
+            {
                 path: 'probation-case',
                 component: () => import("../views/Officer/ProbationCase/ProbationCaseTemplate"),
                 children: [
@@ -85,7 +90,8 @@ const routes = [
                     },
                 ]
 
-            }
+            },
+
         ]
     },
 
