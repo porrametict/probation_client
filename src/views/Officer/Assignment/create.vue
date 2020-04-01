@@ -134,7 +134,7 @@
                         current_address = e
                     }
                 })
-                return `${current_address.o_address_province.name_th} ${current_address.o_address_amphure.name_th} ${current_address.o_address_district.name_th}`
+                return `${current_address.province.name_th} ${current_address.amphure.name_th} ${current_address.district.name_th}`
             },
             async save() {
                 try {
@@ -145,7 +145,7 @@
 
                     let data = await this.$store.dispatch('assignment/createAssignment', this.form)
                     if (data) {
-                        await this.$router.push({name:'Assignment'})
+                        await this.$router.push({name: 'Assignment'})
                     }
                 } catch (e) {
                     alert("กรุณากรอกข้อมูลให้ครบ")

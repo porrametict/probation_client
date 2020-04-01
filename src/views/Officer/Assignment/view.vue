@@ -44,15 +44,15 @@
                         data: [
                             {
                                 key: "อศค.",
-                                value: `${this.assignment.volunteer.first_name} ${this.assignment.volunteer.last_name}`
+                                value: `${this.assignment.volunteer_data.first_name} ${this.assignment.volunteer_data.last_name}`
                             },
                             {
                                 key: "เจ้าหน้าที่",
-                                value: `${this.assignment.officer.first_name} ${this.assignment.officer.last_name}`
+                                value: `${this.assignment.officer_data.first_name} ${this.assignment.officer_data.last_name}`
                             },
                             {
                                 key: "ผู้ถูกคุมประพฤติ",
-                                value: `${this.assignment.offender.o_first_name} ${this.assignment.offender.o_last_name}`
+                                value: `${this.assignment.offender_data.o_first_name} ${this.assignment.offender_data.o_last_name}`
                             },
                             {
                                 key: "ประเภทของเเบบฟอร์ม",
