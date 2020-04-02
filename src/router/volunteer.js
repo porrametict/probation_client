@@ -8,19 +8,14 @@ export default {
             component: () => import('../views/Volunteer/Assignment/index')
         },
         {
-            path: 'view/:id',
+            path: 'assignment/:id/view',
             name: 'ViewAssignmentDetail',
             component: () => import('../views/Volunteer/Assignment/view')
         },
         {
-            path: 'dp-form/:id',
-            name: 'DuringProbationForm',
-            component: () => import('../components/Form/DuringProbationForm')
-        },
-        {
-            path: 'ap-form/:id',
-            name: 'AfterProbationForm',
-            component: () => import('../components/Form/AfterProbationForm')
+            path: 'assignment/:id/form',
+            name: 'AssignmentForm',
+            component: () => import('../views/Volunteer/Assignment/form')
         },
         {
             path: 'user-profile',

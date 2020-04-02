@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="provinces">
         <survey :survey="survey"></survey>
     </div>
 </template>
@@ -15,6 +15,26 @@
 
     export default {
         name: "DuringProbationForm",
+        data() {
+            let self = this
+            const model = new SurveyVue.Model(during_probation_form);
+            model.onComplete.add(function (sender, options) {
+                self.survey_complete(sender.data)
+            })
+            return {
+                survey: model,
+            };
+        },
+        props: {
+            survey_data: {
+                type: Object,
+                default: null
+            },
+            assignment: {
+                type: Object,
+                require: true
+            }
+        },
         components: {
             Survey
         },
@@ -29,19 +49,23 @@
             }
             await this.loadData()
         },
-        data() {
-            let self = this
-            const model = new SurveyVue.Model(during_probation_form);
-            model.onComplete.add(function (sender, options) {
-                self.survey_complete(sender.data)
-            })
-
-            return {
-                argument: null,
-                survey: model,
-            };
-        },
         methods: {
+            async loadData() {
+                this.preparing_province()
+                this.createModel()
+                this.setData()
+            },
+            setData() {
+                if (this.survey_data) {
+                    this.survey.data = this.survey_data
+                } else {
+                    this.survey.data = {
+                        time: 1,
+                        data_collection_date: this.getCurrentDate(),
+                        registration_number: ""
+                    }
+                }
+            },
             createModel() {
                 this.setSurveyChoices('informant_province', this.provinces)
 
@@ -88,12 +112,6 @@
                 }
                 return obj
             },
-
-            async loadData() {
-                this.preparing_province()
-                this.createModel()
-                this.loadAssignmentData()
-            },
             preparing_province() {
                 this.provinces.forEach(p => {
                     this.rename(p, 'id', 'value')
@@ -115,29 +133,24 @@
                 }
                 return o
             },
-            async loadAssignmentData() {
-                let id = this.$route.params.id
-                this.argument = await this.$store.dispatch('assignment/getAssignmentById', id)
-                this.create_model_data()
-            },
-            create_model_data() {
+            getCurrentDate() {
                 let date = moment.format('L')
                 let cur_date = date.split('/')
-                this.survey.data = {
-                    time: 1,
-                    data_collection_date: `${cur_date[2]}-${cur_date[1]}-${cur_date[0]}`,
-                    registration_number: ""
-                }
+                return `${cur_date[2]}-${cur_date[1]}-${cur_date[0]}`
             },
             async survey_complete(e) {
                 let form = {
-                    assignment_id: 1,
-                    json_form: e
+                    assignment: this.assignment.id,
+                    form: e
                 };
-                let data = await this.$store.dispatch('during_probation_form/postForm', form)
-                if (data) {
-                    await this.$router.push({name: 'Volunteer'})
-                }
+                this.$emit('oncomplete', form)
+            },
+            async save_data() {
+                let form = {
+                    assignment: this.assignment.id,
+                    form: this.survey.data
+                };
+                this.$emit('on_save', form)
             }
         }
     };

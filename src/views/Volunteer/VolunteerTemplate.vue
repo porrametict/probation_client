@@ -28,6 +28,7 @@
                 absolute
                 right
                 temporary
+                height="100vh"
         >
             <v-list
                     nav

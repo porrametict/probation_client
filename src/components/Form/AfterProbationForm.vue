@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="provinces">
         <survey :survey="survey"></survey>
     </div>
 </template>
@@ -18,6 +18,28 @@
 
     export default {
         name: "AfterProbationForm",
+        data() {
+            let self = this
+            const model = new SurveyVue.Model(after_probation_form);
+            model.onComplete.add(function (sender, options) {
+                self.survey_complete(sender.data)
+            })
+
+            return {
+                argument_id: null,
+                survey: model
+            };
+        },
+        props: {
+            survey_data: {
+                type: Object,
+                default: null
+            },
+            assignment: {
+                type: Object,
+                require: true
+            }
+        },
         components: {
             Survey
         },
@@ -32,19 +54,23 @@
             }
             await this.loadData()
         },
-        data() {
-            let self = this
-            const model = new SurveyVue.Model(after_probation_form);
-            model.onComplete.add(function (sender, options) {
-                self.survey_complete(sender.data)
-            })
-
-            return {
-                argument_id: null,
-                survey: model
-            };
-        },
         methods: {
+            async loadData() {
+                this.preparing_province()
+                this.createModel()
+                this.setData()
+            },
+            setData() {
+                if (this.survey_data) {
+                    this.survey.data = this.survey_data
+                } else {
+                    this.survey.data = {
+                        time: 1,
+                        data_collection_date: this.getCurrentDate(),
+                        registration_number: ""
+                    }
+                }
+            },
             createModel() {
                 this.setSurveyChoices('informant_province', this.provinces)
 
@@ -91,12 +117,6 @@
                 }
                 return obj
             },
-
-            async loadData() {
-                this.preparing_province()
-                this.createModel()
-                this.loadAssignmentData()
-            },
             preparing_province() {
                 this.provinces.forEach(p => {
                     this.rename(p, 'id', 'value')
@@ -118,36 +138,29 @@
                 }
                 return o
             },
-            async loadAssignmentData() {
-                let id = this.$route.params.id
-                this.argument = await this.$store.dispatch('assignment/getAssignmentById', id)
-                this.create_model_data()
-            },
-            create_model_data() {
+            getCurrentDate() {
                 let date = moment.format('L')
                 let cur_date = date.split('/')
-                this.survey.data = {
-                    time: 1,
-                    data_collection_date: `${cur_date[2]}-${cur_date[1]}-${cur_date[0]}`,
-                    registration_number: ""
-                }
+                return `${cur_date[2]}-${cur_date[1]}-${cur_date[0]}`
             },
             async survey_complete(e) {
                 let form = {
-                    assignment_id: 1,
-                    json_form: e
-                }
-                let data = await this.$store.dispatch('after_probation_form/postForm', form)
-                if (data) {
-                    this.$router.push({name: 'Volunteer'})
-                }
-
+                    assignment: this.assignment.id,
+                    form: e
+                };
+                this.$emit('oncomplete', form)
+            },
+            async save_data() {
+                let form = {
+                    assignment: this.assignment.id,
+                    form: this.survey.data
+                };
+                this.$emit('on_save', form)
             }
         }
     };
 </script>
-s
-
 <style scoped>
     @import url("https://surveyjs.azureedge.net/1.5.18/modern.css");
 </style>
+

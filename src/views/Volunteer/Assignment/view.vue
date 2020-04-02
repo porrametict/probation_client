@@ -1,9 +1,17 @@
 <template>
-    <div v-if="assignment">
-        <div>
+    <v-container v-if="assignment">
+        <div class="d-flex justify-content-between">
             <h3 class="title font-weight-bold blue--text text-center">
                 รายละเอียด
             </h3>
+            <div>
+                <v-btn color="primary"
+                       class="white--text font-weight-bold"
+                       @click="updateStatus"
+                >
+                    ส่งข้อมูล
+                </v-btn>
+            </div>
         </div>
         <v-divider/>
 
@@ -51,11 +59,11 @@
             </div>
         </div>
         <div>
-            <v-btn block color="primary" class="white--text" large @click="gotoForm(assignment.form_type)">
+            <v-btn block color="primary" class="white--text" large @click="gotoForm()">
                 เก็บข้อมูล
             </v-btn>
         </div>
-    </div>
+    </v-container>
 </template>
 
 <script>
@@ -83,12 +91,8 @@
                 this.assignment = await this.$store.dispatch('assignment/getAssignmentById', id)
                 this.getCurrentAddress(this.assignment.offender_data.offenderaddress_set)
             },
-            gotoForm(type) {
-                if (type === 1) {
-                    this.$router.push({name: 'DuringProbationForm', params: {id: this.assignment.id}})
-                } else if (type === 2) {
-                    this.$router.push({name: 'AfterProbationForm', params: {id: this.assignment.id}})
-                }
+            gotoForm() {
+                    this.$router.push({name: 'AssignmentForm', params: {id: this.assignment.id}})
             }, getCurrentAddress(data) {
                 this.current_address = {}
                 data.forEach(e => {
@@ -129,6 +133,13 @@
                         value: this.current_address.o_address_zip_code
                     },
                 ]
+            },
+            async updateStatus() {
+                this.assignment.status = 4
+                let data = await this.$store.dispatch('assignment/updateAssignment', this.assignment)
+                if (data) {
+                    await this.$router.push({name: "Volunteer"})
+                }
             }
         }
     }
