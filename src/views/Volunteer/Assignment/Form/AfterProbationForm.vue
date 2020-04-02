@@ -11,7 +11,7 @@
     import after_probation_form from "@/assets/after_probation_form"
 
     const Survey = SurveyVue.Survey;
-    Survey.cssType = "bootstrap";
+    SurveyVue.StylesManager.applyTheme('modern')
 
 
     export default {
@@ -47,7 +47,7 @@
                 this.survey.data = {
                     time: 1,
                     data_collection_date: `${cur_date[2]}-${cur_date[1]}-${cur_date[0]}`,
-                    registration_number: this.argument.case.case_registration_number
+                    registration_number: ""
                 }
             },
             async survey_complete(e) {
@@ -64,8 +64,8 @@
         }
     };
 </script>
-
+s
 
 <style scoped>
-
+    @import url("https://surveyjs.azureedge.net/1.5.18/modern.css");
 </style>

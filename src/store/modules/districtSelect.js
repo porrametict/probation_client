@@ -7,7 +7,7 @@ export default {
 
     state: {
         isLoad: loadingState[0],
-        provinces: []
+        provinces: null
     },
     mutations: {
         setProvinces: function (state, provinces) {
