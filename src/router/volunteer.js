@@ -15,12 +15,12 @@ export default {
         {
             path: 'dp-form/:id',
             name: 'DuringProbationForm',
-            component: () => import('../views/Volunteer/Assignment/Form/DuringProbationForm')
+            component: () => import('../components/Form/DuringProbationForm')
         },
         {
             path: 'ap-form/:id',
             name: 'AfterProbationForm',
-            component: () => import('../views/Volunteer/Assignment/Form/AfterProbationForm')
+            component: () => import('../components/Form/AfterProbationForm')
         },
         {
             path: 'user-profile',

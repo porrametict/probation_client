@@ -77,22 +77,28 @@
           "title": "ถนน"
         },
         {
-          "type": "text",
-          "name": "informant_district",
+          "type": "dropdown",
+          "renderAs": "select2",
+          "choices": [],
+          "name": "informant_province",
           "visibleIf": "{is_meet_offender} = 'not_meet'",
-          "title": "ตำบล/เเขวง"
+          "title": "จังหวัด"
         },
         {
-          "type": "text",
+          "type": "dropdown",
+          "renderAs": "select2",
+          "choices": [],
           "name": "informant_amphure",
           "visibleIf": "{is_meet_offender} = 'not_meet'",
           "title": "อำเภอ/เขต"
         },
         {
-          "type": "text",
-          "name": "informant_province",
+          "type": "dropdown",
+          "renderAs": "select2",
+          "choices": [],
+          "name": "informant_district",
           "visibleIf": "{is_meet_offender} = 'not_meet'",
-          "title": "จังหวัด"
+          "title": "ตำบล/เเขวง"
         },
         {
           "type": "text",
@@ -120,6 +126,13 @@
               "text": "เปลี่ยนแปลงที่พักอาศัย"
             }
           ]
+        },
+        {
+          "type": "file",
+          "name": "map",
+          "visibleIf": "{address_status} = 'address_changed'",
+          "title": "แผนที่/ภาพถ่ายบ้านผู้ถูกคุมความประพฤติ/ผู้เข้ารับการฟื้นฟูฯ",
+          "maxSize": 0
         },
         {
           "type": "text",
@@ -157,28 +170,30 @@
           "title": "ถนน"
         },
         {
-          "type": "text",
-          "name": "s_district",
-          "title": "ตำบล/แขวง"
-        },
-        {
-          "type": "text",
-          "name": "s_amphure",
-          "title": "อำเภอ/เขต"
-        },
-        {
-          "type": "text",
+          "type": "dropdown",
+          "renderAs": "select2",
           "name": "s_province",
-          "title": "จังหวัด"
+          "title": "จังหวัด",
+          "choices": []
+        },
+        {
+          "type": "dropdown",
+          "renderAs": "select2",
+          "name": "s_amphure",
+          "title": "อำเภอ/เขต",
+          "choices": []
+        },
+        {
+          "type": "dropdown",
+          "renderAs": "select2",
+          "name": "s_district",
+          "title": "ตำบล/แขวง",
+          "choices": []
         },
         {
           "type": "text",
-          "name": "s_phone",
+          "name": "s_phone2",
           "title": "โทรศัพท์"
-        },
-        {
-          "type": "html",
-          "html": "<p>(กรณีแผนที่บ้านไม่ถูกต้องหรือเปลี่ยนแปลงที่พักอาศัย โปรดวาดแผนที่ประกอบท้ายรายงานด้วย)</p>"
         },
         {
           "type": "dropdown",
@@ -946,12 +961,6 @@
               "text": "ของดการรับคดีในพื้นที่นี้"
             }
           ]
-        },
-        {
-          "type": "file",
-          "name": "map",
-          "title": "แผนที่/ภาพถ่ายบ้านผู้ถูกคุมความประพฤติ/ผู้เข้ารับการฟื้นฟูฯ",
-          "maxSize": 0
         }
       ],
       "title": "ส่วนที่ 2  การปฏิบัติงานของอาสาสมัครคุมประพฤติ"

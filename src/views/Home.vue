@@ -2,8 +2,8 @@
     <div class="home">
         <v-container class="d-flex flex-column align-center">
             <h1>Hello Home</h1>
+            <test-survey></test-survey>
         </v-container>
-        <test-survey></test-survey>
     </div>
 </template>
 <script>

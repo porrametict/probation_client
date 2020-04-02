@@ -14,31 +14,36 @@
     SurveyVue.StylesManager.applyTheme('modern')
 
     var json = {
-        "elements": [
+        "title": "บันทึกผลการสอดส่องติดตามระหว่างการคุมฯ/ฟื้นฟูฯ",
+        "pages": [
             {
-                "type": "dropdown",
-                "renderAs": "select2",
-                "choices": []
-                ,
-                "name": "province",
-                "title": "Province selected:",
-            }, {
-                "type": "dropdown",
-                "renderAs": "select2",
-                "choices": []
-                ,
-                "name": "amphure",
-                "title": "amphure selected:",
-
-            }, {
-                "type": "dropdown",
-                "renderAs": "select2",
-                "choices": []
-                ,
-                "name": "district",
-                "title": "district selected:",
-            },
-        ]
+                "name": "page1",
+                "elements": [
+                    {
+                        "type": "dropdown",
+                        "renderAs": "select2",
+                        "choices": []
+                        ,
+                        "name": "province",
+                        "title": "Province selected:",
+                    }, {
+                        "type": "dropdown",
+                        "renderAs": "select2",
+                        "choices": []
+                        ,
+                        "name": "amphure",
+                        "title": "amphure selected:",
+                    }, {
+                        "type": "dropdown",
+                        "renderAs": "select2",
+                        "choices": []
+                        ,
+                        "name": "district",
+                        "title": "district selected:",
+                    },
+                ],
+                "title": "ข้อมูลเบื้องต้น"
+            }]
     };
 
 
@@ -47,7 +52,6 @@
         components: {
             Survey
         },
-
         computed: {
             ...mapState({
                 provinces: state => state.districtSelect.provinces
@@ -101,7 +105,6 @@
                         }
                     }
                 }
-
                 return obj
             },
 
@@ -125,8 +128,6 @@
             },
             rename: function (o, old_key, new_key) {
                 if (old_key !== new_key) {
-                    // Object.defineProperty(o, new_key,
-                    //     Object.getOwnPropertyDescriptor(o, old_key));
                     o[new_key] = o[old_key]
                     delete o[old_key];
                 }

@@ -9,8 +9,8 @@
 
 <script>
     import Base from './components/share/Base'
-    import DuringProbationForm from "./views/Volunteer/Assignment/Form/DuringProbationForm";
-    import AfterProbationForm from "./views/Volunteer/Assignment/Form/AfterProbationForm";
+    import DuringProbationForm from "./components/Form/DuringProbationForm";
+    import AfterProbationForm from "./components/Form/AfterProbationForm";
 
     export default {
         name: 'App',
