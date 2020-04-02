@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="ict.up.ac.th.se.probation" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Probation</name>
+    <icon src="res/fake_logo.PNG" />
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>
