@@ -35,7 +35,6 @@
           <v-col cols="12" md="4">
             <v-text-field
               :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-              :rules="[rules.required, rules.emailMatch]"
               :type="show ? 'text' : 'password'"
               name="input-10-2"
               label="Password"
@@ -49,7 +48,6 @@
           <v-col cols="12" md="4">
             <v-text-field
               :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-              :rules="[rules.required, rules.emailMatch]"
               :type="show1 ? 'text' : 'password'"
               name="input-10-2"
               label="Verify Password"
@@ -67,15 +65,17 @@
               v-model="form.phone"
               label="เบอร์โทร"
               solo
+              :rules="[rules.phone.regex]"
             ></v-text-field>
           </v-col>
         </v-row>
-        <district-select :valProvince="form.user_province"
-                         :valAmphur="form.user_amphur"
-                         :valDistrict="form.user_district"
+        <district-select :valProvince="form.province"
+                         :valAmphur="form.amphur"
+                         :valDistrict="form.district"
                          @change="updateDistrictSelect">
 
         </district-select>
+        <v-btn color="primary" @click="save"> Submit</v-btn>
       </v-container>
     </v-form>
   </div>
@@ -83,7 +83,6 @@
 
 <script>
 import { mapState } from "vuex";
-import districtSelect from "../../store/modules/districtSelect";
 import DistrictSelect from "../../components/share/districtSelect";
 export default {
   name: "register",
@@ -91,17 +90,20 @@ export default {
   data() {
     return {
       form: {
-        user_province: null,
-        user_amphur : null,
-        user_district : null,
-        roles: []
+        province: null,
+        amphur : null,
+        district : null,
       },
       show: false,
       show1: false,
       rules: {
+        phone:{
+          required: v => !!v || "Required.",
+          regex: v => /[0-9]{10}/.test(v) || 'Phone must be valid'
+        },
         required: value => !!value || "Required.",
-        min: v => v.length >= 8 || "Min 8 characters",
-        emailMatch: () => "The email and password you entered don't match"
+        regex: v => /^\w+([.-]?\w+)*@ wer\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid',
+
       }
     };
   },
