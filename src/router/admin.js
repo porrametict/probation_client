@@ -16,6 +16,11 @@ export default {
         assigment,
         probation_case,
         rehabilitation_case,
+        {
+            path: 'register',
+            name: 'Register',
+            component: () => import("../views/Account/register")
+        }
 
 
     ]
