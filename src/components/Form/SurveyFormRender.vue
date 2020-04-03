@@ -93,6 +93,9 @@
             },
             setData() {
                 if (this.survey_data) {
+                    if (!this.survey_data.data_collection_date) {
+                        this.survey_data.data_collection_date = this.getCurrentDate()
+                    }
                     this.survey.data = this.survey_data
                     this.setProvince()
                 } else {
