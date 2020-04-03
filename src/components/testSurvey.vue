@@ -75,6 +75,10 @@
             };
         },
         methods: {
+            async loadData() {
+                this.preparing_province()
+                this.createModel()
+            },
             createModel() {
                 this.setSurveyChoices('province', this.provinces)
                 let qq = this.survey.onValueChanged.add(e => {
@@ -107,11 +111,6 @@
                 }
                 return obj
             },
-
-            async loadData() {
-                this.preparing_province()
-                this.createModel()
-            },
             preparing_province() {
                 this.provinces.forEach(p => {
                     this.rename(p, 'id', 'value')
@@ -127,11 +126,13 @@
                 })
             },
             rename: function (o, old_key, new_key) {
-                if (old_key !== new_key) {
-                    o[new_key] = o[old_key]
-                    delete o[old_key];
+                if (!(o[new_key])) {
+                    Object.defineProperty(o, new_key,
+                        Object.getOwnPropertyDescriptor(o, old_key))
+                    delete o[old_key]
+                    return o
                 }
-                return o
+
             }
 
         }

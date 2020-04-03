@@ -1,3 +1,5 @@
+import account from "./account";
+
 export default {
     path: '/volunteer',
     component: () => import('../views/Volunteer/VolunteerTemplate.vue'),
@@ -18,11 +20,16 @@ export default {
             component: () => import('../views/Volunteer/Assignment/form')
         },
         {
-            path: 'user-profile',
-            name: 'editUserProfile',
-            component: () => import('../views/Account/editUserProfile.vue'),
-        },
-
+            path: "volunteer-account",
+            component: () => import('../views/Account/AccountTemplate'),
+            children: [
+                {
+                    path: 'user-profile',
+                    name: 'VEditUserProfile',
+                    component: () => import('../views/Account/editUserProfile.vue'),
+                },
+            ]
+        }
     ]
 
 }

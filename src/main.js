@@ -8,17 +8,17 @@ import lodash from 'lodash'
 import moment from 'moment'
 import '@mdi/font/css/materialdesignicons.css'
 
+const baseURL = process.env.VUE_APP_BASE_BACKEND_URL
 window._ = lodash()
 window.axios = new Axios.create({
-    baseURL: 'http://127.0.0.1:8000/',
+    baseURL: baseURL,
     timeout: 10000
 })
-
-Vue.prototype.getTHDate= function (date=null) {
+Vue.prototype.getTHDate = function (date = null) {
     moment.locale('th');
-    if (date==null) {
+    if (date == null) {
         return moment().format('l')
-    }else {
+    } else {
         return moment(date).format('l')
     }
 }
