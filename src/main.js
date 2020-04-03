@@ -32,6 +32,17 @@ moment.locale('th')
 
 Vue.config.productionTip = false
 
+const VueGoogleMaps = require('vue2-google-maps');
+
+Vue.use(VueGoogleMaps, {
+    load: {
+        key: 'AIzaSyAA4xy46J4VXUz-MK2XLMtK6Eglw99H5Us',
+        v: '3.34',
+        libraries: 'places'
+    }
+})
+
+
 new Vue({
     router,
     store,
