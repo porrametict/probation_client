@@ -66,8 +66,33 @@
                     }
                 }
             },
+            setProvince() {
+                if (this.survey_data.informant_province) {
+                    let informant_province = this.survey_data.informant_province
+                    let p_obj = this.findObj(this.provinces, 'value', informant_province)
+                    this.setSurveyChoices('informant_amphure', p_obj.amphures_set)
+                }
+                if (this.survey_data.informant_amphure) {
+                    let informant_amphure = this.survey_data.informant_amphure
+                    let p_obj = this.findObj(this.provinces, 'value', this.survey_data.informant_province)
+                    let a_obj = this.findObj(p_obj.amphures_set, 'value', informant_amphure)
+                    this.setSurveyChoices('informant_district', a_obj.districts_set)
+                }
+                if (this.survey_data.s_province) {
+                    let s_province = this.survey_data.s_province
+                    let p_obj = this.findObj(this.provinces, 'value', s_province)
+                    this.setSurveyChoices('s_amphure', p_obj.amphures_set)
+                }
+                if (this.survey_data.s_amphure) {
+                    let s_amphure = this.survey_data.s_amphure
+                    let p_obj = this.findObj(this.provinces, 'value', this.survey_data.s_province)
+                    let a_obj = this.findObj(p_obj.amphures_set, 'value', s_amphure)
+                    this.setSurveyChoices('s_district', a_obj.districts_set)
+                }
+            },
             createModel() {
                 this.setSurveyChoices('informant_province', this.provinces)
+                this.setProvince()
 
                 this.setSurveyChoices('s_province', this.provinces)
                 let qq = this.survey.onValueChanged.add(e => {

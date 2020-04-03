@@ -1,26 +1,36 @@
 <template>
     <div v-if="provinces">
         <v-select :items="provinces"
+                  :outlined="outlined"
                   hide-details
                   item-text="name_th" label="จังหวัด"
                   v-model="selProvince"
                   return-object
-                  @change="provinceChange">
+                  @change="provinceChange"
+                  class="my-2"
+        >
             <!--             :error-messages="error.house_province"-->
         </v-select>
         <v-select :items="amphurs"
+                  :outlined="outlined"
                   hide-details
                   return-object
                   item-text="name_th" label="อำเภอ"
                   v-model="selAmphur"
-                  @change="amphurChange">
+                  @change="amphurChange"
+                  class="my-2"
+        >
         </v-select>
         <v-select :items="districts"
+                  :outlined="outlined"
                   hide-details
                   return-object
                   v-model="selDistrict"
                   item-text="name_th" label="ตำบล"
-                  @change="districtChange">
+                  @change="districtChange"
+                  class="my-2"
+
+        >
         </v-select>
     </div>
 
@@ -40,16 +50,20 @@
     };
     export default {
         props: {
+            outlined: {
+                type: Boolean,
+                default: false
+            },
             valProvince: {
-                type: Number,
+                type: Object,
                 default: 0
             },
             valAmphur: {
-                type: Number,
+                type: Object,
                 default: 0
             },
             valDistrict: {
-                type: Number,
+                type: Object,
                 default: 0
             }
         },
@@ -69,19 +83,19 @@
         methods: {
             sync: function () {
                 this.provinces.forEach((p) => {
-                    if (p.province_id == this.valProvince) {
+                    if (p.id == this.valProvince.id) {
                         this.selProvince = p;
                         this.provinceChange(p);
                     }
                 });
                 this.amphurs.forEach((a) => {
-                    if (a.amphur_id == this.valAmphur) {
+                    if (a.id == this.valAmphur.id) {
                         this.selAmphur = a;
                         this.amphurChange(a);
                     }
                 });
                 this.districts.forEach((d) => {
-                    if (d.district_id == this.valDistrict) {
+                    if (d.id == this.valDistrict.id) {
                         this.selDistrict = d;
                         this.districtChange(d);
                     }
