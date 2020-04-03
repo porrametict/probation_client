@@ -5,17 +5,29 @@
                 <p class="title">รายละเอียด</p>
                 <data-list-render :data="data_render"></data-list-render>
             </div>
+            <v-card class="ma-3">
+                <v-card-text>
+                    <FormRender
+                            :assignment="assignment"
+                            :form_full="true"
+                            :read_only="true"
+                            @save_success="save_form_success"
+                    >
+                    </FormRender>
+                </v-card-text>
+            </v-card>
         </v-container>
     </div>
 </template>
 
 <script>
     import DataListRender from "../../../components/share/DataListRender";
+    import FormRender from "../../../components/Form/FormRender";
     import {mapGetters} from "vuex";
 
     export default {
         name: "AssignmentView",
-        components: {DataListRender},
+        components: {DataListRender, FormRender},
         data() {
             return {
                 assignment: null,
@@ -69,6 +81,9 @@
                         ]
                     }
                 ]
+            },
+            save_form_success (e){
+                console.log(e)
             }
         }
     }
