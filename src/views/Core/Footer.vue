@@ -1,5 +1,5 @@
 <template>
-  <v-footer absolute>
+  <v-footer padless>
     <v-container>
       <v-row align="center" no-gutters>
         <v-col

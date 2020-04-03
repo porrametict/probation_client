@@ -1,7 +1,9 @@
 <template>
     <v-container>
-        <div>
-            <p>เก็บข้อมูล</p>
+        <div class="d-flex justify-content-between">
+            <h3 class="title text-md-left text-center">
+                เก็บข้อมูล
+            </h3>
             <div>
                 <v-btn color="primary"
                        class="white--text font-weight-bold"
@@ -11,6 +13,7 @@
                 </v-btn>
             </div>
         </div>
+        <v-divider></v-divider>
         <div v-if="assignment">
             <DuringProbationForm
                     ref="d_form"
@@ -74,11 +77,11 @@
                 } else if (this.assignment.form_type === 2) {
                     form_type = 'after_probation_form'
                 }
-                if (this.assignment[`${form_type}_data`]){
+                if (this.assignment[`${form_type}_data`]) {
                     if (this.assignment[`${form_type}_data`].id) {
                         saveMethod = "putForm"
                     }
-                }else {
+                } else {
                     this.assignment[`${form_type}_data`] = {}
                     this.assignment[`${form_type}_data`].assignment = this.assignment.id
                 }
