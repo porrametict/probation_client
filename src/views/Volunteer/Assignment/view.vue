@@ -1,7 +1,7 @@
 <template>
     <v-container v-if="assignment">
         <div class="d-flex justify-content-between">
-            <h3 class="title font-weight-bold blue--text text-center">
+            <h3 class="title text-md-left text-center">
                 รายละเอียด
             </h3>
             <div>

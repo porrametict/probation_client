@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <h3 class="title font-weight-bold blue--text text-center">
+            <h3 class="title text-center text-md-left">
                 งานที่ได้รับหมอบหมาย
             </h3>
         </div>
