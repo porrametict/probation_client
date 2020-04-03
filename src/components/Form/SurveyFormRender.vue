@@ -59,7 +59,6 @@
             },
             survey_data: {
                 type: Object,
-                default: null
             },
             assignment: {
                 type: Object,
@@ -193,11 +192,12 @@
                 })
             },
             rename: function (o, old_key, new_key) {
-                if (old_key !== new_key) {
-                    o[new_key] = o[old_key]
-                    delete o[old_key];
+                if (!(o[new_key])) {
+                    Object.defineProperty(o, new_key,
+                        Object.getOwnPropertyDescriptor(o, old_key))
+                    delete o[old_key]
+                    return o
                 }
-                return o
             },
             getCurrentDate() {
                 let date = moment.format('L')
