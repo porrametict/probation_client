@@ -120,7 +120,7 @@
     },
     {
       "type": "file",
-      "name": "map",
+      "name": "map_image",
       "visibleIf": "{address_status} = 'address_changed'",
       "title": "แผนที่/ภาพถ่ายบ้านผู้ถูกคุมความประพฤติ/ผู้เข้ารับการฟื้นฟูฯ",
       "maxSize": 0

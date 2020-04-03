@@ -27,6 +27,7 @@
         methods: {
             async save() {
                 let formData = new FormData();
+                console.log(this.file)
                 formData.append('excel_file', this.file);
                 let data = await this.$store.dispatch('probation_case/uploadExcel', formData)
                 if (data) {

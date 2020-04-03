@@ -53,7 +53,7 @@
         data() {
             return {
                 survey_data: null,
-                is_loading : true
+                is_loading: true
             }
         },
         async mounted() {
@@ -63,17 +63,43 @@
             async loadData() {
                 if (this.assignment.form_type === 1 && this.assignment.during_probation_form_data) {
                     this.survey_data = this.assignment.during_probation_form_data.form
+                    this.prepare_map_image(this.assignment.during_probation_form_data)
                 } else if (this.assignment.form_type === 2 && this.assignment.after_probation_form_data) {
                     this.survey_data = this.assignment.after_probation_form_data.form
+                    this.prepare_map_image(this.assignment.after_probation_form_data)
                 }
                 this.is_loading = false
+                console.log(this.survey_data)
             },
+            prepare_map_image(form) {
+                let img_url = form.map_image
+                let self = this
+                this.toDataURL(img_url, function (dataURL) {
+                    self.survey_data.map_image[0]["content"] = dataURL
+                })
+            },
+            toDataURL(url, callback) {
+                var xhr = new XMLHttpRequest();
+                xhr.onload = function () {
+                    var reader = new FileReader();
+                    reader.onloadend = function () {
+                        callback(reader.result);
+                    }
+                    reader.readAsDataURL(xhr.response);
+                };
+                xhr.open('GET', url);
+                xhr.responseType = 'blob';
+                xhr.send();
+            },
+
             async on_form_complete(e) {
                 this.save(e)
-            },
+            }
+            ,
             on_form_save(e) {
                 this.save(e)
-            },
+            }
+            ,
             async save(e) {
                 let saveMethod = "postForm"
                 let form_type = null
@@ -98,7 +124,8 @@
                 if (data) {
                     this.$emit('save_success', data)
                 }
-            },
+            }
+            ,
             saveForm() {
                 this.$refs.s_form.save_data()
             }
