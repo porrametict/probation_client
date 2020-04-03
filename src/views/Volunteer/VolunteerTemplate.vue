@@ -25,10 +25,8 @@
         <v-navigation-drawer
                 v-if="drawer"
                 v-model="drawer"
-                absolute
-                right
+                app
                 temporary
-                height="100vh"
         >
             <v-list
                     nav
@@ -40,7 +38,7 @@
                     <v-list-item @click="goto_('Volunteer')">
                         <v-list-item-title>หน้าหลัก</v-list-item-title>
                     </v-list-item>
-                    <v-list-item @click="goto_('editUserProfile')">
+                    <v-list-item @click="goto_('VEditUserProfile')">
                         <v-list-item-title>เเก้ไขข้อมูลส่วนตัว</v-list-item-title>
                     </v-list-item>
                 </v-list-item-group>

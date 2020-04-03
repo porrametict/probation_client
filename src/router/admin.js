@@ -1,6 +1,7 @@
 import assigment from "./assigment";
 import probation_case from "./probation_case";
 import rehabilitation_case from "./rehabilitation_case";
+import account from "./account";
 
 export default {
 
@@ -16,6 +17,7 @@ export default {
         assigment,
         probation_case,
         rehabilitation_case,
+        account
 
 
     ]

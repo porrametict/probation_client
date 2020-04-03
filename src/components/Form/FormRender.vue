@@ -14,7 +14,7 @@
             </div>
         </div>
         <v-divider></v-divider>
-        <div v-if="assignment">
+        <div v-if="assignment && !is_loading">
             <SurveyFormRender
                     ref="s_form"
                     :assignment="assignment"
@@ -52,7 +52,8 @@
         components: {SurveyFormRender},
         data() {
             return {
-                survey_data: null
+                survey_data: null,
+                is_loading : true
             }
         },
         async mounted() {
@@ -65,6 +66,7 @@
                 } else if (this.assignment.form_type === 2 && this.assignment.after_probation_form_data) {
                     this.survey_data = this.assignment.after_probation_form_data.form
                 }
+                this.is_loading = false
             },
             async on_form_complete(e) {
                 this.save(e)
