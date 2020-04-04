@@ -72,11 +72,14 @@
                 console.log(this.survey_data)
             },
             prepare_map_image(form) {
-                let img_url = form.map_image
-                let self = this
-                this.toDataURL(img_url, function (dataURL) {
-                    self.survey_data.map_image[0]["content"] = dataURL
-                })
+                if (form.map_image) {
+                    let img_url = form.map_image
+                    let self = this
+                    this.toDataURL(img_url, function (dataURL) {
+                        self.survey_data.map_image[0]["content"] = dataURL
+                    })
+                }
+
             },
             toDataURL(url, callback) {
                 var xhr = new XMLHttpRequest();
