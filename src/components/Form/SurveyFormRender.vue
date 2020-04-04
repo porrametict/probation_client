@@ -1,6 +1,11 @@
 <template>
-    <div v-if="provinces">
-        <survey :survey="survey"></survey>
+    <div>
+        <div v-if="provinces">
+            <survey :survey="survey"></survey>
+        </div>
+        <div class="title text-center" v-else>
+                Loading..
+        </div>
     </div>
 </template>
 <script>
@@ -14,7 +19,6 @@
     import after_probation_form_full from "@/assets/after_probation_form_full"
 
     import {mapState} from "vuex";
-    import form from "../../views/Volunteer/Assignment/form";
 
     const Survey = SurveyVue.Survey;
     SurveyVue.StylesManager.applyTheme('modern')
@@ -248,12 +252,17 @@
                 this.$emit('on_save', form)
             },
             setGeolocation() {
+                document.addEventListener("deviceready", this.getGeolocation, false);
                 this.getGeolocation()
-
             },
             async getGeolocation() {
+                let options = {
+                    enableHighAccuracy: true,
+                    timeout: 5000,
+                    maximumAge: 0
+                };
                 if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(this.successLocation)
+                    navigator.geolocation.getCurrentPosition(this.successLocation, this.errorLocation, options)
                 } else {
                     console.log("map error :  Browser doesn't support Geolocation")
                 }
@@ -265,6 +274,9 @@
                 }
                 this.survey.setValue('map_lat', pos.lat)
                 this.survey.setValue('map_lng', pos.lng)
+            },
+            errorLocation(error) {
+                alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
             }
         }
     };

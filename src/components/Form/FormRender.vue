@@ -28,6 +28,9 @@
             >
             </SurveyFormRender>
         </div>
+        <div v-else>
+            <p class="title text-center">Loading ...</p>
+        </div>
     </v-container>
 </template>
 
