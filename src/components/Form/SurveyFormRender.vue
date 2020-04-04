@@ -276,7 +276,7 @@
                 this.survey.setValue('map_lng', pos.lng)
             },
             errorLocation(error) {
-                alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
+                console.log('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
             }
         }
     };
