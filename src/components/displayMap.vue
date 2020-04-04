@@ -1,10 +1,10 @@
 <template>
-    <gmap-map
-            style="width: 100%; height: 400px; margin-top: 0px !important; "
-            :center="getFarmLatLng"
-            :zoom="8"
-            class="map-container mt-3">
-        <gmap-marker :position="getFarmLatLng"></gmap-marker>
+    <gmap-map v-if="center"
+              style="width: 100%; height: 400px; margin-top: 0px !important; "
+              :center="center"
+              :zoom="8"
+              class="map-container mt-3">
+        <gmap-marker :position="pos" v-if="pos.lat"></gmap-marker>
     </gmap-map>
 </template>
 
@@ -17,40 +17,32 @@
         computed: {
             ...mapState({}),
             ...mapGetters({}),
-            getFarmLatLng() {
-                let lat = 0
-                let lng = 0
-                let result = {
-                    lat: lat,
-                    lng: lng
-                }
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(function (position) {
-                        var pos = {
-                            lat: position.coords.latitude,
-                            lng: position.coords.longitude
-                        };
-                        result = pos
-                        lat = position.coords.latitude
-                        lng = position.coords.longitude
-                    }, function () {
-                        console.log("error map")
-                    });
-                } else {
-                    // Browser doesn't support Geolocation
-                    console.log("map error ")
-                }
-                return result
-            },
-
         },
         async created() {
-        }
-        ,
+            this.getGeolocation()
+        },
         data() {
-            return {}
+            return {
+                pos: null,
+                center: null
+            }
+        },
+        methods: {
+            getGeolocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(this.successLocation)
+                } else {
+                    console.log("map error :  Browser doesn't support Geolocation")
+                }
+            },
+            successLocation(position) {
+                this.pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                this.center = this.pos.lat ? this.pos : {lat: 19.1378449, lng: 99.9138361}
+            }
         }
-        ,
     }
 </script>
 

@@ -159,6 +159,12 @@
                         let a_obj = this.findObj(p_obj.amphures_set, 'value', s_amphure)
                         this.setSurveyChoices('s_district', a_obj.districts_set)
                     }
+
+                    if (e.data.address_status) {
+                        if (e.data.address_status == 'address_changed') {
+                            this.setGeolocation()
+                        }
+                    }
                 })
             },
             setSurveyChoices(name, choices) {
@@ -217,6 +223,25 @@
                     form: this.survey.data
                 };
                 this.$emit('on_save', form)
+            },
+            setGeolocation() {
+                this.getGeolocation()
+
+            },
+            async getGeolocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(this.successLocation)
+                } else {
+                    console.log("map error :  Browser doesn't support Geolocation")
+                }
+            },
+            successLocation(position) {
+                let pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                }
+                this.survey.setValue('map_lat', pos.lat)
+                this.survey.setValue('map_lng', pos.lng)
             }
         }
     };
