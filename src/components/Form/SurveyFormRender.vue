@@ -14,6 +14,7 @@
     import after_probation_form_full from "@/assets/after_probation_form_full"
 
     import {mapState} from "vuex";
+    import form from "../../views/Volunteer/Assignment/form";
 
     const Survey = SurveyVue.Survey;
     SurveyVue.StylesManager.applyTheme('modern')
@@ -63,6 +64,9 @@
             assignment: {
                 type: Object,
                 require: true
+            },
+            last_form: {
+                type: [Object, null]
             }
         },
         components: {
@@ -105,6 +109,25 @@
                             registration_number: ""
                         }
                     }
+                }
+                this.setOldAddress()
+            },
+            setOldAddress() {
+                if (this.last_form) {
+                    console.log(this.last_form,"last_form")
+                    let form = this.last_form.form
+                    this.survey.setValue('map_lat', form.map_lat)
+                    this.survey.setValue('map_lng', form.map_lng)
+                    this.survey.setValue('stay_with', form.stay_with)
+                    this.survey.setValue('s_related_as', form.s_related_as)
+                    this.survey.setValue('s_phone', form.s_phone)
+                    this.survey.setValue('s_house_no', form.s_house_no)
+                    this.survey.setValue('s_mu', form.s_mu)
+                    this.survey.setValue('s_alley', form.s_alley)
+                    this.survey.setValue('s_street', form.s_street)
+                    this.survey.setValue('s_province', form.s_province)
+                    this.survey.setValue('s_amphure', form.s_amphure)
+                    this.survey.setValue('s_district', form.s_district)
                 }
             },
             setProvince() {

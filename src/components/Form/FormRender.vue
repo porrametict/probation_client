@@ -19,6 +19,7 @@
                     ref="s_form"
                     :assignment="assignment"
                     :survey_data="survey_data"
+                    :last_form="last_form"
                     :form_type="assignment.form_type"
                     :form_full="form_full"
                     :read_only="read_only"
@@ -53,23 +54,42 @@
         data() {
             return {
                 survey_data: null,
-                is_loading: true
+                is_loading: true,
+                last_form: null
             }
         },
         async mounted() {
-            this.loadData()
+            await this.loadData()
         },
         methods: {
             async loadData() {
-                if (this.assignment.form_type === 1 && this.assignment.during_probation_form_data) {
-                    this.survey_data = this.assignment.during_probation_form_data.form
-                    this.prepare_map_image(this.assignment.during_probation_form_data)
-                } else if (this.assignment.form_type === 2 && this.assignment.after_probation_form_data) {
-                    this.survey_data = this.assignment.after_probation_form_data.form
-                    this.prepare_map_image(this.assignment.after_probation_form_data)
+                if (this.assignment.form_type === 1) {
+                    this.loadLastForm("during_probation_form")
+                    if (this.assignment.during_probation_form_data) {
+                        this.survey_data = this.assignment.during_probation_form_data.form
+                        this.prepare_map_image(this.assignment.during_probation_form_data)
+                    }
+                } else if (this.assignment.form_type === 2) {
+                    this.loadLastForm("after_probation_form")
+                    if (this.assignment.after_probation_form_data) {
+                        this.survey_data = this.assignment.after_probation_form_data.form
+                        this.prepare_map_image(this.assignment.after_probation_form_data)
+                    }
                 }
                 this.is_loading = false
-                console.log(this.survey_data)
+            },
+            async loadLastForm(type) {
+                let form = {
+                    form_type: type,
+                    assignment_id: this.assignment.id
+                }
+                let last_form = await this.$store.dispatch('assignment/getOldForm', form)
+                if (last_form) {
+                    if (!(Object.keys(last_form).length === 0 && last_form.constructor === Object)) {
+                        this.last_form = last_form
+                    }
+                }
+
             },
             prepare_map_image(form) {
                 if (form.map_image) {
@@ -79,7 +99,6 @@
                         self.survey_data.map_image[0]["content"] = dataURL
                     })
                 }
-
             },
             toDataURL(url, callback) {
                 var xhr = new XMLHttpRequest();
