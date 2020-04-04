@@ -258,8 +258,8 @@
             async getGeolocation() {
                 let options = {
                     enableHighAccuracy: true,
-                    timeout: 5000,
-                    maximumAge: 0
+                    // timeout: 5000,
+                    // maximumAge: 0
                 };
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(this.successLocation, this.errorLocation, options)
