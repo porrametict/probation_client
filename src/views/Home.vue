@@ -2,23 +2,23 @@
     <div class="home">
         <v-container class="d-flex flex-column align-center">
             <h1>Hello Home</h1>
-            <test-survey></test-survey>
+
+    <display-map></display-map>
+
         </v-container>
     </div>
 </template>
 <script>
-    import testSurvey from "../components/testSurvey";
+
+    import DisplayMap from "../components/displayMap";
     export default {
         name: 'Home',
         components: {
-            testSurvey
+            DisplayMap
+        },
+        created() {
         },
         methods: {
-            goto_(page_name) {
-                if (this.$router.currentRoute.name !== page_name) {
-                    this.$router.push({name: page_name})
-                }
-            }
         },
     }
 </script>
