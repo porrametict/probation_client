@@ -37,15 +37,15 @@
 </template>
 <script>
     let defaultProvince = {
-        province_id: 0,
+        id: 0,
         name_th: "กรุณาเลือก",
     };
     let defaultAmphur = {
-        amphur_id: 0,
+        id: 0,
         name_th: "กรุณาเลือก"
     };
     let defaultDistrict = {
-        district_id: 0,
+        id: 0,
         name_th: "กรุณาเลือก"
     };
     export default {
@@ -78,7 +78,9 @@
         async created() {
             let provinces = await this.$store.dispatch('districtSelect/getProvinces');
             this.provinces = [defaultProvince].concat(provinces);
-            this.sync()
+            if ( this.valProvince && this.valProvince.id != 0) {
+                this.sync()
+            }
         },
         methods: {
             sync: function () {
