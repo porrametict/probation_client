@@ -14,6 +14,10 @@
                             @save_success="save_form_success"
                     >
                     </FormRender>
+                    <div>
+                        <ImageFormDisplay :assignment="assignment"></ImageFormDisplay>
+                        <map-form-display :assignment="assignment"></map-form-display>
+                    </div>
                 </v-card-text>
             </v-card>
         </v-container>
@@ -24,10 +28,12 @@
     import DataListRender from "../../../components/share/DataListRender";
     import FormRender from "../../../components/Form/FormRender";
     import {mapGetters} from "vuex";
+    import ImageFormDisplay from "../../../components/Form/ImageFormDisplay";
+    import MapFormDisplay from "../../../components/Form/MapFormDisplay";
 
     export default {
         name: "AssignmentView",
-        components: {DataListRender, FormRender},
+        components: {MapFormDisplay, ImageFormDisplay, DataListRender, FormRender},
         data() {
             return {
                 assignment: null,
@@ -82,7 +88,7 @@
                     }
                 ]
             },
-            save_form_success (e){
+            save_form_success(e) {
                 console.log(e)
             }
         }

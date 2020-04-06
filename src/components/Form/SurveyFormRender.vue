@@ -1,6 +1,11 @@
 <template>
-    <div v-if="provinces">
-        <survey :survey="survey"></survey>
+    <div>
+        <div v-if="provinces">
+            <survey :survey="survey"></survey>
+        </div>
+        <div class="title text-center" v-else>
+                Loading..
+        </div>
     </div>
 </template>
 <script>
@@ -63,6 +68,9 @@
             assignment: {
                 type: Object,
                 require: true
+            },
+            last_form: {
+                type: [Object, null]
             }
         },
         components: {
@@ -105,6 +113,25 @@
                             registration_number: ""
                         }
                     }
+                }
+                this.setOldAddress()
+            },
+            setOldAddress() {
+                if (this.last_form) {
+                    console.log(this.last_form,"last_form")
+                    let form = this.last_form.form
+                    this.survey.setValue('map_lat', form.map_lat)
+                    this.survey.setValue('map_lng', form.map_lng)
+                    this.survey.setValue('stay_with', form.stay_with)
+                    this.survey.setValue('s_related_as', form.s_related_as)
+                    this.survey.setValue('s_phone', form.s_phone)
+                    this.survey.setValue('s_house_no', form.s_house_no)
+                    this.survey.setValue('s_mu', form.s_mu)
+                    this.survey.setValue('s_alley', form.s_alley)
+                    this.survey.setValue('s_street', form.s_street)
+                    this.survey.setValue('s_province', form.s_province)
+                    this.survey.setValue('s_amphure', form.s_amphure)
+                    this.survey.setValue('s_district', form.s_district)
                 }
             },
             setProvince() {
@@ -158,6 +185,12 @@
                         let p_obj = this.findObj(this.provinces, 'value', e.data.s_province)
                         let a_obj = this.findObj(p_obj.amphures_set, 'value', s_amphure)
                         this.setSurveyChoices('s_district', a_obj.districts_set)
+                    }
+
+                    if (e.data.address_status) {
+                        if (e.data.address_status == 'address_changed') {
+                            this.setGeolocation()
+                        }
                     }
                 })
             },
@@ -217,6 +250,33 @@
                     form: this.survey.data
                 };
                 this.$emit('on_save', form)
+            },
+            setGeolocation() {
+                document.addEventListener("deviceready", this.getGeolocation, false);
+                this.getGeolocation()
+            },
+            async getGeolocation() {
+                let options = {
+                    enableHighAccuracy: true,
+                    // timeout: 5000,
+                    // maximumAge: 0
+                };
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(this.successLocation, this.errorLocation, options)
+                } else {
+                    console.log("map error :  Browser doesn't support Geolocation")
+                }
+            },
+            successLocation(position) {
+                let pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                }
+                this.survey.setValue('map_lat', pos.lat)
+                this.survey.setValue('map_lng', pos.lng)
+            },
+            errorLocation(error) {
+                console.log('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
             }
         }
     };

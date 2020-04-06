@@ -43,6 +43,15 @@ export default {
                     context.dispatch("error/setError", error.response.data, {root: true});
                     return null
                 });
+        },
+        async getOldForm(context, params) {
+            return await axios.get(`api/v1/get-old-form/`, params = {params})
+                .then((response) => {
+                    return response.data
+                }).catch((error) => {
+                    context.dispatch("error/setError", error, {root: true});
+                    return null
+                });
         }
     },
     getters: {
