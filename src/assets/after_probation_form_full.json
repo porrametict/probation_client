@@ -669,10 +669,11 @@
       "type": "html",
       "html": "<p>แนวโน้มในการแก้ไขปัญหาของผู้กระทำผิด</p>"
     },
+
     {
       "type": "dropdown",
-      "name": "breach",
-      "title": "การผิดเงื่อนไข",
+      "name": "drug_related",
+      "title": "เกี่ยวข้องกับยาเสพติด",
       "choices": [
         {
           "value": "worse",
@@ -690,8 +691,8 @@
     },
     {
       "type": "dropdown",
-      "name": "drug_related",
-      "title": "เกี่ยวข้องกับยาเสพติด",
+      "name": "tendency_repeated_crimes",
+      "title": "แนวโน้มการกระทำผิดซ้ำ",
       "choices": [
         {
           "value": "worse",
