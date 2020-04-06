@@ -45,10 +45,10 @@ export default {
         logout(context) {
             localStorage.clear()
         },
-        createUser: async function(){
-            return await axios.post('rest-auth/registration-full/')
+        createUser: async function (context,form){
+            return await axios.post('rest-auth/registration-full/',form)
                 .then((response) => {
-                    context.commit('setUser', response.data)
+                    // context.commit('setUser', response.data)
                     return response.data
                 }).catch((error) => {
                     context.dispatch("error/setError", error.response.data, {root: true});

@@ -10,7 +10,7 @@
                     v-model="form.username"
                     label="Username"
                     required
-                    solo
+                    outlined
                     color="primary"
             >
 
@@ -19,14 +19,14 @@
                       v-model="form.first_name"
                       label="ชื่อ"
                       required
-                      solo
+                      outlined
               ></v-text-field>
 
               <v-text-field
                       v-model="form.last_name"
                       label="นามสกุล"
                       required
-                      solo
+                      outlined
               ></v-text-field>
 
               <v-text-field
@@ -36,7 +36,7 @@
                       label="Password"
                       hint="At least 8 characters"
                       v-model="form.password1"
-                      solo
+                      outlined
                       error
                       @click:append="show = !show"
               ></v-text-field>
@@ -48,7 +48,7 @@
                       label="Verify Password"
                       hint="At least 8 characters"
                       v-model="form.password2"
-                      solo
+                      outlined
                       error
                       @click:append="show1 = !show1"
               ></v-text-field>
@@ -56,7 +56,7 @@
                 <v-text-field
                         v-model="form.phone"
                         label="เบอร์โทร"
-                        solo
+                        outlined
                         :rules="[rules.phone.regex]"
                 ></v-text-field>
               <district-select
@@ -143,9 +143,9 @@ export default {
     },
     save: async function() {
       console.log(this.form);
-      // let user = await this.$store.dispatch("admin/users/createUser", this.form);
-      // console.log("save User", this.form);
-      // if(user){this.$router.go(-1)}
+      let user = await this.$store.dispatch("account/createUser", this.form);
+      console.log("save User", this.form);
+      if(user){this.$router.go(-1)}
     }
   }
 };
