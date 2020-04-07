@@ -1,9 +1,11 @@
 <template>
     <v-container>
         <div class="d-flex justify-content-between">
-            <h3 class="title text-md-left text-center">
-                ข้อมูล
-            </h3>
+            <slot name="header">
+                <p class="title text-md-left text-center">
+                    ข้อมูล
+                </p>
+            </slot>
             <div v-if="!read_only">
                 <v-btn color="primary"
                        class="white--text font-weight-bold"

@@ -13,6 +13,16 @@
                             :read_only="true"
                             @save_success="save_form_success"
                     >
+                        <template v-slot:header class="d-flex justify-content-between flex-row">
+                               <span class="title text-md-left text-center">
+                                   ข้อมูล
+                               </span>
+                            <v-spacer></v-spacer>
+                            <v-btn color="primary" @click="exportPDF"
+                                   v-if="assignment.after_probation_form_data || assignment.during_probation_form_data">
+                                ส่งออก PDF
+                            </v-btn>
+                        </template>
                     </FormRender>
                     <div>
                         <ImageFormDisplay :assignment="assignment"></ImageFormDisplay>
@@ -90,6 +100,18 @@
             },
             save_form_success(e) {
                 console.log(e)
+            },
+            exportPDF() {
+                let params_form = {
+                    "form_id": null,
+                    "form_type": null,
+                    "download": true
+                }
+                params_form.form_type = this.assignment.form_type === 1 ? 'during_probation_form_data' : 'after_probation_form_data'
+                if (this.assignment[params_form.form_type]) {
+                    params_form.form_id = this.assignment[params_form.form_type].id
+                    this.$store.dispatch('assignment/getPDFForm', params_form)
+                }
             }
         }
     }

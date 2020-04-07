@@ -52,7 +52,16 @@ export default {
                     context.dispatch("error/setError", error, {root: true});
                     return null
                 });
-        }
+        },
+        async getPDFForm(context, params) {
+            return await axios.get(`api/v1/survey-pdf/`, params = {params})
+                .then((response) => {
+                    return response.data
+                }).catch((error) => {
+                    context.dispatch("error/setError", error, {root: true});
+                    return null
+                });
+        },
     },
     getters: {
         getFormType: (state) => (id) => {
