@@ -10,7 +10,7 @@
             <p>
                 ERROR
             </p>
-            <ul v-if="Array.isArray(errors)">
+            <ul v-if="Array.isArray(error)">
                 <li v-for="(value,key) in error" :key="key">[ {{key}} ] {{value}}</li>
             </ul>
             <p>

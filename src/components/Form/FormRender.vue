@@ -80,6 +80,8 @@
                         this.survey_data = this.assignment.after_probation_form_data.form
                         this.prepare_map_image(this.assignment.after_probation_form_data)
                     }
+                    console.log(this.assignment.offender_data)
+                this.survey_data.name = `${this.assignment.offender_data.o_first_name} ${this.assignment.offender_data.o_last_name}`
                 }
                 this.is_loading = false
             },
