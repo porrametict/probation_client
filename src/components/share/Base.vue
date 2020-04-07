@@ -10,9 +10,12 @@
             <p>
                 ERROR
             </p>
-            <ul>
+            <ul v-if="Array.isArray(errors)">
                 <li v-for="(value,key) in error" :key="key">[ {{key}} ] {{value}}</li>
             </ul>
+            <p>
+                {{error}}
+            </p>
             <v-btn depressed class="white--text error" @click.native="$store.dispatch('error/toggleError',false)">
                 Close
             </v-btn>
