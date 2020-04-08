@@ -30,6 +30,9 @@
             >
             </SurveyFormRender>
         </div>
+        <div v-else-if="assignment.during_probation_form_data == null && assignment.after_probation_form_data == null">
+            <p class="title text-center">ไม่มีข้อมูล</p>
+        </div>
         <div v-else>
             <p class="title text-center">Loading ...</p>
         </div>
@@ -80,10 +83,8 @@
                         this.survey_data = this.assignment.after_probation_form_data.form
                         this.prepare_map_image(this.assignment.after_probation_form_data)
                     }
-                    console.log(this.assignment.offender_data)
-                this.survey_data.name = `${this.assignment.offender_data.o_first_name} ${this.assignment.offender_data.o_last_name}`
+                    this.survey_data.name = `${this.assignment.offender_data.o_first_name} ${this.assignment.offender_data.o_last_name}`
                 }
-                this.is_loading = false
             },
             async loadLastForm(type) {
                 let form = {
@@ -98,19 +99,22 @@
                 }
 
             },
-            prepare_map_image(form) {
+            async prepare_map_image(form) {
                 if (form.map_image) {
                     let img_url = form.map_image
                     let self = this
-                    this.toDataURL(img_url, function (dataURL) {
+                    await this.toDataURL(img_url, function (dataURL) {
                         self.survey_data.map_image[0]["content"] = dataURL
+                        self.is_loading = false
                     })
+                } else {
+                    this.is_loading = false
                 }
             },
-            toDataURL(url, callback) {
-                var xhr = new XMLHttpRequest();
+            async toDataURL(url, callback) {
+                let xhr = new XMLHttpRequest();
                 xhr.onload = function () {
-                    var reader = new FileReader();
+                    let reader = new FileReader();
                     reader.onloadend = function () {
                         callback(reader.result);
                     }

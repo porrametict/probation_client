@@ -118,7 +118,6 @@
             },
             setOldAddress() {
                 if (this.last_form) {
-                    console.log(this.last_form,"last_form")
                     let form = this.last_form.form
                     this.survey.setValue('map_lat', form.map_lat)
                     this.survey.setValue('map_lng', form.map_lng)
