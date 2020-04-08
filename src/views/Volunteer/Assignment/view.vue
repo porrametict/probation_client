@@ -92,7 +92,7 @@
                 this.getCurrentAddress(this.assignment.offender_data.offenderaddress_set)
             },
             gotoForm() {
-                    this.$router.push({name: 'AssignmentForm', params: {id: this.assignment.id}})
+                this.$router.push({name: 'AssignmentForm', params: {id: this.assignment.id}})
             }, getCurrentAddress(data) {
                 this.current_address = {}
                 data.forEach(e => {
@@ -137,8 +137,35 @@
             async updateStatus() {
                 this.assignment.status = 4
                 let data = await this.$store.dispatch('assignment/updateAssignment', this.assignment)
+                // this.updateOffenderAddress()
                 if (data) {
                     await this.$router.push({name: "Volunteer"})
+                }
+            },
+            async updateOffenderAddress() {
+                let form_type = null
+                if (this.assignment.during_probation_form_data) {
+                    form_type = 'during_probation_form_data'
+                } else if (this.assignment.after_probation_form_data) {
+                    form_type = 'after_probation_form_data'
+                }
+                if (form_type) {
+                    let form_data = {
+                        offender: this.assignment.offender.id,
+                        o_address_house: this.assignment[form_type].s_house_no,
+                        o_address_village: this.assignment[form_type].s_mu,
+                        o_address_mu: this.assignment[form_type].s_mu,
+                        o_address_alley: null,
+                        o_address_street: this.assignment[form_type].s_street,
+                        o_address_district: this.assignment[form_type].s_district,
+                        o_address_amphure: this.assignment[form_type].s_amphure,
+                        o_address_province: this.assignment[form_type].s_province,
+                        o_address_zip_code: null,
+                        o_address_status: true,
+                        o_address_map_image: this.assignment[form_type].map_image,
+                        o_address_map_lat: this.assignment[form_type].map_lat,
+                        o_address_map_lng: this.assignment[form_type].map_lng,
+                    }
                 }
             }
         }
