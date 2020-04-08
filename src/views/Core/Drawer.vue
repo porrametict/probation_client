@@ -46,12 +46,12 @@
                 </v-list-item-content>
             </v-list-item>
 
-            <v-list-item :to="{ name: 'Register' }" exact>
+            <v-list-item :to="{ name: 'OfficerUser' }" exact>
                 <v-list-item-action>
                     <v-icon>mdi-card-account-details</v-icon>
                 </v-list-item-action>
                 <v-list-item-content>
-                    <v-list-item-title>ลงทะเบียน</v-list-item-title>
+                    <v-list-item-title>เจ้าหน้าที่</v-list-item-title>
                 </v-list-item-content>
             </v-list-item>
 

@@ -74,14 +74,7 @@
           <v-btn color="primary" @click="save"> Submit</v-btn>
             </div>
           </v-card-text>
-
-
-
-
-
         </v-card>
-
-
       </v-container>
     </v-form>
   </div>
@@ -89,7 +82,7 @@
 
 <script>
 import { mapState } from "vuex";
-import DistrictSelect from "../../components/share/districtSelect";
+import DistrictSelect from "../../../components/share/districtSelect";
 export default {
   name: "register",
   components: { DistrictSelect },

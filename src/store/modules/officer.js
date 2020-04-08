@@ -9,7 +9,16 @@ export default {
         }
     },
     actions: {
-        async getVolunteerNoPaginate(context) {
+        async getListUser(context, params) {
+            return await axios.get('api/v1/officer-user/', params = {params})
+                .then((response) => {
+                    return response.data
+                }).catch((error) => {
+                    context.dispatch("error/setError", error.response.data, {root: true});
+                    return null
+                });
+        },
+        async getOfficerNoPaginate(context) {
             return await axios.get('api/v1/officer-no-paginate/')
                 .then((response) => {
                     context.commit('setOfficers', response.data)
