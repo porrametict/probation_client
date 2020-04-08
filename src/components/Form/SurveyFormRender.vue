@@ -4,7 +4,7 @@
             <survey :survey="survey"></survey>
         </div>
         <div class="title text-center" v-else>
-                Loading..
+            Loading..
         </div>
     </div>
 </template>
@@ -103,18 +103,37 @@
                     if (!this.survey_data.data_collection_date) {
                         this.survey_data.data_collection_date = this.getCurrentDate()
                     }
+                    if (!this.survey_data.time && this.last_form) {
+                        this.survey_data.time = this.last_form.form ? this.last_form.form.time + 1 : ""
+                    }
+                    if (!this.survey_data.registration_number && this.last_form) {
+                        this.survey_data.registration_number = ""
+                    }
+
                     this.survey.data = this.survey_data
+                    if (!this.survey_data.s_house_no && this.last_form) {
+                        this.setOldAddress()
+                    }
                     this.setProvince()
+
                 } else {
                     if (!this.read_only) {
-                        this.survey.data = {
-                            time: 1,
-                            data_collection_date: this.getCurrentDate(),
-                            registration_number: ""
+                        if (!this.survey_data.data_collection_date) {
+                            this.survey_data.data_collection_date = this.getCurrentDate()
+                        }
+                        if (!this.survey_data.time && this.last_form) {
+                            this.survey_data.time = this.last_form.form ? this.last_form.form.time + 1 : ""
+                        }
+                        if (!this.survey_data.registration_number && this.last_form) {
+                            this.survey_data.registration_number = ""
+                        }
+                        this.survey.data = this.survey_data
+                        if (!this.survey_data.s_house_no && this.last_form) {
+                            this.setOldAddress()
                         }
                     }
+
                 }
-                this.setOldAddress()
             },
             setOldAddress() {
                 if (this.last_form) {
@@ -131,6 +150,7 @@
                     this.survey.setValue('s_province', form.s_province)
                     this.survey.setValue('s_amphure', form.s_amphure)
                     this.survey.setValue('s_district', form.s_district)
+                    console.log(this.survey.data, "s_data")
                 }
             },
             setProvince() {

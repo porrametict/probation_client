@@ -30,9 +30,6 @@
             >
             </SurveyFormRender>
         </div>
-        <div v-else-if="assignment.during_probation_form_data == null && assignment.after_probation_form_data == null">
-            <p class="title text-center">ไม่มีข้อมูล</p>
-        </div>
         <div v-else>
             <p class="title text-center">Loading ...</p>
         </div>
@@ -75,16 +72,30 @@
                     this.loadLastForm("during_probation_form")
                     if (this.assignment.during_probation_form_data) {
                         this.survey_data = this.assignment.during_probation_form_data.form
-                        this.prepare_map_image(this.assignment.during_probation_form_data)
+                        if (this.survey_data.map_image) {
+                            this.prepare_map_image(this.assignment.during_probation_form_data)
+                        } else {
+                            this.is_loading = false
+                        }
+                    } else {
+                        this.survey_data = {}
+                        this.is_loading = false
                     }
                 } else if (this.assignment.form_type === 2) {
                     this.loadLastForm("after_probation_form")
                     if (this.assignment.after_probation_form_data) {
                         this.survey_data = this.assignment.after_probation_form_data.form
-                        this.prepare_map_image(this.assignment.after_probation_form_data)
+                        if (this.survey_data.map_image) {
+                            this.prepare_map_image(this.assignment.after_probation_form_data)
+                        } else {
+                            this.is_loading = false
+                        }
+                    } else {
+                        this.survey_data = {}
+                        this.is_loading = false
                     }
-                    this.survey_data.name = `${this.assignment.offender_data.o_first_name} ${this.assignment.offender_data.o_last_name}`
                 }
+                this.survey_data.name = `${this.assignment.offender_data.o_first_name} ${this.assignment.offender_data.o_last_name}`
             },
             async loadLastForm(type) {
                 let form = {
@@ -97,7 +108,6 @@
                         this.last_form = last_form
                     }
                 }
-
             },
             async prepare_map_image(form) {
                 if (form.map_image) {
