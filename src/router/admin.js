@@ -4,6 +4,7 @@ import rehabilitation_case from "./rehabilitation_case";
 import account from "./account";
 import officer_user from "./officer_user";
 import volunteer_user from "./volunteer_user";
+import offender from "./offender";
 
 export default {
 
@@ -22,7 +23,7 @@ export default {
         account,
         officer_user,
         volunteer_user,
-
+        offender,
 
 
     ]

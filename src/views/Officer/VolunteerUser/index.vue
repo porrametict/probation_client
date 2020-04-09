@@ -88,6 +88,8 @@
         methods: {
             async loadData() {
                 this.data_table = await this.$store.dispatch('volunteer/getListUser', this.form_params)
+                this.total_page = Math.ceil(this.data_table.count / 10)
+
             },
             change_page(page) {
                 this.form_params.page = page
@@ -97,7 +99,7 @@
                 this.$router.push({name: "editVolunteerUser", params: {id: id}})
             },
             async deleteUser(id) {
-                if (await this.$store.dispatch("volunteer/deleteUser", id)) {
+                if (await this.$store.dispatch("volunteer/deleteUser", id) != null) {
                     this.loadData()
                 }
             }

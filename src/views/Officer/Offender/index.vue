@@ -1,17 +1,18 @@
 <template>
     <v-container>
         <div>
-            <p class="title">เจ้าหน้าที่</p>
+            <p class="title">ผู้ถูกคุม</p>
         </div>
 
         <div>
             <div>
-                <v-btn color="primary" @click="$router.push({name:'registerOfficerUser'})">
-                    <v-icon>mdi-plus</v-icon>
-                    เพิ่ม
-                </v-btn>
+<!--                <v-btn color="primary" @click="$router.push({name:''})">-->
+<!--                    <v-icon>mdi-plus</v-icon>-->
+<!--                    เพิ่ม-->
+<!--                </v-btn>-->
             </div>
             <v-data-table
+                    v-if="data_table"
                     :headers="headers"
                     :items="data_table.results"
                     :options.sync="options"
@@ -22,7 +23,7 @@
                     <v-btn icon>
                         <v-icon @click="view(item.id)">mdi-eye</v-icon>
                     </v-btn>
-                    <v-btn icon color="red" :disabled="user_profile.user.id ==item.user.id">
+                    <v-btn icon color="red">
                         <v-icon @click="deleteUser(item.id)">mdi-trash-can</v-icon>
                     </v-btn>
                 </template>
@@ -39,10 +40,9 @@
 </template>
 
 <script>
-    import {mapState} from 'vuex'
 
     export default {
-        name: "index",
+        name: "OffenderIndex",
         data() {
             return {
                 page: 1,
@@ -50,7 +50,6 @@
                 data_table: [],
                 form_params: {
                     page: 1,
-                    user_type: 1
                 },
                 options: {},
                 headers: [
@@ -58,12 +57,17 @@
                         text: 'ชื่อ',
                         align: 'left',
                         sortable: false,
-                        value: 'user.first_name',
+                        value: 'o_personal_id',
+                    } ,{
+                        text: 'ชื่อ',
+                        align: 'left',
+                        sortable: false,
+                        value: 'o_first_name',
                     }, {
                         text: 'นามสกุล',
                         align: 'left',
                         sortable: false,
-                        value: 'user.last_name',
+                        value: 'o_last_name',
                     },
                     {
                         text: 'จัดการ',
@@ -75,19 +79,13 @@
             }
         },
         computed: {
-            ...mapState({
-                user_profile: state => state.account.user_profile
-            })
         },
         async created() {
-            if (!this.user_profile) {
-                await this.$store.dispatch("account/getUser")
-            }
             await this.loadData()
         },
         methods: {
             async loadData() {
-                this.data_table = await this.$store.dispatch('officer/getListUser', this.form_params)
+                this.data_table = await this.$store.dispatch('offender/getListUser', this.form_params)
                 this.total_page = Math.ceil(this.data_table.count / 10)
 
             },
@@ -96,10 +94,10 @@
                 this.loadData()
             },
             view(id) {
-                this.$router.push({name: "editOfficerProfile", params: {id: id}})
+                this.$router.push({name: "viewOffender", params: {id: id}})
             },
             async deleteUser(id) {
-                if (await this.$store.dispatch("officer/deleteUser", id) != null) {
+                if (await this.$store.dispatch("offender/deleteUser", id) != null) {
                     this.loadData()
                 }
             }
