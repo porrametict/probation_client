@@ -8,7 +8,6 @@
                   return-object
                   @change="provinceChange"
                   class="my-2"
-                  :error="error.province"
                   :error-messages="error.province"
         >
         </v-select>
@@ -20,7 +19,6 @@
                   v-model="selAmphur"
                   @change="amphurChange"
                   class="my-2"
-                  :error="error.amphure"
                   :error-messages="error.amphure"
         >
         </v-select>
@@ -32,7 +30,6 @@
                   item-text="name_th" label="ตำบล"
                   @change="districtChange"
                   class="my-2"
-                  :error="error.district"
                   :error-messages="error.district"
         >
         </v-select>
@@ -41,6 +38,7 @@
 </template>
 <script>
     import Base from "./Base";
+    import Login from "../../views/Login";
 
     let defaultProvince = {
         id: 0,
@@ -62,15 +60,15 @@
                 default: false
             },
             valProvince: {
-                type: Object,
+                type: Number,
                 default: 0
             },
             valAmphur: {
-                type: Object,
+                type: Number,
                 default: 0
             },
             valDistrict: {
-                type: Object,
+                type: Number,
                 default: 0
             }
         },
@@ -85,26 +83,26 @@
         async created() {
             let provinces = await this.$store.dispatch('districtSelect/getProvinces');
             this.provinces = [defaultProvince].concat(provinces);
-            if (this.valProvince && this.valProvince.id != 0) {
+            if (this.valProvince && this.valProvince != 0) {
                 this.sync()
             }
         },
         methods: {
             sync: function () {
                 this.provinces.forEach((p) => {
-                    if (p.id == this.valProvince.id) {
+                    if (p.id == this.valProvince) {
                         this.selProvince = p;
                         this.provinceChange(p);
                     }
                 });
                 this.amphurs.forEach((a) => {
-                    if (a.id == this.valAmphur.id) {
+                    if (a.id == this.valAmphur) {
                         this.selAmphur = a;
                         this.amphurChange(a);
                     }
                 });
                 this.districts.forEach((d) => {
-                    if (d.id == this.valDistrict.id) {
+                    if (d.id == this.valDistrict) {
                         this.selDistrict = d;
                         this.districtChange(d);
                     }
@@ -121,6 +119,7 @@
                 if (!ev.id) {
                     ev = null
                 }
+                console.log(ev)
                 this.$emit('change', [ev, null, null])
             },
             amphurChange: function (ev) {

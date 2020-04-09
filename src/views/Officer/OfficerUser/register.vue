@@ -71,7 +71,7 @@
                             ></v-text-field>
                             <district-select
                                     :valProvince="form.province"
-                                    :valAmphur="form.amphur"
+                                    :valAmphur="form.amphure"
                                     :valDistrict="form.district"
                                     @change="updateDistrictSelect"
                                     outlined
@@ -104,7 +104,7 @@
             return {
                 form: {
                     province: null,
-                    amphur: null,
+                    amphure: null,
                     district: null
                 },
                 show: false,
@@ -133,9 +133,18 @@
         },
         methods: {
             updateDistrictSelect: function (value) {
-                this.user_profile.province = value[0]
-                this.user_profile.amphure = value[1]
-                this.user_profile.district = value[2]
+                this.form.province = value[0]
+                this.form.amphure = value[1]
+                this.form.district = value[2]
+                if(value[0]) {
+                    this.form.province = value[0].id
+                }
+                if(value[1]) {
+                    this.form.amphure = value[1].id
+                }
+                if(value[2]) {
+                    this.form.district = value[2].id
+                }
             },
             save: async function () {
                 this.form.user_type = 2

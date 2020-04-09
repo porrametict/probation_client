@@ -13,9 +13,9 @@
             <v-text-field label="โทรศัพท์" outlined v-model="user_profile.phone"/>
             <district-select
                     outlined
-                    :val-province="user_profile.province"
-                    :val-amphur="user_profile.amphure"
-                    :val-district="user_profile.district"
+                    :val-province="user_profile.province ? user_profile.province.id : 0"
+                    :val-amphur="user_profile.amphure ? user_profile.amphure.id : 0"
+                    :val-district="user_profile.district ? user_profile.district.id : 0"
                     @change="updateDistrictSelect"
             >
             </district-select>
@@ -57,6 +57,15 @@
                 this.user_profile.province = value[0]
                 this.user_profile.amphure = value[1]
                 this.user_profile.district = value[2]
+                if(value[0]) {
+                    this.user_profile.province = value[0].id
+                }
+                if(value[1]) {
+                    this.user_profile.amphure = value[1].id
+                }
+                if(value[2]) {
+                    this.user_profile.district = value[2].id
+                }
             },
         }
     }

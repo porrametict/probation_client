@@ -54,6 +54,14 @@
                     <v-list-item-title>เจ้าหน้าที่</v-list-item-title>
                 </v-list-item-content>
             </v-list-item>
+            <v-list-item :to="{ name: 'VolunteerUser' }" exact>
+                <v-list-item-action>
+                    <v-icon>mdi-card-account-details</v-icon>
+                </v-list-item-action>
+                <v-list-item-content>
+                    <v-list-item-title>อสค.</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
         </v-list>
         <template v-slot:append>
             <v-list>
@@ -69,12 +77,11 @@
             <div class="pa-2">
                 <v-btn
                         block
-                        @click="
-            $store.dispatch('account/logout') & $router.push({ name: 'Login' })
-          "
-                >Logout
-                </v-btn
+                        @click="$store.dispatch('account/logout') & $router.push({ name: 'Login' })"
                 >
+                    Logout
+                </v-btn>
+
             </div>
         </template>
     </v-navigation-drawer>
