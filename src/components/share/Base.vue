@@ -10,11 +10,12 @@
             <p>
                 ERROR
             </p>
-            <ul v-if="Array.isArray(error)">
+            <ul v-if=" getObjSize(error) <=  20">
                 <li v-for="(value,key) in error" :key="key">[ {{key}} ] {{value}}</li>
             </ul>
-            <p>
-                {{error}}
+            <p v-else>
+                500 Internal Server Error <br>
+                Please check your content or Contact IT Support
             </p>
             <v-btn depressed class="white--text error" @click.native="$store.dispatch('error/toggleError',false)">
                 Close
@@ -46,6 +47,11 @@
             this.$store.dispatch('error/resetError')
         },
         created() {
+        }, methods: {
+            getObjSize(Obj) {
+                let ol = Object.keys(Obj);
+                return ol.length
+            }
         }
     }
 </script>

@@ -54,9 +54,18 @@
                     <v-list-item-title>เจ้าหน้าที่</v-list-item-title>
                 </v-list-item-content>
             </v-list-item>
-
         </v-list>
         <template v-slot:append>
+            <v-list>
+                <v-list-item :to="{ name: 'editUserProfile' }" exact>
+                    <v-list-item-action>
+                        <v-icon>mdi-account</v-icon>
+                    </v-list-item-action>
+                    <v-list-item-content>
+                        <v-list-item-title>ข้อมูลผู้ใช้</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+            </v-list>
             <div class="pa-2">
                 <v-btn
                         block

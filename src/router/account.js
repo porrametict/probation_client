@@ -8,7 +8,7 @@ export default {
             component: () => import("../views/Officer/OfficerUser/index")
         },
         {
-            path: ':id/user-profile',
+            path: 'user-profile',
             name: 'editUserProfile',
             component: () => import('../views/Account/editUserProfile.vue'),
         },

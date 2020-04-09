@@ -16,9 +16,7 @@
                     :val-province="user_profile.province"
                     :val-amphur="user_profile.amphure"
                     :val-district="user_profile.district"
-                    @provinceChange="user_profile.province = $event"
-                    @amphurChange="user_profile.amphure = $event"
-                    @districtChange="user_profile.district = $event"
+                    @change="updateDistrictSelect"
             >
             </district-select>
         </div>
@@ -32,8 +30,10 @@
 <script>
     import {mapState} from 'vuex'
     import DistrictSelect from "../../components/share/districtSelect";
+    import Base from "../../components/share/Base";
 
     export default {
+        extends : Base,
         name: "editUserProfile",
         components: {DistrictSelect},
         data() {
@@ -52,7 +52,12 @@
         methods: {
             async updateUser() {
                 let data = await this.$store.dispatch('account/updateUser', this.user_profile)
-            }
+            },
+            updateDistrictSelect: function(value) {
+                this.user_profile.province = value[0]
+                this.user_profile.amphure = value[1]
+                this.user_profile.district = value[2]
+            },
         }
     }
 </script>

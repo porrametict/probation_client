@@ -18,6 +18,36 @@ export default {
                     return null
                 });
         },
+        async getUserDetail(context, id) {
+            return await axios.get(`api/v1/officer-user/${id}/`,)
+                .then((response) => {
+                    return response.data
+                }).catch((error) => {
+                    context.dispatch("error/setError", error.response.data, {root: true});
+                    return null
+                });
+        },
+        async updateUser(context, params) {
+            let id = params.id
+            return await axios.put(`api/v1/officer-user/${id}/`, params)
+                .then((response) => {
+                    context.dispatch("success/setSuccess", response.data, {root: true});
+                    return response.data
+                }).catch((error) => {
+                    context.dispatch("error/setError", error.response.data, {root: true});
+                    return null
+                });
+        },
+        async deleteUser(context, id) {
+            return await axios.delete(`api/v1/officer-user/${id}/`)
+                .then((response) => {
+                    context.dispatch("success/setSuccess", response.data, {root: true});
+                    return response.data
+                }).catch((error) => {
+                    context.dispatch("error/setError", error.response.data, {root: true});
+                    return null
+                });
+        },
         async getOfficerNoPaginate(context) {
             return await axios.get('api/v1/officer-no-paginate/')
                 .then((response) => {
