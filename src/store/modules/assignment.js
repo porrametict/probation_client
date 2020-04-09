@@ -44,6 +44,16 @@ export default {
                     return null
                 });
         },
+        async deleteAssignment(context, id) {
+            return await axios.delete(`api/v1/assignment/${id}/`)
+                .then((response) => {
+                    context.dispatch("success/setSuccess", response.data, {root: true});
+                    return response.data
+                }).catch((error) => {
+                    context.dispatch("error/setError", error.response.data, {root: true});
+                    return null
+                });
+        },
         async getOldForm(context, params) {
             return await axios.get(`api/v1/get-old-form/`, params = {params})
                 .then((response) => {

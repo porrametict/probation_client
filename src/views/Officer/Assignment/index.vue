@@ -40,6 +40,12 @@
                         <v-btn icon>
                             <v-icon @click="view(item.id)">mdi-eye</v-icon>
                         </v-btn>
+                        <v-btn icon>
+                            <v-icon @click="edit(item.id)">mdi-pencil</v-icon>
+                        </v-btn>
+                        <v-btn icon color="red">
+                            <v-icon @click="deleteAssignment(item.id)">mdi-trash-can</v-icon>
+                        </v-btn>
                     </template>
                 </v-data-table>
                 <v-pagination v-model="page"
@@ -125,7 +131,17 @@
             },
             view(id) {
                 this.$router.push({name: "AssignmentView", params: {id: id}})
+            },
+            edit (id) {
+                this.$router.push({name: "AssignmentEdit", params: {id: id}})
+            },
+            async deleteAssignment(id) {
+                let result = await this.$store.dispatch('assignment/deleteAssignment', id)
+                if (result != null) {
+                    this.loadData()
+                }
             }
+
         }
     }
 </script>
