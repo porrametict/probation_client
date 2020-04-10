@@ -60,10 +60,35 @@
 
                 <!--การฟื้นฟู-->
                 <data-list-render :data="rehabilitation_data_render" color="green">
+                    <template v-slot:header>
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <p class="title white--text" >การฟื้นฟู</p>
+                            </div>
+                            <v-btn icon color="white" outlined @click="$router.push({name:'RehabilitationCaseRehabilitationEdit'})">
+                                <v-icon>
+                                    mdi-pencil
+                                </v-icon>
+                            </v-btn>
+                        </div>
+                    </template>
                 </data-list-render>
 
                 <!--social service hour-->
-                <data-list-render :data="socialservicehour_data_render" color="orange"></data-list-render>
+                <data-list-render :data="socialservicehour_data_render" color="orange">
+                    <template v-slot:header>
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <p class="title white--text" >การบริการสังคม</p>
+                            </div>
+                            <v-btn icon color="white" outlined @click="$router.push({name:'RehabilitationCaseSSHEdit'})">
+                                <v-icon>
+                                    mdi-pencil
+                                </v-icon>
+                            </v-btn>
+                        </div>
+                    </template>
+                </data-list-render>
 
             </div>
         </v-container>

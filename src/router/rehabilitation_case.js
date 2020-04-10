@@ -22,5 +22,27 @@ export default {
             name: "RehabilitationCaseEdit",
             component: () => import("../views/Officer/RehabilitationCase/editCase"),
         },
+
+        {
+            path: ':id/edit-rehabilitation',
+            name: "RehabilitationCaseRehabilitationEdit",
+            component: () => import("../views/Officer/RehabilitationCase/editRehabilitation"),
+        },
+        {
+            path: ':id/create-rehabilitation',
+            name: "RehabilitationCaseRehabilitationCreate",
+            component: () => import("../views/Officer/RehabilitationCase/createRehabilitation"),
+        },
+
+        {
+            path: ':id/edit-ssh',
+            name: "RehabilitationCaseSSHEdit",
+            component: () => import("../views/Officer/RehabilitationCase/editSocialServiceHour"),
+        },
+        {
+            path: ':id/create-ssh',
+            name: "RehabilitationCaseSSHCreate",
+            component: () => import("../views/Officer/RehabilitationCase/createSocialServiceHour"),
+        },
     ]
 }

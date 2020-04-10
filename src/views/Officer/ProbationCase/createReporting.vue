@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <div>
-            <p>เพิ่มการาจำเเนก</p>
+            <p>เพิ่มการรายงาน</p>
         </div>
         <div>
             <v-text-field
@@ -61,7 +61,7 @@
 
     export default {
         extends: Base,
-        name: "createClassification",
+        name: "createReporting",
         data: () => ({
             form: {},
             probation_case: null,
