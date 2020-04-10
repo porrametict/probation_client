@@ -77,7 +77,20 @@
                     </template>
                 </data-list-render>
                 <!--reporting-->
-                <data-list-render color="orange" :data="reporting_data_render"></data-list-render>
+                <data-list-render color="orange" :data="reporting_data_render">
+                    <template v-slot:header>
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <p class="title white--text" >การายงานตัว</p>
+                            </div>
+                            <v-btn icon color="white" outlined @click="$router.push({name:'ProbationCaseReportingEdit'})">
+                                <v-icon>
+                                    mdi-pencil
+                                </v-icon>
+                            </v-btn>
+                        </div>
+                    </template>
+                </data-list-render>
             </div>
         </v-container>
     </div>

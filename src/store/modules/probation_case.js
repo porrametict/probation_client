@@ -40,8 +40,8 @@ export default {
                 })
         },
         async updateProbationCase(context, params = null) {
-            let id  = params.id
-            return await axios.put('api/v1/probation-case/'+id+'/', params)
+            let id = params.id
+            return await axios.put('api/v1/probation-case/' + id + '/', params)
                 .then((response) => {
                     context.dispatch("success/setSuccess", response.data, {root: true});
                     return response.data
@@ -51,9 +51,9 @@ export default {
                     return null
                 })
         },
-        async updateClassification(context,params) {
-            let id  = params.id
-            return await axios.put('api/v1/probation-case-classification/'+id+'/', params)
+        async updateClassification(context, params) {
+            let id = params.id
+            return await axios.put('api/v1/probation-case-classification/' + id + '/', params)
                 .then((response) => {
                     context.dispatch("success/setSuccess", response.data, {root: true});
                     return response.data
@@ -63,7 +63,7 @@ export default {
                     return null
                 })
         },
-        async createClassification(context,params) {
+        async createClassification(context, params) {
             return await axios.post('api/v1/probation-case-classification/', params)
                 .then((response) => {
                     context.dispatch("success/setSuccess", response.data, {root: true});
@@ -74,8 +74,43 @@ export default {
                     return null
                 })
         },
-        async deleteClassification(context,id) {
-            return await axios.delete('api/v1/probation-case-classification/'+id+'/')
+        async deleteClassification(context, id) {
+            return await axios.delete('api/v1/probation-case-classification/' + id + '/')
+                .then((response) => {
+                    context.dispatch("success/setSuccess", response.data, {root: true});
+                    return response.data
+                })
+                .catch((error) => {
+                    context.dispatch("error/setError", error.response.data, {root: true});
+                    return null
+                })
+        },
+
+        async updateReporting(context, params) {
+            let id = params.id
+            return await axios.put('api/v1/probation-case-reporting/' + id + '/', params)
+                .then((response) => {
+                    context.dispatch("success/setSuccess", response.data, {root: true});
+                    return response.data
+                })
+                .catch((error) => {
+                    context.dispatch("error/setError", error.response.data, {root: true});
+                    return null
+                })
+        },
+        async createReporting(context, params) {
+            return await axios.post('api/v1/probation-case-reporting/', params)
+                .then((response) => {
+                    context.dispatch("success/setSuccess", response.data, {root: true});
+                    return response.data
+                })
+                .catch((error) => {
+                    context.dispatch("error/setError", error.response.data, {root: true});
+                    return null
+                })
+        },
+        async deleteReporting(context, id) {
+            return await axios.delete('api/v1/probation-case-reporting/' + id + '/')
                 .then((response) => {
                     context.dispatch("success/setSuccess", response.data, {root: true});
                     return response.data
