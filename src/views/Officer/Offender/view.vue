@@ -1,4 +1,4 @@
-<template>
+<template xmlns:template="http://www.w3.org/1999/html">
     <v-container v-if="offender">
         <div>
             <p class="title">รายละเอียด</p>
@@ -8,19 +8,43 @@
             <!--                offender-->
             <data-list-render :data="offender_data_render">
                 <template v-slot:header>
-                    <div class="white--text">ผู้กระทำผิด</div>
-                    <div class="title white--text mb-2">
-                        <p class="ma-0">
-                            {{offender.o_personal_id}}
-                        </p>
-                        <p class="ma-0">
-                            {{offender.o_first_name + " "
-                            +offender.o_last_name}}
-                        </p>
+                    <div class="d-flex justify-content-between">
+                        <div>
+
+                        <div class="white--text">ผู้กระทำผิด</div>
+                        <div class="title white--text mb-2">
+                            <p class="ma-0">
+                                {{offender.o_personal_id}}
+                            </p>
+                            <p class="ma-0">
+                                {{offender.o_first_name + " "
+                                +offender.o_last_name}}
+                            </p>
+                        </div>
+                        </div>
+                        <div>
+                            <v-btn icon outlined color="white" @click="$router.push({name:'editOffender',params:{id:$route.params.id}})">
+                                <v-icon color="white">
+                                    mdi-pencil
+                                </v-icon>
+                            </v-btn>
+                        </div>
                     </div>
                 </template>
             </data-list-render>
             <data-list-render :data="offender_address_render" color="pink">
+                <template v-slot:header>
+                    <div class="d-flex justify-content-between">
+                        <div class="white--text">ที่อยู่ผู้กระทำผิด</div>
+                        <div>
+                            <v-btn icon outlined color="white" @click="$router.push({name:'editOffenderAddress',params:{id:$route.params.id}})">
+                                <v-icon color="white">
+                                    mdi-pencil
+                                </v-icon>
+                            </v-btn>
+                        </div>
+                    </div>
+                </template>
 
             </data-list-render>
         </div>

@@ -16,5 +16,14 @@ export default {
             name: 'viewOffender',
             component: () => import("../views/Officer/Offender/view")
         },
+        {
+            path: ':id/offender-address-edit',
+            name: 'editOffenderAddress',
+            component: () => import("../views/Officer/Offender/editAddress")
+        },{
+            path: ':id/offender-address-create',
+            name: 'createOffenderAddress',
+            component: () => import("../views/Officer/Offender/createAddress")
+        },
     ]
 }
