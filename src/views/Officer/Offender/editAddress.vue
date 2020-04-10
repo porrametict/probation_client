@@ -29,7 +29,6 @@
                     </data-list-render>
                 </div>
                 <div v-else>
-                    {{address_sel}}
                     <v-card class="ma-3 pa-3" color="orange">
                         <v-card-text>
                             <div class="d-flex justify-content-between">

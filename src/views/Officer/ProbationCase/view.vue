@@ -63,8 +63,19 @@
 
                 <!--classification-->
                 <data-list-render color="green" :data="classification_data_render">
+                    <template v-slot:header>
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <p class="title white--text" >การจำเเนก</p>
+                            </div>
+                            <v-btn icon color="white" outlined @click="$router.push({name:'ProbationCaseClassificationEdit'})">
+                                <v-icon>
+                                    mdi-pencil
+                                </v-icon>
+                            </v-btn>
+                        </div>
+                    </template>
                 </data-list-render>
-
                 <!--reporting-->
                 <data-list-render color="orange" :data="reporting_data_render"></data-list-render>
             </div>

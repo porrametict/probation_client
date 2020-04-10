@@ -22,5 +22,15 @@ export default {
             name: "ProbationCaseEdit",
             component: () => import("../views/Officer/ProbationCase/editCase"),
         },
+        {
+            path: ':id/edit-classification',
+            name: "ProbationCaseClassificationEdit",
+            component: () => import("../views/Officer/ProbationCase/editClassification"),
+        },
+        {
+            path: ':id/create-classification',
+            name: "ProbationCaseClassificationCreate",
+            component: () => import("../views/Officer/ProbationCase/createClassification"),
+        },
     ]
 }
