@@ -9,15 +9,26 @@
                 <!--                offender-->
                 <data-list-render :data="offender_data_render">
                     <template v-slot:header>
-                        <div class="white--text">ผู้กระทำผิด</div>
-                        <div class="title white--text mb-2">
-                            <p class="ma-0">
-                                {{rehabilitation_case.case_data.offender_data.o_personal_id}}
-                            </p>
-                            <p class="ma-0">
-                                {{rehabilitation_case.case_data.offender_data.o_first_name + " "
-                                +rehabilitation_case.case_data.offender_data.o_last_name}}
-                            </p>
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <div class="white--text">ผู้กระทำผิด</div>
+                                <div class="title white--text mb-2">
+                                    <p class="ma-0">
+                                        {{rehabilitation_case.case_data.offender_data.o_personal_id}}
+                                    </p>
+                                    <p class="ma-0">
+                                        {{rehabilitation_case.case_data.offender_data.o_first_name + " "
+                                        +rehabilitation_case.case_data.offender_data.o_last_name}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div>
+                                <v-btn icon outlined color="white">
+                                    <v-icon @click="$router.push({name : 'viewOffender' ,params : {id : rehabilitation_case.case_data.offender_data.id}})">
+                                        mdi-eye
+                                    </v-icon>
+                                </v-btn>
+                            </div>
                         </div>
                     </template>
                 </data-list-render>
@@ -25,12 +36,25 @@
                 <!--                case-->
                 <data-list-render :data="case_data_render" color="pink">
                     <template v-slot:header>
-                        <div class="white--text">คดี</div>
-                        <div class="title white--text mb-2">
-                            <p class="ma-0">
-                                {{rehabilitation_case.case_data.case_registration_number}}
-                            </p>
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <div class="white--text">คดี</div>
+                                <div class="title white--text mb-2">
+                                    <p class="ma-0">
+                                        {{rehabilitation_case.case_data.case_registration_number}}
+                                    </p>
+                                </div>
+
+                            </div>
+                            <div>
+                                <v-btn icon outlined color="white">
+                                    <v-icon @click="$router.push({name : 'RehabilitationCaseEdit' ,params : {id : rehabilitation_case.id}})">
+                                        mdi-pencil
+                                    </v-icon>
+                                </v-btn>
+                            </div>
                         </div>
+
                     </template>
                 </data-list-render>
 

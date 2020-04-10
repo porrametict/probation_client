@@ -39,5 +39,17 @@ export default {
                     return null
                 })
         },
+        async updateProbationCase(context, params = null) {
+            let id  = params.id
+            return await axios.put('api/v1/probation-case/'+id+'/', params)
+                .then((response) => {
+                    context.dispatch("success/setSuccess", response.data, {root: true});
+                    return response.data
+                })
+                .catch((error) => {
+                    context.dispatch("error/setError", error.response.data, {root: true});
+                    return null
+                })
+        },
     }
 }

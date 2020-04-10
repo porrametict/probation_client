@@ -17,5 +17,10 @@ export default {
             name: "ProbationCaseView",
             component: () => import("../views/Officer/ProbationCase/view"),
         },
+        {
+            path: ':id/edit-case',
+            name: "ProbationCaseEdit",
+            component: () => import("../views/Officer/ProbationCase/editCase"),
+        },
     ]
 }

@@ -13,9 +13,14 @@ export default {
             component: () => import("../views/Officer/RehabilitationCase/ExcelRehabilitationCase"),
         },
         {
-            path: ':id/view',
+            path: ':id/edit-view',
             name: "RehabilitationCaseView",
             component: () => import("../views/Officer/RehabilitationCase/view"),
+        },
+        {
+            path: ':id/edit-case',
+            name: "RehabilitationCaseEdit",
+            component: () => import("../views/Officer/RehabilitationCase/editCase"),
         },
     ]
 }
