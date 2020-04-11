@@ -1,24 +1,17 @@
 <template>
-    <div class="home">
-        <v-container class="d-flex flex-column align-center">
-            <h1>Hello Home</h1>
-
-    <display-map></display-map>
-
-        </v-container>
-    </div>
+    <v-container class="d-flex flex-column justify-content-center align-center fill-height">
+        <div class="display-4">
+            This is a Home page
+        </div>
+    </v-container>
 </template>
 <script>
 
-    import DisplayMap from "../components/displayMap";
     export default {
         name: 'Home',
-        components: {
-            DisplayMap
-        },
+        components: {},
         created() {
         },
-        methods: {
-        },
+        methods: {},
     }
 </script>
