@@ -58,7 +58,16 @@
                 <p class="grey--text text-center">ไม่มีข้อมูลที่อยู่</p>
             </div>
         </div>
-        <div>
+        <div v-if="last_form">
+            <ImageFormDisplay
+                    :imageURL="last_form.map_image"
+            >
+            </ImageFormDisplay>
+            <map-form-display
+                    :form_data="last_form"
+            ></map-form-display>
+        </div>
+        <div class="my-3">
             <v-btn block color="primary" class="white--text" large @click="gotoForm()">
                 เก็บข้อมูล
             </v-btn>
@@ -68,9 +77,12 @@
 
 <script>
     import {mapGetters} from 'vuex'
+    import ImageFormDisplay from "../../../components/Form/ImageFormDisplay";
+    import MapFormDisplay from "../../../components/Form/MapFormDisplay";
 
     export default {
         name: "view-assignment",
+        components: {MapFormDisplay, ImageFormDisplay},
         computed: {
             ...mapGetters({
                 getFormType: 'assignment/getFormType'
@@ -81,15 +93,34 @@
                 assignment: null,
                 current_address: null,
                 AddressRender: null,
+                last_form : null
             }
         },
         created() {
             this.loadData()
         }, methods: {
+            async loadLastForm(type) {
+                let form = {
+                    form_type: type,
+                    assignment_id: this.assignment.id
+                }
+                let last_form = await this.$store.dispatch('assignment/getOldForm', form)
+                if (last_form) {
+                    if (!(Object.keys(last_form).length === 0 && last_form.constructor === Object)) {
+                        this.last_form = last_form
+                    }
+                }
+            },
             async loadData() {
                 let id = this.$route.params.id
                 this.assignment = await this.$store.dispatch('assignment/getAssignmentById', id)
                 this.getCurrentAddress(this.assignment.offender_data.offenderaddress_set)
+
+                    if (this.assignment.form_type === 1) {
+                    this.loadLastForm("during_probation_form")
+                } else if (this.assignment.form_type === 2) {
+                    this.loadLastForm("after_probation_form")
+                }
             },
             gotoForm() {
                 this.$router.push({name: 'AssignmentForm', params: {id: this.assignment.id}})

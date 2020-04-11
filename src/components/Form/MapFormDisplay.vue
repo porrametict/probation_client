@@ -16,7 +16,7 @@
     export default {
         name: "MapFormDisplay",
         props: {
-            assignment: {
+            form_data: {
                 type: Object
             }
         },
@@ -27,11 +27,12 @@
             }
         },
         created() {
-            if (this.assignment.form_type === 1 && this.assignment.during_probation_form_data) {
-                this.setPos(this.assignment.during_probation_form_data)
-            } else if (this.assignment.form_type === 2 && this.assignment.after_probation_form_data) {
-                this.setPos(this.assignment.after_probation_form_data)
-            }
+            // if (this.assignment.form_type === 1 && this.assignment.during_probation_form_data) {
+            //     this.setPos(this.assignment.during_probation_form_data)
+            // } else if (this.assignment.form_type === 2 && this.assignment.after_probation_form_data) {
+            //     this.setPos(this.assignment.after_probation_form_data)
+            // }
+            this.setPos(this.form_data)
         }, methods: {
             setPos(data) {
                 if (data.map_lat && data.map_lng) {

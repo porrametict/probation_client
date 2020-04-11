@@ -150,7 +150,6 @@
                     this.survey.setValue('s_province', form.s_province)
                     this.survey.setValue('s_amphure', form.s_amphure)
                     this.survey.setValue('s_district', form.s_district)
-                    console.log(this.survey.data, "s_data")
                 }
             },
             setProvince() {

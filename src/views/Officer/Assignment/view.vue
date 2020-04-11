@@ -36,8 +36,13 @@
                             </template>
                         </FormRender>
                         <div>
-                            <ImageFormDisplay :assignment="assignment"></ImageFormDisplay>
-                            <map-form-display :assignment="assignment"></map-form-display>
+                            <ImageFormDisplay
+                                    :imageURL="assignment.form_type == 1 ? assignment.during_probation_form_data.map_image : assignment.after_probation_form_data.map_image"
+                            >
+                            </ImageFormDisplay>
+                            <map-form-display
+                                    :form_data="assignment.form_type == 1 ? assignment.during_probation_form_data : assignment.after_probation_form_data"
+                            ></map-form-display>
                         </div>
                     </v-card-text>
                 </v-card>
