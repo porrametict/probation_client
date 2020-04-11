@@ -13,7 +13,7 @@
 
         <v-card>
             <v-card-text>
-                <div>
+                <div v-if="!loading">
                     <v-text-field
                             label="ครั้งที่จำเเนก"
                             outlined
@@ -75,10 +75,31 @@
         data: () => ({
             form: {},
             probation_case: null,
+            loading : true
 
         }),
         async created() {
+            this.loadData()
         }, methods: {
+            async loadData() {
+                let id = this.$route.params.id
+                this.probation_case = await this.$store.dispatch("probation_case/getProbationCaseById", id)
+                this.get_current_time()
+            },
+            get_current_time () {
+                if (this.probation_case.classification_set && this.probation_case.classification_set.length > 0 ) {
+                    let maxtime = 0
+                    this.probation_case.classification_set.forEach(e=>{
+                        if (e.classification_time > maxtime) {
+                            maxtime = e.classification_time
+                        }
+                    })
+                    this.form.classification_time = maxtime +1
+                }else {
+                    this.form.classification_time = 1
+                }
+                this.loading  =false
+            },
             async save() {
                 this.form.probation_case = this.$route.params.id
                 if (await this.$store.dispatch('probation_case/createClassification', this.form)) {
