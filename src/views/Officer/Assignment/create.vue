@@ -2,7 +2,15 @@
     <div>
         <v-container>
             <div>
-                <p class="title">สร้าง</p>
+                <p class="title">
+                    <v-icon>
+                        mdi-circle
+                    </v-icon>
+                    <span class="">
+                       สร้างการมอบหมายงาน
+                    </span>
+                </p>
+                <v-spacer></v-spacer>
             </div>
             <div>
                 <v-card>

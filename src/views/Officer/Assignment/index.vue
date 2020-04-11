@@ -2,16 +2,38 @@
     <div>
         <v-container>
             <div>
-                <p class="title">การมอบหมายงาน</p>
+                <p class="title">
+                    <v-icon>
+                        mdi-circle
+                    </v-icon>
+                    <span class="">
+                       การมอบหมายงาน
+                    </span>
+                </p>
                 <v-spacer></v-spacer>
-                <v-btn
-                        color="primary"
-                        @click="$router.push({name:'AssignmentCreate'})">
-                    <v-icon>mdi-plus</v-icon>
-                    สร้าง
-                </v-btn>
             </div>
-            <div>
+            <v-card>
+                <v-card-title class="d-flex justify-content-between">
+                    <div >
+                        <v-btn
+                                color="primary"
+                                @click="$router.push({name:'AssignmentCreate'})">
+                            <v-icon>mdi-plus</v-icon>
+                            สร้าง
+                        </v-btn>
+                    </div>
+                    <div>
+                        <v-text-field
+                                label="ค้นหา"
+                                hide-details
+                                append-icon="mdi-magnify"
+                                class="ma-0 pa-0"
+                                v-model="form_params.search"
+                                @keypress.13="search"
+                        ></v-text-field>
+                    </div>
+                </v-card-title>
+                <v-divider class="pa-0 ma-0"></v-divider>
                 <v-data-table
                         :headers="headers"
                         :items="data_table.results"
@@ -44,7 +66,7 @@
                             <v-icon @click="edit(item.id)">mdi-pencil</v-icon>
                         </v-btn>
                         <v-btn icon color="red">
-                            <v-icon @click="deleteAssignment(item.id)">mdi-trash-can</v-icon>
+                            <v-icon @click="confirmDelete(item.id)">mdi-trash-can</v-icon>
                         </v-btn>
                     </template>
                 </v-data-table>
@@ -54,7 +76,7 @@
                               :total-visible="7"
                               @input="change_page"
                 ></v-pagination>
-            </div>
+            </v-card>
         </v-container>
     </div>
 </template>
@@ -69,7 +91,8 @@
                 total_page: 1,
                 data_table: [],
                 form_params: {
-                    page: 1
+                    page: 1,
+                    search : null
                 },
                 options: {},
                 headers: [
@@ -121,6 +144,9 @@
             })
         },
         methods: {
+            search () {
+                this.loadData()
+            },
             change_page(page) {
                 this.form_params.page = page
                 this.loadData()
@@ -132,8 +158,11 @@
             view(id) {
                 this.$router.push({name: "AssignmentView", params: {id: id}})
             },
-            edit (id) {
+            edit(id) {
                 this.$router.push({name: "AssignmentEdit", params: {id: id}})
+            },
+            confirmDelete (id) {
+                confirm('You want to delete this item ? ') && this.deleteAssignment(id)
             },
             async deleteAssignment(id) {
                 let result = await this.$store.dispatch('assignment/deleteAssignment', id)

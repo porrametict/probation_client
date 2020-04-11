@@ -1,35 +1,47 @@
 <template>
     <div>
-        <v-container v-if="assignment">
+        <v-container>
             <div>
-                <p class="title">รายละเอียด</p>
-                <data-list-render :data="data_render"></data-list-render>
+                <p class="title">
+                    <v-icon>
+                        mdi-circle
+                    </v-icon>
+                    <span class="">
+                       รายละเอียดการมอบหมายงาน
+                    </span>
+                </p>
+                <v-spacer></v-spacer>
             </div>
-            <v-card class="ma-3">
-                <v-card-text>
-                    <FormRender
-                            :assignment="assignment"
-                            :form_full="true"
-                            :read_only="true"
-                            @save_success="save_form_success"
-                    >
-                        <template v-slot:header class="d-flex justify-content-between flex-row">
+            <div v-if="assignment">
+                <div>
+                    <data-list-render :data="data_render"></data-list-render>
+                </div>
+                <v-card class="ma-3">
+                    <v-card-text>
+                        <FormRender
+                                :assignment="assignment"
+                                :form_full="true"
+                                :read_only="true"
+                                @save_success="save_form_success"
+                        >
+                            <template v-slot:header class="d-flex justify-content-between flex-row">
                                <span class="title text-md-left text-center">
                                    ข้อมูล
                                </span>
-                            <v-spacer></v-spacer>
-                            <v-btn color="primary" @click="exportPDF"
-                                   v-if="assignment.after_probation_form_data || assignment.during_probation_form_data">
-                                ส่งออก PDF
-                            </v-btn>
-                        </template>
-                    </FormRender>
-                    <div>
-                        <ImageFormDisplay :assignment="assignment"></ImageFormDisplay>
-                        <map-form-display :assignment="assignment"></map-form-display>
-                    </div>
-                </v-card-text>
-            </v-card>
+                                <v-spacer></v-spacer>
+                                <v-btn color="primary" @click="exportPDF"
+                                       v-if="assignment.after_probation_form_data || assignment.during_probation_form_data">
+                                    ส่งออก PDF
+                                </v-btn>
+                            </template>
+                        </FormRender>
+                        <div>
+                            <ImageFormDisplay :assignment="assignment"></ImageFormDisplay>
+                            <map-form-display :assignment="assignment"></map-form-display>
+                        </div>
+                    </v-card-text>
+                </v-card>
+            </div>
         </v-container>
     </div>
 </template>
