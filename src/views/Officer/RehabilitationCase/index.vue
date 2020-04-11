@@ -33,6 +33,7 @@
                         ></v-text-field>
                     </div>
                 </v-card-title>
+                <v-divider class="pa-0 ma-0"></v-divider>
 
                 <div>
                     <v-data-table

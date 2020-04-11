@@ -2,6 +2,17 @@
     <div>
         <v-form>
             <v-container>
+                <div>
+                    <p class="title">
+                        <v-icon>
+                            mdi-circle
+                        </v-icon>
+                        <span class="">
+                       เพิ่มผู้ใช้
+                    </span>
+                    </p>
+                    <v-spacer></v-spacer>
+                </div>
                 <v-card>
                     <v-card-text>
                         <v-col cols="12">
@@ -80,7 +91,7 @@
                         </v-col>
                         <div class="d-flex justify-content-between">
 
-                            <v-btn color="error" @click=""> Cancel</v-btn>
+                            <v-btn color="grey" class="white--text" @click="$router.go(-1)"> Cancel</v-btn>
                             <v-btn color="primary" @click="save"> Submit</v-btn>
                         </div>
                     </v-card-text>

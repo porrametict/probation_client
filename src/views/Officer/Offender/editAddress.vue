@@ -1,119 +1,133 @@
 <template>
     <v-container v-if="offender">
-        <p class="title">
-            ที่อยู่ผู้ถูกคุม
-        </p>
         <div>
-            <v-btn color="primary" @click="goto_create">
-                เพิ่ม
-            </v-btn>
+            <p class="title">
+                <v-icon>
+                    mdi-circle
+                </v-icon>
+                <span class="">
+                       เเก้ไขรายละเอียด
+                    </span>
+            </p>
+            <v-spacer></v-spacer>
         </div>
-        <div>
-            <div v-for="(address,index) in offender_address_render" :key="index">
-                <div v-if="address_sel_index != index">
-                    <data-list-render :data="[offender_address_render[index]]">
-                        <template v-slot:header>
-                            <div class="d-flex justify-content-between">
-                                <p class="title white--text ">ที่อยู่ของผู้ถูกคุม ที่ {{index +1 }}</p>
-
-                                <div>
-                                    <v-btn icon color="white" outlined  class="ma-1" v-if="address_sel_index == null" >
-                                        <v-icon color="white" @click="delete_address(index)">mdi-trash-can</v-icon>
-                                    </v-btn>
-                                    <v-btn icon outlined color="white" v-if="address_sel_index == null" class="ma-1">
-                                        <v-icon color="white" @click="editMode(index)">mdi-pencil</v-icon>
-                                    </v-btn>
-                                </div>
-                            </div>
-                        </template>
-                    </data-list-render>
+        <v-card>
+            <v-card-title>
+                <div>
+                    <v-btn color="primary" @click="goto_create">
+                        เพิ่ม
+                    </v-btn>
                 </div>
-                <div v-else>
-                    <v-card class="ma-3 pa-3" color="orange">
-                        <v-card-text>
-                            <div class="d-flex justify-content-between">
-                                <div class="white--text title">
-                                    <v-icon color="white">
-                                        mdi-pencil
-                                    </v-icon>
-                                    เเก้ไข
-                                </div>
-                                <div>
-                                    <v-btn color="grey" class="white--text ma-2" @click="cancel_edit_mode">
-                                        ยกเลิก
-                                    </v-btn>
-                                    <v-btn color="primary" class="ma-2" @click="save_update(index)">
-                                        บันทึก
-                                    </v-btn>
-                                </div>
-                            </div>
-                        </v-card-text>
-                        <v-card-text class="pa-3 white">
-                            <v-text-field
-                                    label="บ้านเลขที่"
-                                    outlined
-                                    v-model="address_sel.o_address_house"
-                                    :error="!!error.o_address_house"
-                                    :error-messages="error.o_address_house"
-                            >
-                            </v-text-field>
-                            <v-text-field
-                                    label="หมู่บ้าน/ชุมชน"
-                                    outlined
-                                    v-model="address_sel.o_address_village"
-                                    :error="!!error.o_address_village"
-                                    :error-messages="error.o_address_village"
-                            >
-                            </v-text-field>
-                            <v-text-field
-                                    label="หมู่ที่"
-                                    outlined
-                                    v-model="address_sel.o_address_mu"
-                                    :error="!!error.o_address_mu"
-                                    :error-messages="error.o_address_mu"
-                            >
-                            </v-text-field>
-                            <v-text-field
-                                    label="ชอย"
-                                    outlined
-                                    v-model="address_sel.o_address_alley"
-                                    :error="!!error.o_address_alley"
-                                    :error-messages="error.o_address_alley"
-                            >
-                            </v-text-field>
-                            <v-text-field
-                                    label="ถนน"
-                                    outlined
-                                    v-model="address_sel.o_address_street"
-                                    :error="!!error.o_address_street"
-                                    :error-messages="error.o_address_street"
-                            >
+            </v-card-title>
+            <v-divider class="ma-0 pa-0"></v-divider>
+            <div class="py-2">
+                <div v-for="(address,index) in offender_address_render" :key="index">
+                    <div v-if="address_sel_index != index">
+                        <data-list-render :data="[offender_address_render[index]]">
+                            <template v-slot:header>
+                                <div class="d-flex justify-content-between">
+                                    <p class="title white--text ">ที่อยู่ของผู้ถูกคุม ที่ {{index +1 }}</p>
 
-                            </v-text-field>
-                            <v-text-field
-                                    label="รหัสไปรษณีย์"
-                                    outlined
-                                    v-model="address_sel.o_address_zip_code"
-                                    :error="!!error.o_address_zip_code"
-                                    :error-messages="error.o_address_zip_code"
-                            >
+                                    <div>
+                                        <v-btn icon color="white" outlined class="ma-1"
+                                               v-if="address_sel_index == null">
+                                            <v-icon color="white" @click="confirmDelete(index)">mdi-trash-can</v-icon>
+                                        </v-btn>
+                                        <v-btn icon outlined color="white" v-if="address_sel_index == null"
+                                               class="ma-1">
+                                            <v-icon color="white" @click="editMode(index)">mdi-pencil</v-icon>
+                                        </v-btn>
+                                    </div>
+                                </div>
+                            </template>
+                        </data-list-render>
+                    </div>
+                    <div v-else>
+                        <v-card class="ma-3 pa-3" color="orange">
+                            <v-card-text>
+                                <div class="d-flex justify-content-between">
+                                    <div class="white--text title">
+                                        <v-icon color="white">
+                                            mdi-pencil
+                                        </v-icon>
+                                        เเก้ไข
+                                    </div>
+                                    <div>
+                                        <v-btn color="grey" class="white--text ma-2" @click="cancel_edit_mode">
+                                            ยกเลิก
+                                        </v-btn>
+                                        <v-btn color="primary" class="ma-2" @click="save_update(index)">
+                                            บันทึก
+                                        </v-btn>
+                                    </div>
+                                </div>
+                            </v-card-text>
+                            <v-card-text class="pa-3 white">
+                                <v-text-field
+                                        label="บ้านเลขที่"
+                                        outlined
+                                        v-model="address_sel.o_address_house"
+                                        :error="!!error.o_address_house"
+                                        :error-messages="error.o_address_house"
+                                >
+                                </v-text-field>
+                                <v-text-field
+                                        label="หมู่บ้าน/ชุมชน"
+                                        outlined
+                                        v-model="address_sel.o_address_village"
+                                        :error="!!error.o_address_village"
+                                        :error-messages="error.o_address_village"
+                                >
+                                </v-text-field>
+                                <v-text-field
+                                        label="หมู่ที่"
+                                        outlined
+                                        v-model="address_sel.o_address_mu"
+                                        :error="!!error.o_address_mu"
+                                        :error-messages="error.o_address_mu"
+                                >
+                                </v-text-field>
+                                <v-text-field
+                                        label="ชอย"
+                                        outlined
+                                        v-model="address_sel.o_address_alley"
+                                        :error="!!error.o_address_alley"
+                                        :error-messages="error.o_address_alley"
+                                >
+                                </v-text-field>
+                                <v-text-field
+                                        label="ถนน"
+                                        outlined
+                                        v-model="address_sel.o_address_street"
+                                        :error="!!error.o_address_street"
+                                        :error-messages="error.o_address_street"
+                                >
 
-                            </v-text-field>
-                            <district-select
-                                    outlined
-                                    :val-amphur="address_sel.o_address_amphure"
-                                    :val-district="address_sel.o_address_district"
-                                    :val-province="address_sel.o_address_province"
-                                    @change="updateDistrictSelect"
-                            >
-                            </district-select>
-                            <v-select
-                                    label="สถานะที่อยู่"
-                                    outlined
-                                    v-model="address_sel.o_address_status"
-                                    item-text="name"
-                                    item-value="key"
-                                    :items="[
+                                </v-text-field>
+                                <v-text-field
+                                        label="รหัสไปรษณีย์"
+                                        outlined
+                                        v-model="address_sel.o_address_zip_code"
+                                        :error="!!error.o_address_zip_code"
+                                        :error-messages="error.o_address_zip_code"
+                                >
+
+                                </v-text-field>
+                                <district-select
+                                        outlined
+                                        :val-amphur="address_sel.o_address_amphure"
+                                        :val-district="address_sel.o_address_district"
+                                        :val-province="address_sel.o_address_province"
+                                        @change="updateDistrictSelect"
+                                >
+                                </district-select>
+                                <v-select
+                                        label="สถานะที่อยู่"
+                                        outlined
+                                        v-model="address_sel.o_address_status"
+                                        item-text="name"
+                                        item-value="key"
+                                        :items="[
                                     {
                                         key : true,
                                        name : 'ที่อยู่ปัจจุบัน'
@@ -124,13 +138,14 @@
                                     }
                                 ]">
 
-                            </v-select>
-                        </v-card-text>
-                    </v-card>
+                                </v-select>
+                            </v-card-text>
+                        </v-card>
+                    </div>
                 </div>
-            </div>
 
-        </div>
+            </div>
+        </v-card>
 
     </v-container>
 </template>
@@ -153,23 +168,26 @@
             await this.loadData()
         },
         methods: {
-            goto_create () {
-                this.$router.push({name:'createOffenderAddress'})
+            goto_create() {
+                this.$router.push({name: 'createOffenderAddress'})
             },
-            async delete_address (index){
+            confirmDelete(id) {
+                confirm('You want to delete this item ? ') && this.delete_address(id)
+            },
+            async delete_address(index) {
                 let id = this.offender.offenderaddress_set[index].id
-                let result = await  this.$store.dispatch('offender/deleteAddress',id)
+                let result = await this.$store.dispatch('offender/deleteAddress', id)
                 if (result != null) {
                     this.$router.go(0)
                 }
             },
-            async  save_update (index) {
-                let result = await  this.$store.dispatch('offender/updateAddress',this.address_sel)
+            async save_update(index) {
+                let result = await this.$store.dispatch('offender/updateAddress', this.address_sel)
                 if (result) {
                     this.$router.go(0)
                 }
             },
-            cancel_edit_mode () {
+            cancel_edit_mode() {
                 this.address_sel_index = null
                 this.address_sel = null
             },

@@ -38,7 +38,6 @@
 </template>
 <script>
     import Base from "./Base";
-    import Login from "../../views/Login";
 
     let defaultProvince = {
         id: 0,
@@ -119,7 +118,6 @@
                 if (!ev.id) {
                     ev = null
                 }
-                console.log(ev)
                 this.$emit('change', [ev, null, null])
             },
             amphurChange: function (ev) {

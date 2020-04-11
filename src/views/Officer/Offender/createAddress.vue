@@ -1,15 +1,19 @@
 <template>
     <v-container>
         <div>
-            <v-card class="ma-3 pa-3" color="white">
+            <div>
+                <p class="title">
+                    <v-icon>
+                        mdi-circle
+                    </v-icon>
+                    <span class="">
+                       เพิ่มที่อยู่
+                    </span>
+                </p>
+            </div>
+
+            <v-card>
                 <v-card-text>
-                    <div class="d-flex justify-content-between">
-                        <div class=" title">
-                            สร้าง
-                        </div>
-                    </div>
-                </v-card-text>
-                <v-card-text class="pa-3 white">
                     <v-text-field
                             label="บ้านเลขที่"
                             outlined
@@ -87,7 +91,8 @@
                                 ]">
 
                     </v-select>
-                    <div class="text-end">
+                    <div class="py-1 d-flex flex-column flex-md-row justify-space-between">
+                        <v-btn class="white--text my-2" large color="grey" @click="$router.go(-1)">กลับ</v-btn>
                         <v-btn color="primary" class="ma-2" @click="save">
                             บันทึก
                         </v-btn>
@@ -110,24 +115,24 @@
         data: () => ({
             form: {}
         }),
-        methods : {
+        methods: {
             updateDistrictSelect: function (value) {
                 this.form.o_address_province = value[0]
                 this.form.o_address_amphure = value[1]
                 this.form.o_address_district = value[2]
-                if(value[0]) {
+                if (value[0]) {
                     this.form.o_address_province = value[0].id
                 }
-                if(value[1]) {
+                if (value[1]) {
                     this.form.o_address_amphure = value[1].id
                 }
-                if(value[2]) {
+                if (value[2]) {
                     this.form.o_address_district = value[2].id
                 }
             },
             save: async function () {
-                this.form.offender =  this.$route.params.id
-                console.log("catr",this.form)
+                this.form.offender = this.$route.params.id
+                console.log("catr", this.form)
                 let result = await this.$store.dispatch("offender/createAddress", this.form);
                 if (result != null) {
                     this.$router.go(-1)
