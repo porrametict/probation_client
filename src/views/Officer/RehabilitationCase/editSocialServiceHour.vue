@@ -1,87 +1,100 @@
 <template>
     <v-container>
         <div>
-            <p class="title">การบริการสังคม</p>
+            <p class="title">
+                <v-icon>
+                    mdi-circle
+                </v-icon>
+                <span class="">
+                       เเก้ไขรายละเอียด
+                    </span>
+            </p>
         </div>
-        <div>
-            <v-btn color="primary" @click="goto_create">
-                เพิ่ม
-            </v-btn>
-        </div>
-        <div v-if="socialservicehour_data_render">
-            <div v-for="(c,index) in socialservicehour_data_render" :key="index">
-                <div v-if="data_sel_index != index">
-                    <data-list-render :data="[socialservicehour_data_render[index]]">
-                        <template v-slot:header>
-                            <div class="d-flex justify-content-between">
-                                <p class="title white--text ">การบริการสังคม ที่ {{index +1 }}</p>
-                                <div>
-                                    <v-btn icon color="white" outlined class="ma-1" v-if="data_sel_index == null">
-                                        <v-icon color="white" @click="delete_data(index)">mdi-trash-can</v-icon>
-                                    </v-btn>
-                                    <v-btn icon outlined color="white" v-if="data_sel_index == null" class="ma-1">
-                                        <v-icon color="white" @click="editMode(index)">mdi-pencil</v-icon>
-                                    </v-btn>
-                                </div>
-                            </div>
-                        </template>
-                    </data-list-render>
+        <v-card>
+            <v-card-title>
+                <div>
+                    <v-btn color="primary" @click="goto_create">
+                        เพิ่ม
+                    </v-btn>
                 </div>
-                <div v-else>
-                    <v-card class="ma-3 pa-3" color="orange">
-                        <v-card-text>
-                            <div class="d-flex justify-content-between">
-                                <div class="white--text title">
-                                    <v-icon color="white">
-                                        mdi-pencil
-                                    </v-icon>
-                                    เเก้ไข
+            </v-card-title>
+            <v-divider class="ma-0 pa-0"></v-divider>
+            <div v-if="socialservicehour_data_render" class="py-2">
+                <div v-for="(c,index) in socialservicehour_data_render" :key="index">
+                    <div v-if="data_sel_index != index">
+                        <data-list-render :data="[socialservicehour_data_render[index]]">
+                            <template v-slot:header>
+                                <div class="d-flex justify-content-between">
+                                    <p class="title white--text ">การบริการสังคม ที่ {{index +1 }}</p>
+                                    <div>
+                                        <v-btn icon color="white" outlined class="ma-1" v-if="data_sel_index == null">
+                                            <v-icon color="white" @click="confirmDelete(index)">mdi-trash-can</v-icon>
+                                        </v-btn>
+                                        <v-btn icon outlined color="white" v-if="data_sel_index == null" class="ma-1">
+                                            <v-icon color="white" @click="editMode(index)">mdi-pencil</v-icon>
+                                        </v-btn>
+                                    </div>
                                 </div>
-                                <div>
-                                    <v-btn color="grey" class="white--text ma-2" @click="cancel_edit_mode">
-                                        ยกเลิก
-                                    </v-btn>
-                                    <v-btn color="primary" class="ma-2" @click="save_update(index)">
-                                        บันทึก
-                                    </v-btn>
+                            </template>
+                        </data-list-render>
+                    </div>
+                    <div v-else>
+                        <v-card class="ma-3 pa-3" color="orange">
+                            <v-card-text>
+                                <div class="d-flex justify-content-between">
+                                    <div class="white--text title">
+                                        <v-icon color="white">
+                                            mdi-pencil
+                                        </v-icon>
+                                        เเก้ไข
+                                    </div>
+                                    <div>
+                                        <v-btn color="grey" class="white--text ma-2" @click="cancel_edit_mode">
+                                            ยกเลิก
+                                        </v-btn>
+                                        <v-btn color="primary" class="ma-2" @click="save_update(index)">
+                                            บันทึก
+                                        </v-btn>
+                                    </div>
                                 </div>
-                            </div>
-                        </v-card-text>
-                        <v-card-text class="pa-3 white">
-                            <v-text-field
-                                    label="ทั้งหมด"
-                                    outlined
-                                    v-model="data_sel.total_working_hours"
-                                    :error="!!error.total_working_hours"
-                                    :error-messages="error.total_working_hours"
-                                    type="number"
-                            >
-                            </v-text-field>
-                            <v-text-field
-                                    label="ทำเเล้ว"
-                                    outlined
-                                    v-model="data_sel.done_working_hours"
-                                    :error="!!error.done_working_hours"
-                                    :error-messages="error.done_working_hours"
-                                    type="number"
-                            >
-                            </v-text-field>
-                            <v-text-field
-                                    label="คงเหลือ"
-                                    outlined
-                                    v-model="data_sel.residual_working_hours"
-                                    :error="!!error.residual_working_hours"
-                                    :error-messages="error.residual_working_hours"
-                                    type="number"
-                            >
-                            </v-text-field>
+                            </v-card-text>
+                            <v-card-text class="pa-3 white">
+                                <v-text-field
+                                        label="ทั้งหมด"
+                                        outlined
+                                        v-model="data_sel.total_working_hours"
+                                        :error="!!error.total_working_hours"
+                                        :error-messages="error.total_working_hours"
+                                        type="number"
+                                >
+                                </v-text-field>
+                                <v-text-field
+                                        label="ทำเเล้ว"
+                                        outlined
+                                        v-model="data_sel.done_working_hours"
+                                        :error="!!error.done_working_hours"
+                                        :error-messages="error.done_working_hours"
+                                        type="number"
+                                >
+                                </v-text-field>
+                                <v-text-field
+                                        label="คงเหลือ"
+                                        outlined
+                                        v-model="data_sel.residual_working_hours"
+                                        :error="!!error.residual_working_hours"
+                                        :error-messages="error.residual_working_hours"
+                                        type="number"
+                                >
+                                </v-text-field>
 
-                        </v-card-text>
-                    </v-card>
+                            </v-card-text>
+                        </v-card>
+                    </div>
                 </div>
+
+
             </div>
-
-        </div>
+        </v-card>
     </v-container>
 </template>
 
@@ -107,6 +120,9 @@
         methods: {
             goto_create() {
                 this.$router.push({name: 'RehabilitationCaseSSHCreate'})
+            },
+            confirmDelete(id) {
+                confirm('You want to delete this item ? ') && this.delete_data(id)
             },
             async delete_data(index) {
                 let id = this.rehabilitation_case.socialservicehour_set[index].id

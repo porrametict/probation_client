@@ -51,6 +51,17 @@ export default {
                     return null
                 })
         },
+        async deleteRehabilitationCase(context, id) {
+            return await axios.delete('api/v1/rehabilitation-case/' + id + '/')
+                .then((response) => {
+                    context.dispatch("success/setSuccess", response.data, {root: true});
+                    return response.data
+                })
+                .catch((error) => {
+                    context.dispatch("error/setError", error.response.data, {root: true});
+                    return null
+                })
+        },
 
         async updateSSH(context, params) {
             let id = params.id

@@ -2,7 +2,15 @@
     <div>
         <v-container v-if="rehabilitation_case">
             <div>
-                <p class="title">รายละเอียด</p>
+                <p class="title">
+                    <v-icon>
+                        mdi-circle
+                    </v-icon>
+                    <span class="">
+                       รายละเอียดคดี
+                    </span>
+                </p>
+                <v-spacer></v-spacer>
             </div>
             <!--            main-->
             <div>

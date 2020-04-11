@@ -51,6 +51,17 @@ export default {
                     return null
                 })
         },
+        async deleteProbationCase(context, id) {
+            return await axios.delete('api/v1/probation-case/' + id + '/')
+                .then((response) => {
+                    context.dispatch("success/setSuccess", response.data, {root: true});
+                    return response.data
+                })
+                .catch((error) => {
+                    context.dispatch("error/setError", error.response.data, {root: true});
+                    return null
+                })
+        },
         async updateClassification(context, params) {
             let id = params.id
             return await axios.put('api/v1/probation-case-classification/' + id + '/', params)

@@ -2,7 +2,15 @@
     <div>
         <v-container v-if="probation_case">
             <div>
-                <p class="title">รายละเอียด</p>
+                <p class="title">
+                    <v-icon>
+                        mdi-circle
+                    </v-icon>
+                    <span class="">
+                       รายละเอียดคดี
+                    </span>
+                </p>
+                <v-spacer></v-spacer>
             </div>
             <!--  main-->
             <div>
@@ -66,9 +74,10 @@
                     <template v-slot:header>
                         <div class="d-flex justify-content-between">
                             <div>
-                                <p class="title white--text" >การจำเเนก</p>
+                                <p class="title white--text">การจำเเนก</p>
                             </div>
-                            <v-btn icon color="white" outlined @click="$router.push({name:'ProbationCaseClassificationEdit'})">
+                            <v-btn icon color="white" outlined
+                                   @click="$router.push({name:'ProbationCaseClassificationEdit'})">
                                 <v-icon>
                                     mdi-pencil
                                 </v-icon>
@@ -81,9 +90,10 @@
                     <template v-slot:header>
                         <div class="d-flex justify-content-between">
                             <div>
-                                <p class="title white--text" >การายงานตัว</p>
+                                <p class="title white--text">การายงานตัว</p>
                             </div>
-                            <v-btn icon color="white" outlined @click="$router.push({name:'ProbationCaseReportingEdit'})">
+                            <v-btn icon color="white" outlined
+                                   @click="$router.push({name:'ProbationCaseReportingEdit'})">
                                 <v-icon>
                                     mdi-pencil
                                 </v-icon>
