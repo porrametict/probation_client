@@ -39,6 +39,12 @@
             <div v-else>
                 <h1 class="title text-center font-weight-bold grey--text">ไม่มี</h1>
             </div>
+            <v-pagination v-model="page" v-if="total_page > 1"
+                          :length="total_page"
+                          circle
+                          :total-visible="2"
+                          @input="change_page"
+            ></v-pagination>
         </div>
     </div>
 </template>
@@ -48,7 +54,10 @@
     export default {
         name: "volunteer-index",
         data: () => ({
+            page : 1,
+            total_page : 1,
             form_params: {
+                page: 1,
                 status: '1,3',
             },
             assignments: null
@@ -68,9 +77,14 @@
             this.loadData()
         },
         methods: {
+            change_page(page) {
+                this.form_params.page = page
+                this.loadData()
+            },
             async loadData() {
                 this.form_params.volunteer = this.user_profile.user.id
                 let assignments = await this.$store.dispatch('assignment/getAssignment', this.form_params)
+                this.total_page = Math.ceil(assignments.count / 10)
                 this.assignments = assignments.results
             },
             async updateStatus(assignment) {
