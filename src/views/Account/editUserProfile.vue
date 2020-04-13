@@ -81,10 +81,14 @@
                 }
             },
             convertToNumber() {
-                if (this.user_profile.province.id) {
+                if (this.user_profile.province && this.user_profile.province.id) {
                     this.user_profile.province = this.user_profile.province.id
-                    this.user_profile.amphure = this.user_profile.amphure.id
-                    this.user_profile.district = this.user_profile.district.id
+                    if (this.user_profile.amphure &&  this.user_profile.amphure.id) {
+                        this.user_profile.amphure = this.user_profile.amphure.id
+                        if (this.user_profile.district &&  this.user_profile.district.id) {
+                            this.user_profile.district = this.user_profile.district.id
+                        }
+                    }
                 }
                 this.loading = false
             }
