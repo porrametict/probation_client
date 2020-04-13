@@ -7,23 +7,30 @@
         {
           "type": "text",
           "name": "time",
-          "title": "ครั้งที่"
+          "title": "ครั้งที่",
+          "isRequired": true
+
         },
         {
           "type": "text",
           "name": "data_collection_date",
           "title": "วันที่",
-          "inputType": "date"
+          "inputType": "date",
+          "isRequired": true
         },
         {
           "type": "text",
           "name": "name",
-          "title": "ชื่อ"
+          "title": "ชื่อ",
+          "isRequired": true
+
         },
         {
           "type": "text",
           "name": "registration_number",
-          "title": "เลขทะเบียน"
+          "title": "เลขทะเบียน",
+          "isRequired": true
+
         },
         {
           "type": "dropdown",
