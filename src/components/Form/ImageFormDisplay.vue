@@ -25,7 +25,8 @@
             }
         },
         mounted() {
-            if (!this.imageURL.startsWith(process.env.VUE_APP_BASE_BACKEND_URL)) {
+
+            if (this.imageURLRender && !this.imageURL.startsWith(process.env.VUE_APP_BASE_BACKEND_URL)) {
                 this.imageURLRender = process.env.VUE_APP_BASE_BACKEND_URL + this.imageURL.substr(1)
             }else {
                 this.imageURLRender = this.imageURL
