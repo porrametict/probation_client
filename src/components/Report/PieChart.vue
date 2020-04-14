@@ -6,7 +6,7 @@
             </v-card-title>
             <v-divider class="pa-0 ma-0"></v-divider>
             <v-card-text class="overflow-x-auto">
-                <div ref="myDiv" id="myDiv"></div>
+                <div ref="chart"></div>
             </v-card-text>
         </v-card>
     </div>
@@ -50,9 +50,12 @@
             createChart() {
                 this.data[0].values = this.values
                 this.data[0].labels = this.labels
-                Plotly.newPlot('myDiv', this.data);
+                let chart = this.$refs.chart;
+
+                Plotly.newPlot(chart, this.data);
                 // Plotly.newPlot('myDiv', this.data,this.layout);
-            }
+            },
+
         }
     }
 </script>

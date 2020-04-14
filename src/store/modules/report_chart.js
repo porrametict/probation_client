@@ -19,5 +19,14 @@ export default  {
                     return null
                 });
         },
+        async getOffenderByProvince(context, params) {
+            return await axios.get('api/v1/report-chart/offender-by-province/', params = {params})
+                .then((response) => {
+                    return response.data
+                }).catch((error) => {
+                    context.dispatch("error/setError", error.response.data, {root: true});
+                    return null
+                });
+        },
     }
 }
