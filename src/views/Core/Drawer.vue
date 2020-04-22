@@ -1,9 +1,9 @@
 <template>
     <v-navigation-drawer app permanent absolute
-      bottom
-       v-model="drawer" v-if="drawer" width="300">
+                         bottom
+                         v-model="drawer" v-if="drawer" width="300">
         <v-list nav
-        dense>
+                dense>
             <v-list-item
                     active-class="blue--text text--blue-accent-4"
                     v-for="(link,index) in links"
@@ -22,6 +22,9 @@
             <v-list-group v-else :key="link.text" no-action active-class="blue--text text--blue-accent-4">
                 <template v-slot:activator>
                     <v-list-item>
+                        <v-list-item-action>
+                            <v-icon>{{ link.icon }}</v-icon>
+                        </v-list-item-action>
                         <v-list-item-content>
                             <v-list-item-title>{{ link.text }}</v-list-item-title>
                         </v-list-item-content>
@@ -32,8 +35,14 @@
                 <v-list-item
                         v-for="sublink in link.subLinks"
                         :key="sublink.text"
+                        :to="{ name: sublink.routName }"
                 >
-                    <v-list-item-title v-text="sublink.text"/>
+                    <v-list-item-action>
+                            <v-icon>{{ sublink.icon }}</v-icon>
+                        </v-list-item-action>
+                    <v-list-item-content>
+                            <v-list-item-title>{{ sublink.text }}</v-list-item-title>
+                        </v-list-item-content>
                 </v-list-item>
             </v-list-group>
         </v-list>
@@ -69,49 +78,50 @@
                         text: "Home",
                     },
                     {
-                      routName: "Assignment",
-                      icon: "mdi-circle",
-                      text: "Assignment"
+                        routName: "Assignment",
+                        icon: "mdi-circle",
+                        text: "Assignment"
                     },
                     {
-                      routName: "ProbationCase",
-                      icon: "mdi-circle",
-                      text: "คดีควบคุม"
+                        routName: "ProbationCase",
+                        icon: "mdi-circle",
+                        text: "คดีควบคุม"
                     },
                     {
-                      routName: "RehabilitationCase",
-                      icon: "mdi-circle",
-                      text: "คดีฟื้นฟู"
+                        routName: "RehabilitationCase",
+                        icon: "mdi-circle",
+                        text: "คดีฟื้นฟู"
                     },
                     {
-                      routName: "OfficerUser",
-                      icon: "mdi-card-account-details",
-                      text: "เจ้าหน้าที่"
+                        routName: "OfficerUser",
+                        icon: "mdi-card-account-details",
+                        text: "เจ้าหน้าที่"
                     },
                     {
-                      routName: "VolunteerUser",
-                      icon: "mdi-card-account-details",
-                      text: "อสค."
+                        routName: "VolunteerUser",
+                        icon: "mdi-card-account-details",
+                        text: "อสค."
                     },
                     {
-                      routName: "Offender",
-                      icon: "mdi-card-account-details",
-                      text: "ผู้ถูกคุม"
+                        routName: "Offender",
+                        icon: "mdi-card-account-details",
+                        text: "ผู้ถูกคุม"
                     },
                     {
-                      routName: "/profile",
-                      icon: "mdi-profile",
-                      text: "Profile",
-                      subLinks: [
-                        {
-                          text: "Players list",
-                          routName: "/players"
-                        },
-                        {
-                          text: "Import WTA Players",
-                          routName: "/players/import"
-                        }
-                      ]
+                        // routName: "/profile",
+                        icon: "mdi-cog",
+                        text: "Profile",
+                        subLinks: [
+                            {
+                                text: "Text Input",
+                                icon: "mdi-pencil",
+                                routName: "TextInput"
+                            },
+                            // {
+                            //     text: "Import WTA Players",
+                            //     routName: "/players/import"
+                            // }
+                        ]
                     }
                 ]
             };
