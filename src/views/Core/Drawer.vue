@@ -1,76 +1,55 @@
 <template>
-    <v-navigation-drawer app permanent v-model="drawer" v-if="drawer" width="300">
-        <v-list>
-            <v-list-item :to="{ name: 'Home' }" exact>
+    <v-navigation-drawer app permanent absolute
+                         bottom
+                         v-model="drawer" v-if="drawer" width="300">
+        <v-list nav
+                dense>
+            <v-list-item
+                    active-class="blue--text text--blue-accent-4"
+                    v-for="(link,index) in links"
+                    v-if="!link.subLinks"
+                    :key="index"
+                    router
+                    :class="index"
+                    :to="{ name: link.routName }"
+                    class="v-list-item"
+            >
                 <v-list-item-action>
-                    <v-icon>mdi-home</v-icon>
+                    <v-icon>{{ link.icon }}</v-icon>
                 </v-list-item-action>
-                <v-list-item-content>
-                    <v-list-item-title>Home</v-list-item-title>
-                </v-list-item-content>
+                <v-list-item-title v-text="link.text"/>
             </v-list-item>
-            <v-divider class="pa-0 ma-0"></v-divider>
+            <v-list-group v-else :key="link.text" no-action active-class="blue--text text--blue-accent-4">
+                <template v-slot:activator>
+                    <v-list-item>
+                        <v-list-item-action>
+                            <v-icon>{{ link.icon }}</v-icon>
+                        </v-list-item-action>
+                        <v-list-item-content>
+                            <v-list-item-title>{{ link.text }}</v-list-item-title>
+                        </v-list-item-content>
 
-            <v-list-item :to="{ name: 'Assignment' }" exact>
-                <v-list-item-action>
-                    <v-icon>mdi-circle</v-icon>
-                </v-list-item-action>
-                <v-list-item-content>
-                    <v-list-item-title>Assignment</v-list-item-title>
-                </v-list-item-content>
-            </v-list-item>
+                    </v-list-item>
+                </template>
 
-            <v-list-item :to="{ name: 'ProbationCase' }" exact>
-                <v-list-item-action>
-                    <v-icon>mdi-circle</v-icon>
-                </v-list-item-action>
-                <v-list-item-content>
-                    <v-list-item-title>คดีควบคุม</v-list-item-title>
-                </v-list-item-content>
-            </v-list-item>
-
-            <v-list-item :to="{ name: 'RehabilitationCase' }" exact>
-                <v-list-item-action>
-                    <v-icon>mdi-circle</v-icon>
-                </v-list-item-action>
-                <v-list-item-content>
-                    <v-list-item-title>คดีฟื้นฟู</v-list-item-title>
-                </v-list-item-content>
-            </v-list-item>
-            <v-divider class="pa-0 ma-0"></v-divider>
-
-            <v-list-item :to="{ name: 'OfficerUser' }" exact>
-                <v-list-item-action>
-                    <v-icon>mdi-card-account-details</v-icon>
-                </v-list-item-action>
-                <v-list-item-content>
-                    <v-list-item-title>เจ้าหน้าที่</v-list-item-title>
-                </v-list-item-content>
-            </v-list-item>
-            <v-list-item :to="{ name: 'VolunteerUser' }" exact>
-                <v-list-item-action>
-                    <v-icon>mdi-card-account-details</v-icon>
-                </v-list-item-action>
-                <v-list-item-content>
-                    <v-list-item-title>อสค.</v-list-item-title>
-                </v-list-item-content>
-            </v-list-item>
-            <v-list-item :to="{ name: 'Offender' }" exact>
-                <v-list-item-action>
-                    <v-icon>mdi-card-account-details</v-icon>
-                </v-list-item-action>
-                <v-list-item-content>
-                    <v-list-item-title>ผู้ถูกคุม</v-list-item-title>
-                </v-list-item-content>
-            </v-list-item>
-            <v-divider class="pa-0 ma-0"></v-divider>
-
-
+                <v-list-item
+                        v-for="sublink in link.subLinks"
+                        :key="sublink.text"
+                        :to="{ name: sublink.routName }"
+                >
+                    <v-list-item-action>
+                            <v-icon>{{ sublink.icon }}</v-icon>
+                        </v-list-item-action>
+                    <v-list-item-content>
+                            <v-list-item-title>{{ sublink.text }}</v-list-item-title>
+                        </v-list-item-content>
+                </v-list-item>
+            </v-list-group>
         </v-list>
         <template v-slot:append>
-            <v-list>
+            <v-list dense nav>
                 <v-divider class="pa-0 ma-0"></v-divider>
-                <v-list-item :to="{ name: 'editUserProfile' }" exact>
+                <v-list-item :to="{ name: 'editUserProfile' }" exact active-class="blue--text text--blue-accent-4">
                     <v-list-item-action>
                         <v-icon>mdi-account</v-icon>
                     </v-list-item-action>
@@ -81,16 +60,7 @@
                 <v-divider class="pa-0 ma-0"></v-divider>
             </v-list>
             <div class="pa-2">
-                <v-btn
-                        block
-                        large
-                        color="red"
-                        class="white--text"
-                        @click="$store.dispatch('account/logout') & $router.push({ name: 'Login' })"
-                >
-                    Logout
-                </v-btn>
-
+                <v-btn block @click="$store.dispatch('account/logout') & $router.push({ name: 'Login' })">Logout</v-btn>
             </div>
         </template>
     </v-navigation-drawer>
@@ -99,6 +69,63 @@
 <script>
     export default {
         name: "CoreDrawer",
+        data() {
+            return {
+                links: [
+                    {
+                        routName: "Home",
+                        icon: "mdi-home",
+                        text: "Home",
+                    },
+                    {
+                        routName: "Assignment",
+                        icon: "mdi-circle",
+                        text: "Assignment"
+                    },
+                    {
+                        routName: "ProbationCase",
+                        icon: "mdi-circle",
+                        text: "คดีควบคุม"
+                    },
+                    {
+                        routName: "RehabilitationCase",
+                        icon: "mdi-circle",
+                        text: "คดีฟื้นฟู"
+                    },
+                    {
+                        routName: "OfficerUser",
+                        icon: "mdi-card-account-details",
+                        text: "เจ้าหน้าที่"
+                    },
+                    {
+                        routName: "VolunteerUser",
+                        icon: "mdi-card-account-details",
+                        text: "อสค."
+                    },
+                    {
+                        routName: "Offender",
+                        icon: "mdi-card-account-details",
+                        text: "ผู้ถูกคุม"
+                    },
+                    {
+                        // routName: "/profile",
+                        icon: "mdi-cog",
+                        text: "Profile",
+                        subLinks: [
+                            {
+                                text: "Text Input",
+                                icon: "mdi-pencil",
+                                routName: "TextInput"
+                            },
+                            // {
+                            //     text: "Import WTA Players",
+                            //     routName: "/players/import"
+                            // }
+                        ]
+                    }
+                ]
+            };
+        },
         computed: {
             drawer: {
                 get: function () {
@@ -111,5 +138,4 @@
         }
     };
 </script>
-
 <style scoped></style>
