@@ -1,9 +1,51 @@
 <template>
     <div>
-        <v-container v-if="assignment">
+        <v-container>
             <div>
-                <p class="title">รายละเอียด</p>
-                <data-list-render :data="data_render"></data-list-render>
+                <p class="title">
+                    <v-icon>
+                        mdi-circle
+                    </v-icon>
+                    <span class="">
+                       รายละเอียดการมอบหมายงาน
+                    </span>
+                </p>
+                <v-spacer></v-spacer>
+            </div>
+            <div v-if="assignment">
+                <div>
+                    <data-list-render :data="data_render"></data-list-render>
+                </div>
+                <v-card class="ma-3">
+                    <v-card-text>
+                        <FormRender
+                                :assignment="assignment"
+                                :form_full="true"
+                                :read_only="true"
+                                @save_success="save_form_success"
+                        >
+                            <template v-slot:header class="d-flex justify-content-between flex-row">
+                               <span class="title text-md-left text-center">
+                                   ข้อมูล
+                               </span>
+                                <v-spacer></v-spacer>
+                                <v-btn color="primary" @click="exportPDF"
+                                       v-if="assignment.after_probation_form_data || assignment.during_probation_form_data">
+                                    ส่งออก PDF
+                                </v-btn>
+                            </template>
+                        </FormRender>
+                        <div>
+                            <ImageFormDisplay
+                                    :imageURL="assignment.form_type == 1 ? assignment.during_probation_form_data.map_image : assignment.after_probation_form_data.map_image"
+                            >
+                            </ImageFormDisplay>
+                            <map-form-display
+                                    :form_data="assignment.form_type == 1 ? assignment.during_probation_form_data : assignment.after_probation_form_data"
+                            ></map-form-display>
+                        </div>
+                    </v-card-text>
+                </v-card>
             </div>
         </v-container>
     </div>
@@ -11,11 +53,14 @@
 
 <script>
     import DataListRender from "../../../components/share/DataListRender";
+    import FormRender from "../../../components/Form/FormRender";
     import {mapGetters} from "vuex";
+    import ImageFormDisplay from "../../../components/Form/ImageFormDisplay";
+    import MapFormDisplay from "../../../components/Form/MapFormDisplay";
 
     export default {
         name: "AssignmentView",
-        components: {DataListRender},
+        components: {MapFormDisplay, ImageFormDisplay, DataListRender, FormRender},
         data() {
             return {
                 assignment: null,
@@ -69,6 +114,21 @@
                         ]
                     }
                 ]
+            },
+            save_form_success(e) {
+                console.log(e)
+            },
+            exportPDF() {
+                let params_form = {
+                    "form_id": null,
+                    "form_type": null,
+                    "download": true
+                }
+                params_form.form_type = this.assignment.form_type === 1 ? 'during_probation_form_data' : 'after_probation_form_data'
+                if (this.assignment[params_form.form_type]) {
+                    params_form.form_id = this.assignment[params_form.form_type].id
+                    this.$store.dispatch('assignment/getPDFForm', params_form)
+                }
             }
         }
     }

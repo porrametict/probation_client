@@ -14,6 +14,7 @@ import officer from "./modules/officer";
 import error from "./modules/error";
 import success from "./modules/success";
 import spinner from "./modules/spinner";
+import report_chart from "./modules/report_chart";
 
 Vue.use(Vuex)
 
@@ -36,5 +37,6 @@ export default new Vuex.Store({
         error: error,
         success: success,
         spinner: spinner,
+        report_chart: report_chart,
     }
 })

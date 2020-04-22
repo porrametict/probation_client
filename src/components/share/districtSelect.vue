@@ -1,45 +1,63 @@
 <template>
     <div v-if="provinces">
         <v-select :items="provinces"
+                  :outlined="outlined"
                   hide-details
                   item-text="name_th" label="จังหวัด"
                   v-model="selProvince"
                   return-object
-                  @change="provinceChange">
-            <!--             :error-messages="error.house_province"-->
+                  @change="provinceChange"
+                  class="my-2"
+                  :error-messages="error.province"
+        >
         </v-select>
         <v-select :items="amphurs"
+                  :outlined="outlined"
                   hide-details
                   return-object
                   item-text="name_th" label="อำเภอ"
                   v-model="selAmphur"
-                  @change="amphurChange">
+                  @change="amphurChange"
+                  class="my-2"
+                  :error-messages="error.amphure"
+        >
         </v-select>
         <v-select :items="districts"
+                  :outlined="outlined"
                   hide-details
                   return-object
                   v-model="selDistrict"
                   item-text="name_th" label="ตำบล"
-                  @change="districtChange">
+                  @change="districtChange"
+                  class="my-2"
+                  :error-messages="error.district"
+        >
         </v-select>
     </div>
 
 </template>
 <script>
+    import Base from "./Base";
+
     let defaultProvince = {
-        province_id: 0,
+        id: 0,
         name_th: "กรุณาเลือก",
     };
     let defaultAmphur = {
-        amphur_id: 0,
+        id: 0,
         name_th: "กรุณาเลือก"
     };
     let defaultDistrict = {
-        district_id: 0,
+        id: 0,
         name_th: "กรุณาเลือก"
     };
     export default {
+        extends: Base,
         props: {
+            outlined: {
+                type: Boolean,
+                default: false
+            },
             valProvince: {
                 type: Number,
                 default: 0
@@ -64,24 +82,26 @@
         async created() {
             let provinces = await this.$store.dispatch('districtSelect/getProvinces');
             this.provinces = [defaultProvince].concat(provinces);
-            this.sync()
+            if (this.valProvince && this.valProvince != 0) {
+                this.sync()
+            }
         },
         methods: {
             sync: function () {
                 this.provinces.forEach((p) => {
-                    if (p.province_id == this.valProvince) {
+                    if (p.id == this.valProvince) {
                         this.selProvince = p;
                         this.provinceChange(p);
                     }
                 });
                 this.amphurs.forEach((a) => {
-                    if (a.amphur_id == this.valAmphur) {
+                    if (a.id == this.valAmphur) {
                         this.selAmphur = a;
                         this.amphurChange(a);
                     }
                 });
                 this.districts.forEach((d) => {
-                    if (d.district_id == this.valDistrict) {
+                    if (d.id == this.valDistrict) {
                         this.selDistrict = d;
                         this.districtChange(d);
                     }
@@ -95,6 +115,9 @@
                 }
                 this.selAmphur = defaultAmphur
                 this.selDistrict = defaultDistrict
+                if (!ev.id) {
+                    ev = null
+                }
                 this.$emit('change', [ev, null, null])
             },
             amphurChange: function (ev) {
@@ -104,9 +127,15 @@
                     this.districts = [defaultDistrict];
                 }
                 this.selDistrict = defaultDistrict
+                if (!ev.id) {
+                    ev = null
+                }
                 this.$emit('change', [this.selProvince, ev, null])
             },
             districtChange: function (ev) {
+                if (!ev.id) {
+                    ev = null
+                }
                 this.$emit('change', [this.selProvince, this.selAmphur, ev])
             }
         }

@@ -8,18 +8,17 @@ import lodash from 'lodash'
 import moment from 'moment'
 import '@mdi/font/css/materialdesignicons.css'
 
+const baseURL = process.env.VUE_APP_BASE_BACKEND_URL
 window._ = lodash()
 window.axios = new Axios.create({
-    baseURL: 'http://127.0.0.1:8000/',
-    // baseURL: 'http://127.0.0.1:8001/',
+    baseURL: baseURL,
     timeout: 10000
 })
-
-Vue.prototype.getTHDate= function (date=null) {
+Vue.prototype.getTHDate = function (date = null) {
     moment.locale('th');
-    if (date==null) {
+    if (date == null) {
         return moment().format('l')
-    }else {
+    } else {
         return moment(date).format('l')
     }
 }
@@ -32,6 +31,17 @@ window.moment = moment()
 moment.locale('th')
 
 Vue.config.productionTip = false
+
+const VueGoogleMaps = require('vue2-google-maps');
+
+Vue.use(VueGoogleMaps, {
+    load: {
+        key: 'AIzaSyAA4xy46J4VXUz-MK2XLMtK6Eglw99H5Us',
+        v: '3.34',
+        libraries: 'places'
+    }
+})
+
 
 new Vue({
     router,

@@ -1,5 +1,5 @@
 <template>
-  <v-footer absolute>
+  <v-footer padless>
     <v-container>
       <v-row align="center" no-gutters>
         <v-col
@@ -60,7 +60,7 @@ export default {
 };
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 #dashboard-core-footer
     a
         font-size: .825rem

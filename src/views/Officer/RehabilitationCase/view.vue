@@ -2,22 +2,41 @@
     <div>
         <v-container v-if="rehabilitation_case">
             <div>
-                <p class="title">รายละเอียด</p>
+                <p class="title">
+                    <v-icon>
+                        mdi-circle
+                    </v-icon>
+                    <span class="">
+                       รายละเอียดคดี
+                    </span>
+                </p>
+                <v-spacer></v-spacer>
             </div>
             <!--            main-->
             <div>
                 <!--                offender-->
                 <data-list-render :data="offender_data_render">
                     <template v-slot:header>
-                        <div class="white--text">ผู้กระทำผิด</div>
-                        <div class="title white--text mb-2">
-                            <p class="ma-0">
-                                {{rehabilitation_case.case_data.offender_data.o_personal_id}}
-                            </p>
-                            <p class="ma-0">
-                                {{rehabilitation_case.case_data.offender_data.o_first_name + " "
-                                +rehabilitation_case.case_data.offender_data.o_last_name}}
-                            </p>
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <div class="white--text">ผู้กระทำผิด</div>
+                                <div class="title white--text mb-2">
+                                    <p class="ma-0">
+                                        {{rehabilitation_case.case_data.offender_data.o_personal_id}}
+                                    </p>
+                                    <p class="ma-0">
+                                        {{rehabilitation_case.case_data.offender_data.o_first_name + " "
+                                        +rehabilitation_case.case_data.offender_data.o_last_name}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div>
+                                <v-btn icon outlined color="white">
+                                    <v-icon @click="$router.push({name : 'viewOffender' ,params : {id : rehabilitation_case.case_data.offender_data.id}})">
+                                        mdi-eye
+                                    </v-icon>
+                                </v-btn>
+                            </div>
                         </div>
                     </template>
                 </data-list-render>
@@ -25,21 +44,59 @@
                 <!--                case-->
                 <data-list-render :data="case_data_render" color="pink">
                     <template v-slot:header>
-                        <div class="white--text">คดี</div>
-                        <div class="title white--text mb-2">
-                            <p class="ma-0">
-                                {{rehabilitation_case.case_data.case_registration_number}}
-                            </p>
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <div class="white--text">คดี</div>
+                                <div class="title white--text mb-2">
+                                    <p class="ma-0">
+                                        {{rehabilitation_case.case_data.case_registration_number}}
+                                    </p>
+                                </div>
+
+                            </div>
+                            <div>
+                                <v-btn icon outlined color="white">
+                                    <v-icon @click="$router.push({name : 'RehabilitationCaseEdit' ,params : {id : rehabilitation_case.id}})">
+                                        mdi-pencil
+                                    </v-icon>
+                                </v-btn>
+                            </div>
                         </div>
+
                     </template>
                 </data-list-render>
 
                 <!--การฟื้นฟู-->
                 <data-list-render :data="rehabilitation_data_render" color="green">
+                    <template v-slot:header>
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <p class="title white--text" >การฟื้นฟู</p>
+                            </div>
+                            <v-btn icon color="white" outlined @click="$router.push({name:'RehabilitationCaseRehabilitationEdit'})">
+                                <v-icon>
+                                    mdi-pencil
+                                </v-icon>
+                            </v-btn>
+                        </div>
+                    </template>
                 </data-list-render>
 
                 <!--social service hour-->
-                <data-list-render :data="socialservicehour_data_render" color="orange"></data-list-render>
+                <data-list-render :data="socialservicehour_data_render" color="orange">
+                    <template v-slot:header>
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <p class="title white--text" >การบริการสังคม</p>
+                            </div>
+                            <v-btn icon color="white" outlined @click="$router.push({name:'RehabilitationCaseSSHEdit'})">
+                                <v-icon>
+                                    mdi-pencil
+                                </v-icon>
+                            </v-btn>
+                        </div>
+                    </template>
+                </data-list-render>
 
             </div>
         </v-container>

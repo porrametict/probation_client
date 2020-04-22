@@ -2,44 +2,105 @@
     <div>
         <v-container v-if="probation_case">
             <div>
-                <p class="title">รายละเอียด</p>
+                <p class="title">
+                    <v-icon>
+                        mdi-circle
+                    </v-icon>
+                    <span class="">
+                       รายละเอียดคดี
+                    </span>
+                </p>
+                <v-spacer></v-spacer>
             </div>
             <!--  main-->
             <div>
                 <!--                offender-->
                 <data-list-render :data="offender_data_render">
                     <template v-slot:header>
-                        <div class="white--text">ผู้กระทำผิด</div>
-                        <div class="title white--text mb-2">
-                            <p class="ma-0">
-                                {{probation_case.case_data.offender_data.o_personal_id}}
-                            </p>
-                            <p class="ma-0">
-                                {{probation_case.case_data.offender_data.o_first_name + " "
-                                +probation_case.case_data.offender_data.o_last_name}}
-                            </p>
+                        <div class="d-flex justify-content-between">
+                            <div>
+
+
+                                <div class="white--text">ผู้กระทำผิด</div>
+                                <div class="title white--text mb-2">
+                                    <p class="ma-0">
+                                        {{probation_case.case_data.offender_data.o_personal_id}}
+                                    </p>
+                                    <p class="ma-0">
+                                        {{probation_case.case_data.offender_data.o_first_name + " "
+                                        +probation_case.case_data.offender_data.o_last_name}}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div>
+                                <v-btn icon outlined color="white">
+                                    <v-icon @click="$router.push({name : 'viewOffender' ,params : {id : probation_case.case_data.offender_data.id}})">
+                                        mdi-eye
+                                    </v-icon>
+                                </v-btn>
+                            </div>
                         </div>
+
                     </template>
                 </data-list-render>
 
                 <!--case-->
                 <data-list-render :data="case_data_render" color="pink">
                     <template v-slot:header>
-                        <div class="white--text">คดี</div>
-                        <div class="title white--text mb-2">
-                            <p class="ma-0">
-                                {{probation_case.case_data.case_registration_number}}
-                            </p>
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <div class="white--text">คดี</div>
+                                <div class="title white--text mb-2">
+                                    <p class="ma-0">
+                                        {{probation_case.case_data.case_registration_number}}
+                                    </p>
+                                </div>
+
+                            </div>
+                            <div>
+                                <v-btn icon outlined color="white">
+                                    <v-icon @click="$router.push({name : 'ProbationCaseEdit' ,params : {id : probation_case.id}})">
+                                        mdi-pencil
+                                    </v-icon>
+                                </v-btn>
+                            </div>
                         </div>
                     </template>
                 </data-list-render>
 
                 <!--classification-->
                 <data-list-render color="green" :data="classification_data_render">
+                    <template v-slot:header>
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <p class="title white--text">การจำเเนก</p>
+                            </div>
+                            <v-btn icon color="white" outlined
+                                   @click="$router.push({name:'ProbationCaseClassificationEdit'})">
+                                <v-icon>
+                                    mdi-pencil
+                                </v-icon>
+                            </v-btn>
+                        </div>
+                    </template>
                 </data-list-render>
-
                 <!--reporting-->
-                <data-list-render color="orange" :data="reporting_data_render"></data-list-render>
+                <data-list-render color="orange" :data="reporting_data_render">
+                    <template v-slot:header>
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <p class="title white--text">การายงานตัว</p>
+                            </div>
+                            <v-btn icon color="white" outlined
+                                   @click="$router.push({name:'ProbationCaseReportingEdit'})">
+                                <v-icon>
+                                    mdi-pencil
+                                </v-icon>
+                            </v-btn>
+                        </div>
+                    </template>
+                </data-list-render>
             </div>
         </v-container>
     </div>
@@ -175,8 +236,8 @@
                         label = "การจำเเนก"
                     }
                     this.classification_data_render.push({
-                        label : label,
-                        data : [
+                        label: label,
+                        data: [
                             {
                                 key: "ครั้งที่จำเเนก",
                                 value: element.classification_time
@@ -202,8 +263,8 @@
                         label = "การรายงาน"
                     }
                     this.reporting_data_render.push({
-                        label : label,
-                        data : [
+                        label: label,
+                        data: [
                             {
                                 key: "ครั้งที่รายงาน",
                                 value: element.reporting_time
@@ -216,7 +277,7 @@
                             }, {
                                 key: "กิจกรรมฟื้นฟู",
                                 value: element.rehabilitation_activities
-                            },{
+                            }, {
                                 key: "วันที่ส่งรายงาน",
                                 value: element.report_submission_date
                             },

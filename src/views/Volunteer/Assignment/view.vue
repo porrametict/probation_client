@@ -1,68 +1,88 @@
 <template>
-    <div v-if="assignment">
-        <div>
-            <h3 class="title font-weight-bold blue--text text-center">
+    <v-container v-if="assignment">
+        <div class="d-flex justify-content-between">
+            <h3 class="title text-md-left text-center">
                 รายละเอียด
             </h3>
+            <div>
+                <v-btn color="primary"
+                       class="white--text font-weight-bold"
+                       @click="updateStatus"
+                >
+                    ส่งข้อมูล
+                </v-btn>
+            </div>
         </div>
         <v-divider/>
-        <p class="title">สถานะ : {{assignment.status === 4 ? 'ดำเนินการเสร็จสิ้น' : 'ยังไม่ได้ดำเนินการ'}}</p>
+
         <div>
-            <v-text-field disabled outlined label="เลขทะเบียน"
-                          :value="assignment.case.case_registration_number"/>
-            <v-text-field disabled outlined label="ประเภท"
-                          :value="getFormType(assignment.form_type)"/>
+            <div class="title grey--text my-1">
+                <v-icon color="grey">mdi-circle</v-icon>
+                <span>
+                    ข้อมูล
+                </span>
+            </div>
+            <div class="title py-0 my-0 d-flex flex-column">
+            <span class="grey--text body-2">
+                ผู้ถูกคุมประพฤติ
+            </span>
+                <span class="display-1">
+                {{assignment.offender_data.o_first_name +' ' +assignment.offender_data.o_last_name}}
+            </span>
+            </div>
+
+            <div class="title py-0 my-0 d-flex flex-column">
+            <span class="grey--text body-2 ">
+                ประเภทเเบบฟอร์ม
+            </span>
+                <div>
+                    <v-chip text-color="white"
+                            :color="assignment.form_type === 1 ? 'primary' : 'green'"
+                    >
+                        {{getFormType(assignment.form_type)}}
+                    </v-chip>
+                </div>
+            </div>
             <v-divider/>
-            <h1 class="title">ข้อมูล</h1>
-            <v-text-field disabled outlined label="ชื่อสกุล"
-                          :value="assignment.offender.o_first_name +' ' +assignment.offender.o_last_name"/>
-
-            <div v-if="assignment.offender.o_address.o_address_house">
-
-            <v-text-field disabled outlined label="บ้านเลขที่"
-                          :value="assignment.offender.o_address.o_address_house"
-            />
-            <v-text-field disabled outlined label="หมู่"
-                          :value="assignment.offender.o_address.o_address_vaillage"
-            />
-            <v-text-field disabled outlined label="หมู่ที่"
-                          :value="assignment.offender.o_address.o_address_mu"
-            />
-            <v-text-field disabled outlined label="ซอย"
-                          :value="assignment.offender.o_address.o_address_alley"
-            />
-            <v-text-field disabled outlined label="ถนน"
-                          :value="assignment.offender.o_address.o_address_street"
-            />
-            <v-text-field disabled outlined label="ตำบล"
-                          :value="assignment.offender.o_address.o_address_district"
-            />
-            <v-text-field disabled outlined label="อำเภอ"
-                          :value="assignment.offender.o_address.o_address_amphure"
-            />
-            <v-text-field disabled outlined label="จังหวัด"
-                          :value="assignment.offender.o_address.o_address_province"
-            />
-            <v-text-field disabled outlined label="รหัสไปรษณีย์"
-                          :value="assignment.offender.o_address.o_address_zip_code"
-            />
+            <div v-if="current_address.o_address_house">
+                <div class="title py-0 my-0 d-flex flex-column" v-for="(a,index) in AddressRender" :key="index">
+                    <span class="grey--text body-2">
+                        {{a.label}}
+                    </span>
+                    <span class="display-1">
+                        {{a.value}}
+                    </span>
+                </div>
             </div>
             <div v-else>
                 <p class="grey--text text-center">ไม่มีข้อมูลที่อยู่</p>
             </div>
         </div>
-        <div>
-            <v-btn block color="primary" class="white--text" large @click="gotoForm(assignment.form_type)">
+        <div v-if="last_form">
+            <ImageFormDisplay
+                    :imageURL="last_form.map_image"
+            >
+            </ImageFormDisplay>
+            <map-form-display
+                    :form_data="last_form"
+            ></map-form-display>
+        </div>
+        <div class="my-3">
+            <v-btn block color="primary" class="white--text" large @click="gotoForm()">
                 เก็บข้อมูล
             </v-btn>
         </div>
-    </div>
+    </v-container>
 </template>
 
 <script>
     import {mapGetters} from 'vuex'
+    import ImageFormDisplay from "../../../components/Form/ImageFormDisplay";
+    import MapFormDisplay from "../../../components/Form/MapFormDisplay";
+
     export default {
         name: "view-assignment",
+        components: {MapFormDisplay, ImageFormDisplay},
         computed: {
             ...mapGetters({
                 getFormType: 'assignment/getFormType'
@@ -70,21 +90,113 @@
         },
         data() {
             return {
-                assignment: null
+                assignment: null,
+                current_address: null,
+                AddressRender: null,
+                last_form : null
             }
         },
         created() {
             this.loadData()
         }, methods: {
+            async loadLastForm(type) {
+                let form = {
+                    form_type: type,
+                    assignment_id: this.assignment.id
+                }
+                let last_form = await this.$store.dispatch('assignment/getOldForm', form)
+                if (last_form) {
+                    if (!(Object.keys(last_form).length === 0 && last_form.constructor === Object)) {
+                        this.last_form = last_form
+                    }
+                }
+            },
             async loadData() {
                 let id = this.$route.params.id
                 this.assignment = await this.$store.dispatch('assignment/getAssignmentById', id)
+                this.getCurrentAddress(this.assignment.offender_data.offenderaddress_set)
+
+                    if (this.assignment.form_type === 1) {
+                    this.loadLastForm("during_probation_form")
+                } else if (this.assignment.form_type === 2) {
+                    this.loadLastForm("after_probation_form")
+                }
             },
-            gotoForm(type) {
-                if (type === 1) {
-                    this.$router.push({name: 'DuringProbationForm', params: {id: this.assignment.id}})
-                }else if (type === 2 ){
-                    this.$router.push({name: 'AfterProbationForm', params: {id: this.assignment.id}})
+            gotoForm() {
+                this.$router.push({name: 'AssignmentForm', params: {id: this.assignment.id}})
+            }, getCurrentAddress(data) {
+                this.current_address = {}
+                data.forEach(e => {
+                    if (e.o_address_status) {
+                        this.current_address = e
+                    }
+                })
+                this.createAddressRender()
+            },
+            createAddressRender() {
+                this.AddressRender = [
+                    {
+                        label: "บ้านเลขที่",
+                        value: this.current_address.o_address_house
+                    }, {
+                        label: "หมู่",
+                        value: this.current_address.o_address_village
+                    }, {
+                        label: "หมู่ที่",
+                        value: this.current_address.o_address_mu
+                    }, {
+                        label: "ซอย",
+                        value: this.current_address.o_address_alley
+                    }, {
+                        label: "ถนน",
+                        value: this.current_address.o_address_street
+                    }, {
+                        label: "ตำบล",
+                        value: this.current_address.district.name_th
+                    }, {
+                        label: "อำเภอ",
+                        value: this.current_address.amphure.name_th
+                    }, {
+                        label: "จังหวัด",
+                        value: this.current_address.province.name_th
+                    }, {
+                        label: "รหัสไปรษณีย์",
+                        value: this.current_address.o_address_zip_code
+                    },
+                ]
+            },
+            async updateStatus() {
+                this.assignment.status = 4
+                let data = await this.$store.dispatch('assignment/updateAssignment', this.assignment)
+                // this.updateOffenderAddress()
+                if (data) {
+                    await this.$router.push({name: "Volunteer"})
+                }
+            },
+            async updateOffenderAddress() {
+                let form_type = null
+                if (this.assignment.during_probation_form_data) {
+                    form_type = 'during_probation_form_data'
+                } else if (this.assignment.after_probation_form_data) {
+                    form_type = 'after_probation_form_data'
+                }
+                if (form_type) {
+                    let form_data = {
+                        offender: this.assignment.offender.id,
+                        o_address_house: this.assignment[form_type].s_house_no,
+                        o_address_village: this.assignment[form_type].s_mu,
+                        o_address_mu: this.assignment[form_type].s_mu,
+                        o_address_alley: null,
+                        o_address_street: this.assignment[form_type].s_street,
+                        o_address_district: this.assignment[form_type].s_district,
+                        o_address_amphure: this.assignment[form_type].s_amphure,
+                        o_address_province: this.assignment[form_type].s_province,
+                        o_address_zip_code: null,
+                        o_address_status: true,
+                        o_address_map_image: this.assignment[form_type].map_image,
+                        o_address_map_lat: this.assignment[form_type].map_lat,
+                        o_address_map_lng: this.assignment[form_type].map_lng,
+                    }
                 }
             }
         }

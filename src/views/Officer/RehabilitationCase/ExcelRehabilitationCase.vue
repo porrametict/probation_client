@@ -1,16 +1,29 @@
 <template>
-    <div class="d-flex flex-column align-center">
-        <p class="display-2 font-weight-light grey--text">อัพโหลดข้อมูลคดีงานฟื้นฟู</p>
-        <div class="upload-btn-wrapper ma-3">
-            <button :class=" file!=='' ?'btn-fill':'btn'">Choose a file</button>
-            <input type="file"
-                   id="file"
-                   ref="file"
-                   accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                   v-on:change="onChangeFileUpload()"/>
+    <v-container class="h-100">
+        <div>
+            <p class="title">
+                <v-icon>
+                    mdi-circle
+                </v-icon>
+                <span class="">
+                       เพิ่มข้อมูลคดีงานฟื้นฟู
+                    </span>
+            </p>
+            <v-spacer></v-spacer>
         </div>
-        <v-btn @click="save" color="primary">Upload</v-btn>
-    </div>
+        <div class="d-flex flex-column align-center justify-content-center h-100">
+            <p class="display-2 font-weight-light grey--text">อัพโหลดข้อมูลคดีงานฟื้นฟู</p>
+            <div class="upload-btn-wrapper ma-3">
+                <button :class=" file!=='' ?'btn-fill':'btn'">Choose a file</button>
+                <input type="file"
+                       id="file"
+                       ref="file"
+                       accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                       v-on:change="onChangeFileUpload()"/>
+            </div>
+            <v-btn @click="save" color="primary">Upload</v-btn>
+        </div>
+    </v-container>
 </template>
 <script>
     export default {

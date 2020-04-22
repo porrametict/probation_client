@@ -2,7 +2,15 @@
     <div>
         <v-container>
             <div>
-                <p class="title">สร้าง</p>
+                <p class="title">
+                    <v-icon>
+                        mdi-circle
+                    </v-icon>
+                    <span class="">
+                       สร้างการมอบหมายงาน
+                    </span>
+                </p>
+                <v-spacer></v-spacer>
             </div>
             <div>
                 <v-card>
@@ -38,14 +46,16 @@
                             <template v-slot:selection="data">
                                 {{data.item.user.first_name}}
                                 {{data.item.user.last_name}} -
-                                {{data.item.province.name_th}} {{data.item.amphure.name_th}}
-                                {{data.item.district.name_th}}
+                                {{data.item.province ? data.item.province.name_th : null }}
+                                {{data.item.amphure ? data.item.amphure.name_th : null }}
+                                {{data.item.district ? data.item.district.name_th : null }}
                             </template>
                             <template v-slot:item="data">
                                 {{data.item.user.first_name}}
                                 {{data.item.user.last_name}} -
-                                {{data.item.province.name_th}} {{data.item.amphure.name_th}}
-                                {{data.item.district.name_th}}
+                                {{data.item.province ? data.item.province.name_th : null }}
+                                {{data.item.amphure ? data.item.amphure.name_th : null }}
+                                {{data.item.district ? data.item.district.name_th : null }}
                             </template>
                         </v-select>
 
@@ -131,10 +141,12 @@
                 let current_address = {}
                 data.forEach(e => {
                     if (e.o_address_status) {
-                        current_address = e
+                        current_address.province = e.province ? e.province.name_th : null
+                        current_address.amphure = e.amphure ? e.amphure.name_th : null
+                        current_address.district = e.district ? e.district.name_th : null
                     }
                 })
-                return `${current_address.province.name_th} ${current_address.amphure.name_th} ${current_address.district.name_th}`
+                return `${current_address.province} ${current_address.amphure} ${current_address.district}`
             },
             async save() {
                 try {

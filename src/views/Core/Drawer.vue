@@ -1,7 +1,11 @@
 <template>
-    <v-navigation-drawer app permanent v-model="drawer" v-if="drawer" width="300">
-        <v-list dense>
+    <v-navigation-drawer app permanent absolute
+      bottom
+       v-model="drawer" v-if="drawer" width="300">
+        <v-list nav
+        dense>
             <v-list-item
+                    active-class="blue--text text--blue-accent-4"
                     v-for="(link,index) in links"
                     v-if="!link.subLinks"
                     :key="index"
@@ -15,8 +19,7 @@
                 </v-list-item-action>
                 <v-list-item-title v-text="link.text"/>
             </v-list-item>
-
-            <v-list-group v-else :key="link.text" no-action>
+            <v-list-group v-else :key="link.text" no-action active-class="blue--text text--blue-accent-4">
                 <template v-slot:activator>
                     <v-list-item>
                         <v-list-item-content>
@@ -35,14 +38,20 @@
             </v-list-group>
         </v-list>
         <template v-slot:append>
+            <v-list dense nav>
+                <v-divider class="pa-0 ma-0"></v-divider>
+                <v-list-item :to="{ name: 'editUserProfile' }" exact active-class="blue--text text--blue-accent-4">
+                    <v-list-item-action>
+                        <v-icon>mdi-account</v-icon>
+                    </v-list-item-action>
+                    <v-list-item-content>
+                        <v-list-item-title>ข้อมูลผู้ใช้</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+                <v-divider class="pa-0 ma-0"></v-divider>
+            </v-list>
             <div class="pa-2">
-                <v-btn
-                        block
-                        @click="
-            $store.dispatch('account/logout') & $router.push({ name: 'Login' })
-          "
-                >Logout
-                </v-btn>
+                <v-btn block @click="$store.dispatch('account/logout') & $router.push({ name: 'Login' })">Logout</v-btn>
             </div>
         </template>
     </v-navigation-drawer>
@@ -61,7 +70,7 @@
                     },
                     {
                       routName: "Assignment",
-                      icon: "mdi-home",
+                      icon: "mdi-circle",
                       text: "Assignment"
                     },
                     {
@@ -71,8 +80,23 @@
                     },
                     {
                       routName: "RehabilitationCase",
-                      icon: "mdi-home",
+                      icon: "mdi-circle",
                       text: "คดีฟื้นฟู"
+                    },
+                    {
+                      routName: "OfficerUser",
+                      icon: "mdi-card-account-details",
+                      text: "เจ้าหน้าที่"
+                    },
+                    {
+                      routName: "VolunteerUser",
+                      icon: "mdi-card-account-details",
+                      text: "อสค."
+                    },
+                    {
+                      routName: "Offender",
+                      icon: "mdi-card-account-details",
+                      text: "ผู้ถูกคุม"
                     },
                     {
                       routName: "/profile",
@@ -104,88 +128,4 @@
         }
     };
 </script>
-
 <style scoped></style>
-
-<!--<v-list nav-->
-<!--        dense>-->
-<!--            <v-list-item-group active-class="blue&#45;&#45;text text&#45;&#45;blue-accent-4">-->
-<!--            <v-list-item :to="{ name: 'Home' }" exact>-->
-<!--                <v-list-item-action>-->
-<!--                    <v-icon color="green darken-2">mdi-home</v-icon>-->
-<!--                </v-list-item-action>-->
-<!--                <v-list-item-content>-->
-<!--                    <v-list-item-title>Home</v-list-item-title>-->
-<!--                </v-list-item-content>-->
-<!--            </v-list-item>-->
-<!--            <v-divider class="pa-0 ma-0"></v-divider>-->
-
-<!--            <v-list-item :to="{ name: 'Assignment' }" exact>-->
-<!--                <v-list-item-action>-->
-<!--                    <v-icon>mdi-circle</v-icon>-->
-<!--                </v-list-item-action>-->
-<!--                <v-list-item-content>-->
-<!--                    <v-list-item-title>Assignment</v-list-item-title>-->
-<!--                </v-list-item-content>-->
-<!--            </v-list-item>-->
-
-<!--            <v-list-item :to="{ name: 'ProbationCase' }" exact>-->
-<!--                <v-list-item-action>-->
-<!--                    <v-icon>mdi-circle</v-icon>-->
-<!--                </v-list-item-action>-->
-<!--                <v-list-item-content>-->
-<!--                    <v-list-item-title>คดีควบคุม</v-list-item-title>-->
-<!--                </v-list-item-content>-->
-<!--            </v-list-item>-->
-
-<!--            <v-list-item :to="{ name: 'RehabilitationCase' }" exact>-->
-<!--                <v-list-item-action>-->
-<!--                    <v-icon>mdi-circle</v-icon>-->
-<!--                </v-list-item-action>-->
-<!--                <v-list-item-content>-->
-<!--                    <v-list-item-title>คดีฟื้นฟู</v-list-item-title>-->
-<!--                </v-list-item-content>-->
-<!--            </v-list-item>-->
-<!--            <v-divider class="pa-0 ma-0"></v-divider>-->
-
-<!--            <v-list-item :to="{ name: 'OfficerUser' }" exact>-->
-<!--                <v-list-item-action>-->
-<!--                    <v-icon>mdi-card-account-details</v-icon>-->
-<!--                </v-list-item-action>-->
-<!--                <v-list-item-content>-->
-<!--                    <v-list-item-title>เจ้าหน้าที่</v-list-item-title>-->
-<!--                </v-list-item-content>-->
-<!--            </v-list-item>-->
-
-<!--            <v-list-item :to="{ name: 'VolunteerUser' }" exact>-->
-<!--                <v-list-item-action>-->
-<!--                    <v-icon>mdi-card-account-details</v-icon>-->
-<!--                </v-list-item-action>-->
-<!--                <v-list-item-content>-->
-<!--                    <v-list-item-title>อสค.</v-list-item-title>-->
-<!--                </v-list-item-content>-->
-<!--            </v-list-item>-->
-
-<!--            <v-list-item :to="{ name: 'Offender' }" exact>-->
-<!--                <v-list-item-action>-->
-<!--                    <v-icon>mdi-card-account-details</v-icon>-->
-<!--                </v-list-item-action>-->
-<!--                <v-list-item-content>-->
-<!--                    <v-list-item-title>ผู้ถูกคุม</v-list-item-title>-->
-<!--                </v-list-item-content>-->
-<!--            </v-list-item>-->
-
-<!--            <v-divider class="pa-0 ma-0"></v-divider>-->
-<!--            <v-list-item :to="{ name: 'SystemDesign' }" exact>-->
-<!--                <v-list-item-action>-->
-<!--                    <v-icon>mdi-cog</v-icon>-->
-<!--                </v-list-item-action>-->
-<!--                <v-list-item-content>-->
-<!--                    <v-list-item-title>System Design</v-list-item-title>-->
-<!--                </v-list-item-content>-->
-<!--            </v-list-item>-->
-<!--            <v-divider class="pa-0 ma-0"></v-divider>-->
-
-<!--            </v-list-item-group>-->
-<!--        </v-list>-->
-
