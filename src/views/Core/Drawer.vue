@@ -1,9 +1,13 @@
 <template>
-    <v-navigation-drawer app permanent v-model="drawer" v-if="drawer" width="300">
-        <v-list>
+    <v-navigation-drawer app permanent  absolute
+      bottom
+       v-model="drawer" v-if="drawer" width="300">
+        <v-list nav
+        dense>
+            <v-list-item-group active-class="blue--text text--blue-accent-4">
             <v-list-item :to="{ name: 'Home' }" exact>
                 <v-list-item-action>
-                    <v-icon>mdi-home</v-icon>
+                    <v-icon color="green darken-2">mdi-home</v-icon>
                 </v-list-item-action>
                 <v-list-item-content>
                     <v-list-item-title>Home</v-list-item-title>
@@ -47,6 +51,7 @@
                     <v-list-item-title>เจ้าหน้าที่</v-list-item-title>
                 </v-list-item-content>
             </v-list-item>
+
             <v-list-item :to="{ name: 'VolunteerUser' }" exact>
                 <v-list-item-action>
                     <v-icon>mdi-card-account-details</v-icon>
@@ -55,6 +60,7 @@
                     <v-list-item-title>อสค.</v-list-item-title>
                 </v-list-item-content>
             </v-list-item>
+
             <v-list-item :to="{ name: 'Offender' }" exact>
                 <v-list-item-action>
                     <v-icon>mdi-card-account-details</v-icon>
@@ -63,9 +69,19 @@
                     <v-list-item-title>ผู้ถูกคุม</v-list-item-title>
                 </v-list-item-content>
             </v-list-item>
+
+            <v-divider class="pa-0 ma-0"></v-divider>
+            <v-list-item :to="{ name: 'SystemDesign' }" exact>
+                <v-list-item-action>
+                    <v-icon>mdi-cog</v-icon>
+                </v-list-item-action>
+                <v-list-item-content>
+                    <v-list-item-title>System Design</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
             <v-divider class="pa-0 ma-0"></v-divider>
 
-
+            </v-list-item-group>
         </v-list>
         <template v-slot:append>
             <v-list>

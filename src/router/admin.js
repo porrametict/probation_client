@@ -5,6 +5,7 @@ import account from "./account";
 import officer_user from "./officer_user";
 import volunteer_user from "./volunteer_user";
 import offender from "./offender";
+import system_design from "./system_design";
 
 export default {
 
@@ -24,6 +25,7 @@ export default {
         officer_user,
         volunteer_user,
         offender,
+        system_design
 
 
     ]
