@@ -73,6 +73,7 @@
                             <v-text-field
                                     v-model="form.phone"
                                     label="เบอร์โทร"
+                                    placeholder="00-00000000"
                                     outlined
                                     :error="!!error.phone"
                                     :error-messages="error.phone"

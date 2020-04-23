@@ -13,7 +13,8 @@
                     </p>
                     <v-spacer></v-spacer>
                 </div>
-                <v-card>
+                <v-card outlined class="mx-auto"
+    max-width="800">
                     <v-card-text>
                         <v-col cols="12">
 
@@ -75,6 +76,7 @@
                             <v-text-field
                                     v-model="form.phone"
                                     label="เบอร์โทร"
+                                    placeholder="00-00000000"
                                     outlined
                                     :error="error.phone"
                                     :error-messages="error.phone"
@@ -89,8 +91,7 @@
                             >
                             </district-select>
                         </v-col>
-                        <div class="d-flex justify-content-between">
-
+                        <div class="d-flex justify-content-between ">
                             <v-btn color="grey" class="white--text" @click="$router.go(-1)"> Cancel</v-btn>
                             <v-btn color="primary" @click="save"> Submit</v-btn>
                         </div>
