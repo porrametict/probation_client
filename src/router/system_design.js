@@ -3,9 +3,14 @@ export default {
     component: () => import("../views/System Design/SysTemplate"),
     children: [
         {
-            path: '',
+            path: 'input',
             name: 'TextInput',
             component: () => import("../views/System Design/TextInput"),
+        },
+        {
+            path: 'button',
+            name: 'Button',
+            component: () => import("../views/System Design/Button"),
         },
     ]
 }

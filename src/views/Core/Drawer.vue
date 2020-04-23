@@ -117,10 +117,11 @@
                                 icon: "mdi-pencil",
                                 routName: "TextInput"
                             },
-                            // {
-                            //     text: "Import WTA Players",
-                            //     routName: "/players/import"
-                            // }
+                            {
+                                text: "Button",
+                                icon: "mdi-alpha-b",
+                                routName: "Button"
+                            }
                         ]
                     }
                 ]
