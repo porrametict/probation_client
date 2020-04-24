@@ -28,6 +28,7 @@
     "moment": "^2.24.0",
     "plotly.js-dist": "^1.53.0",
     "survey-vue": "^1.5.12",
+    "v-mask": "^2.1.0",
     "vue": "^2.6.11",
     "vue-router": "^3.1.5",
     "vue2-google-maps": "^0.10.7",
