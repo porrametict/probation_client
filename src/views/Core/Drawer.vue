@@ -1,5 +1,5 @@
 <template>
-    <v-navigation-drawer app permanent absolute
+    <v-navigation-drawer app permanent
                          bottom
                          v-model="drawer" v-if="drawer" width="300">
         <v-list nav
