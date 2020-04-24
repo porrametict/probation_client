@@ -78,6 +78,7 @@
                                     label="เบอร์โทร"
                                     placeholder="00-00000000"
                                     outlined
+                                    v-mask="'##-########'"
                                     :error="error.phone"
                                     :error-messages="error.phone"
                                     :rules="[rules.phone.regex]"
@@ -124,7 +125,7 @@
                 rules: {
                     phone: {
                         required: v => !!v || "Required.",
-                        regex: v => /[0-9]{10}/.test(v) || "Phone must be valid"
+                        regex: v => /[0-9]{2}-[0-9]{8}/.test(v) || "Phone must be valid"
                     },
                     required: value => !!value || "Required.",
                     regex: v =>
