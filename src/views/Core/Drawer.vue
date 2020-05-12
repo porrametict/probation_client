@@ -107,23 +107,23 @@
                         icon: "mdi-card-account-details",
                         text: "ผู้ถูกคุม"
                     },
-                    {
-                        // routName: "/profile",
-                        icon: "mdi-cog",
-                        text: "Profile",
-                        subLinks: [
-                            {
-                                text: "Text Input",
-                                icon: "mdi-pencil",
-                                routName: "TextInput"
-                            },
-                            {
-                                text: "Button",
-                                icon: "mdi-alpha-b",
-                                routName: "Button"
-                            }
-                        ]
-                    }
+                    // {
+                    //     // routName: "/profile",
+                    //     icon: "mdi-cog",
+                    //     text: "Profile",
+                    //     subLinks: [
+                    //         {
+                    //             text: "Text Input",
+                    //             icon: "mdi-pencil",
+                    //             routName: "TextInput"
+                    //         },
+                    //         {
+                    //             text: "Button",
+                    //             icon: "mdi-alpha-b",
+                    //             routName: "Button"
+                    //         }
+                    //     ]
+                    // }
                 ]
             };
         },
